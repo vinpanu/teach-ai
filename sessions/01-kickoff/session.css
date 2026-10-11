@@ -6,66 +6,105 @@
 .title-slide .eyebrow { font-size: clamp(0.9rem, 2vmin, 1.15rem); }
 .title-slide[data-at="1"] .deck-hint { display: none; }
 
-/* "Why it's different" (first click): two pills collide, sparks burst, tagline rises */
-.why { margin-top: clamp(20px, 4.5vh, 48px); display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2.8vh, 30px); }
-.fusion { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 1.6vw, 22px); }
-.chip {
-  display: inline-flex; align-items: center; gap: 0.35em;
-  padding: 0.45em 1em; border-radius: 999px; white-space: nowrap;
-  font: 700 clamp(1.05rem, 3.6vmin, 2.4rem) var(--font-display); color: #fff;
-}
-.chip-fun { background: linear-gradient(120deg, #ff4fd8, #ff8a3d); box-shadow: 0 10px 40px -8px rgba(255, 79, 216, 0.6); }
-.chip-pro { background: linear-gradient(120deg, #00a8e8, #12c97f); box-shadow: 0 10px 40px -8px rgba(0, 194, 255, 0.6); }
-.plus {
-  position: relative; display: grid; place-items: center; width: 1.2em; height: 1.2em;
-  font: 700 clamp(1.4rem, 4.6vmin, 3.1rem) var(--font-display); color: var(--text);
-}
-.plus b { display: block; opacity: 0; }
-.flash {
-  position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, color-mix(in srgb, var(--accent-2) 70%, transparent) 45%, transparent 70%);
-  opacity: 0; pointer-events: none;
-}
-.spark { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--accent-2); opacity: 0; }
-.spark:nth-child(3n) { background: #ff4fd8; }
-.spark:nth-child(3n + 1) { background: var(--pro); }
-.why-line { margin: 0; opacity: 0; font: 600 clamp(1.25rem, 4vmin, 2.6rem) var(--font-display); letter-spacing: -0.01em; }
+/* "Why it's different" (first click): the Fun car and the Productivity car crash head-on.
+   Timeline (s): drive in 0–0.9 · impact 0.9 (flash, BAM!, sparks, shake) · bounce back · smoke 1.05+ · tagline 1.8 */
+.why { width: 100%; margin-top: clamp(16px, 3.5vh, 40px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 22px); }
+.crash { width: 100%; max-width: 1100px; max-height: 33vh; overflow: visible; }
+.crash .floor { stroke: var(--border); stroke-width: 3; }
+.crash .ink { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.crash .thin { stroke-width: 4; }
+.crash .head, .crash .tire { fill: var(--bg); }
+.crash .body { stroke: var(--text); stroke-width: 6; stroke-linejoin: round; }
+.car-fun .body { fill: rgba(255, 79, 216, 0.22); }
+.car-pro .body { fill: rgba(0, 168, 232, 0.22); }
+.crash .glass { fill: var(--surface-hover); stroke: var(--text); stroke-width: 4; stroke-linejoin: round; }
+.crash .headlight { fill: #ffd84d; }
+.crash .taillight { fill: #ff3b5c; }
+.crash .speed line { stroke: var(--text-muted); stroke-width: 4; stroke-linecap: round; }
+.crash .speed { opacity: 0; }
+.sign-text { font: 700 30px var(--font-display); fill: #fff; letter-spacing: 0.01em; }
 
-.why.on .chip-fun { animation: flyFun 1.1s cubic-bezier(.55, 0, .3, 1) both, glowFun 3s ease-in-out 2s infinite; }
-.why.on .chip-pro { animation: flyPro 1.1s cubic-bezier(.55, 0, .3, 1) both, glowPro 3s ease-in-out 2.5s infinite; }
-@keyframes flyFun {
-  0% { opacity: 0; transform: translateX(-60vw) rotate(-25deg); }
-  15% { opacity: 1; }
-  60% { transform: translateX(1.1em) rotate(0); }
-  78% { transform: translateX(-0.35em); }
-  100% { opacity: 1; transform: none; }
-}
-@keyframes flyPro {
-  0% { opacity: 0; transform: translateX(60vw) rotate(25deg); }
-  15% { opacity: 1; }
-  60% { transform: translateX(-1.1em) rotate(0); }
-  78% { transform: translateX(0.35em); }
-  100% { opacity: 1; transform: none; }
-}
-@keyframes glowFun { 50% { box-shadow: 0 10px 60px -4px rgba(255, 79, 216, 0.95); } }
-@keyframes glowPro { 50% { box-shadow: 0 10px 60px -4px rgba(0, 194, 255, 0.95); } }
+/* Pivot points: wheels spin around their centers, cars tip around their back wheels, signs wobble on their poles */
+.crash .wheel, .crash .flash, .crash .spark, .crash .boom, .crash .puff { transform-box: fill-box; transform-origin: 50% 50%; }
+.car-fun .car-tilt { transform-box: fill-box; transform-origin: 0% 100%; }
+.car-pro .car-tilt { transform-box: fill-box; transform-origin: 100% 100%; }
+.crash .roof-sign { transform-box: fill-box; transform-origin: 50% 100%; }
 
-.why.on .fusion { animation: shake 0.35s ease-in-out 0.66s; }
+.why.on .car-fun { animation: driveFun 1.6s both; }
+.why.on .car-pro { animation: drivePro 1.6s both; }
+@keyframes driveFun {
+  0% { transform: translateX(-900px); animation-timing-function: cubic-bezier(.5, 0, .9, .6); }
+  56% { transform: translateX(58px); animation-timing-function: ease-out; }
+  70% { transform: translateX(-16px); }
+  85% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+@keyframes drivePro {
+  0% { transform: translateX(900px); animation-timing-function: cubic-bezier(.5, 0, .9, .6); }
+  56% { transform: translateX(-58px); animation-timing-function: ease-out; }
+  70% { transform: translateX(16px); }
+  85% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+.why.on .wheel { animation: spin 0.225s linear 4; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.why.on .speed { animation: speedLines 0.9s linear; }
+@keyframes speedLines { 15%, 90% { opacity: 1; } }
+
+.why.on .car-fun .car-tilt { animation: tipFun 0.7s ease-out 0.9s; }
+.why.on .car-pro .car-tilt { animation: tipPro 0.7s ease-out 0.9s; }
+@keyframes tipFun { 30% { transform: rotate(-8deg); } 65% { transform: rotate(2deg); } }
+@keyframes tipPro { 30% { transform: rotate(8deg); } 65% { transform: rotate(-2deg); } }
+.why.on .car-fun .roof-sign { animation: wobbleFun 0.9s ease-out 0.9s; }
+.why.on .car-pro .roof-sign { animation: wobblePro 0.9s ease-out 0.9s; }
+@keyframes wobbleFun { 20% { transform: rotate(16deg); } 45% { transform: rotate(-10deg); } 70% { transform: rotate(5deg); } }
+@keyframes wobblePro { 20% { transform: rotate(-16deg); } 45% { transform: rotate(10deg); } 70% { transform: rotate(-5deg); } }
+
+.why.on .crash { animation: shake 0.4s ease-in-out 0.9s; }
 @keyframes shake {
-  20% { transform: translate(-7px, 2px); } 40% { transform: translate(6px, -3px); }
-  60% { transform: translate(-4px, 2px); } 80% { transform: translate(2px, -1px); }
+  20% { transform: translate(-8px, 3px); } 40% { transform: translate(7px, -3px); }
+  60% { transform: translate(-5px, 2px); } 80% { transform: translate(2px, -1px); }
 }
-.why.on .flash { animation: flash 0.7s ease-out 0.62s both; }
-@keyframes flash { 0% { opacity: 0; transform: scale(0.2); } 15% { opacity: 1; } 100% { opacity: 0; transform: scale(9); } }
-.why.on .spark { animation: spark 0.9s cubic-bezier(.1, .7, .3, 1) 0.64s both; }
+
+.crash .flash { fill: #fff; opacity: 0; }
+.why.on .flash { animation: flash 0.6s ease-out 0.88s both; }
+@keyframes flash { 0% { opacity: 0; transform: scale(0.2); } 15% { opacity: 0.95; } 100% { opacity: 0; transform: scale(7); } }
+
+.crash .spark { fill: var(--accent-2); opacity: 0; }
+.crash .spark:nth-of-type(3n) { fill: #ff4fd8; }
+.crash .spark:nth-of-type(3n + 1) { fill: var(--pro); }
+.why.on .spark { animation: spark 0.9s cubic-bezier(.1, .7, .3, 1) 0.9s both; }
 @keyframes spark {
   0% { opacity: 1; transform: rotate(var(--a)) translateX(0) scale(1.2); }
   100% { opacity: 0; transform: rotate(var(--a)) translateX(var(--r)) scale(0.3); }
 }
-.why.on .plus b { animation: pop 0.5s cubic-bezier(.3, 1.6, .5, 1) 0.85s both; }
-.why.on .why-line { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) 1.25s both; }
 
-@media (max-width: 640px) { .fusion { flex-wrap: wrap; } }
+.crash .boom { opacity: 0; }
+.boom-outer { fill: #ffc83d; stroke: #ff6b3d; stroke-width: 5; stroke-linejoin: round; }
+.boom-inner { fill: #ff6b3d; }
+.boom-text { font: 800 26px var(--font-display); fill: #fff; letter-spacing: 0.02em; }
+.why.on .boom { animation: boom 1.7s ease-out 0.9s both; }
+@keyframes boom {
+  0% { opacity: 0; transform: scale(0.1) rotate(-25deg); }
+  14% { opacity: 1; transform: scale(1.25) rotate(8deg); }
+  26% { transform: scale(1) rotate(0); }
+  70% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+.crash .puff { fill: var(--text-muted); opacity: 0; }
+.why.on .puff { animation: puff 1.8s ease-out both; }
+.why.on .p1 { animation-delay: 1.05s; }
+.why.on .p2 { animation-delay: 1.2s; }
+.why.on .p3 { animation-delay: 1.35s; }
+@keyframes puff {
+  0% { opacity: 0; transform: translateY(0) scale(0.3); }
+  20% { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-60px) scale(2.2); }
+}
+
+.why-line { margin: 0; opacity: 0; font: 600 clamp(1.25rem, 4vmin, 2.6rem) var(--font-display); letter-spacing: -0.01em; }
+.why.on .why-line { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) 1.8s both; }
 
 /* ---------- Scene 2: the sleeping student ---------- */
 .lecture-slide .slide-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }

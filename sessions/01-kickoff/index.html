@@ -35,28 +35,88 @@
         <h1 class="enter" style="--d:.15s">AI in <span class="gradient-text">Practice</span></h1>
         <p class="lead enter" style="--d:.35s">A different kind of AI training.</p>
 
-        <!-- "Why it's different": plays on the first click. The two pills collide, sparks fly, the tagline rises. -->
+        <!-- "Why it's different": plays on the first click. The Fun car and the Productivity car crash head-on. -->
         <div class="why" data-step="1">
-          <div class="fusion">
-            <span class="chip chip-fun">🎉 Actually fun</span>
-            <span class="plus" aria-hidden="true">
-              <span class="flash"></span>
-              <span class="spark" style="--a:0deg;--r:170px"></span>
-              <span class="spark" style="--a:30deg;--r:120px"></span>
-              <span class="spark" style="--a:60deg;--r:150px"></span>
-              <span class="spark" style="--a:90deg;--r:110px"></span>
-              <span class="spark" style="--a:120deg;--r:160px"></span>
-              <span class="spark" style="--a:150deg;--r:125px"></span>
-              <span class="spark" style="--a:180deg;--r:175px"></span>
-              <span class="spark" style="--a:210deg;--r:115px"></span>
-              <span class="spark" style="--a:240deg;--r:150px"></span>
-              <span class="spark" style="--a:270deg;--r:105px"></span>
-              <span class="spark" style="--a:300deg;--r:160px"></span>
-              <span class="spark" style="--a:330deg;--r:130px"></span>
-              <b>+</b>
-            </span>
-            <span class="chip chip-pro">⚡ Seriously productive</span>
-          </div>
+          <svg class="crash" viewBox="0 0 1000 250" role="img" aria-label="Two cartoon cars, one with a Fun sign on its roof and one with a Productivity sign, speed toward each other and crash head-on.">
+            <defs>
+              <linearGradient id="funGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff4fd8"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient>
+              <linearGradient id="proGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00a8e8"/><stop offset="1" stop-color="#12c97f"/></linearGradient>
+            </defs>
+            <line class="floor" x1="0" y1="236" x2="1000" y2="236"/>
+
+            <!-- Left car: Fun -->
+            <g transform="translate(330 236)">
+              <g class="car car-fun">
+                <g class="car-tilt">
+                  <g class="car-shape">
+                    <g class="speed"><line x1="-175" y1="-92" x2="-140" y2="-92"/><line x1="-190" y1="-62" x2="-145" y2="-62"/><line x1="-170" y1="-36" x2="-140" y2="-36"/></g>
+                    <path class="body" d="M-112 -40 Q-112 -72 -82 -72 L78 -72 Q112 -70 112 -44 L112 -34 Q112 -26 104 -26 L-104 -26 Q-112 -26 -112 -34 Z"/>
+                    <path class="ink" d="M-72 -72 L-46 -120 Q-43 -126 -36 -126 L36 -126 Q42 -126 46 -120 L76 -72"/>
+                    <path class="glass" d="M-56 -78 L-38 -113 L-4 -113 L-4 -78 Z M6 -78 L6 -113 L34 -113 L58 -78 Z"/>
+                    <circle class="ink head" cx="24" cy="-98" r="11"/>
+                    <path class="ink thin" d="M24 -87 L20 -78 M23 -84 L44 -88"/>
+                    <circle class="headlight" cx="105" cy="-56" r="6"/>
+                    <rect class="taillight" x="-116" y="-64" width="7" height="13" rx="2"/>
+                    <g class="wheel"><circle class="ink tire" cx="-66" cy="-22" r="22"/><path class="ink thin" d="M-66 -40 V-4 M-84 -22 H-48"/></g>
+                    <g class="wheel"><circle class="ink tire" cx="66" cy="-22" r="22"/><path class="ink thin" d="M66 -40 V-4 M48 -22 H84"/></g>
+                  </g>
+                  <g class="roof-sign">
+                    <line class="ink thin" x1="0" y1="-126" x2="0" y2="-146"/>
+                    <rect x="-62" y="-192" width="124" height="48" rx="24" fill="url(#funGrad)"/>
+                    <text class="sign-text" x="0" y="-158" text-anchor="middle">Fun</text>
+                  </g>
+                </g>
+              </g>
+            </g>
+
+            <!-- Right car: Productivity (same car, mirrored to face left) -->
+            <g transform="translate(670 236)">
+              <g class="car car-pro">
+                <g class="car-tilt">
+                  <g class="car-shape" transform="scale(-1 1)">
+                    <g class="speed"><line x1="-175" y1="-92" x2="-140" y2="-92"/><line x1="-190" y1="-62" x2="-145" y2="-62"/><line x1="-170" y1="-36" x2="-140" y2="-36"/></g>
+                    <path class="body" d="M-112 -40 Q-112 -72 -82 -72 L78 -72 Q112 -70 112 -44 L112 -34 Q112 -26 104 -26 L-104 -26 Q-112 -26 -112 -34 Z"/>
+                    <path class="ink" d="M-72 -72 L-46 -120 Q-43 -126 -36 -126 L36 -126 Q42 -126 46 -120 L76 -72"/>
+                    <path class="glass" d="M-56 -78 L-38 -113 L-4 -113 L-4 -78 Z M6 -78 L6 -113 L34 -113 L58 -78 Z"/>
+                    <circle class="ink head" cx="24" cy="-98" r="11"/>
+                    <path class="ink thin" d="M24 -87 L20 -78 M23 -84 L44 -88"/>
+                    <circle class="headlight" cx="105" cy="-56" r="6"/>
+                    <rect class="taillight" x="-116" y="-64" width="7" height="13" rx="2"/>
+                    <g class="wheel"><circle class="ink tire" cx="-66" cy="-22" r="22"/><path class="ink thin" d="M-66 -40 V-4 M-84 -22 H-48"/></g>
+                    <g class="wheel"><circle class="ink tire" cx="66" cy="-22" r="22"/><path class="ink thin" d="M66 -40 V-4 M48 -22 H84"/></g>
+                  </g>
+                  <g class="roof-sign">
+                    <line class="ink thin" x1="0" y1="-126" x2="0" y2="-146"/>
+                    <rect x="-130" y="-192" width="260" height="48" rx="24" fill="url(#proGrad)"/>
+                    <text class="sign-text" x="0" y="-158" text-anchor="middle">Productivity</text>
+                  </g>
+                </g>
+              </g>
+            </g>
+
+            <!-- Impact: flash, sparks, BAM! burst, smoke -->
+            <g transform="translate(500 180)">
+              <circle class="flash" cx="0" cy="0" r="30"/>
+              <circle class="spark" r="6" style="--a:-90deg;--r:150px"/>
+              <circle class="spark" r="5" style="--a:-60deg;--r:120px"/>
+              <circle class="spark" r="6" style="--a:-30deg;--r:160px"/>
+              <circle class="spark" r="5" style="--a:0deg;--r:110px"/>
+              <circle class="spark" r="6" style="--a:-120deg;--r:140px"/>
+              <circle class="spark" r="5" style="--a:-150deg;--r:165px"/>
+              <circle class="spark" r="6" style="--a:180deg;--r:115px"/>
+              <circle class="spark" r="5" style="--a:-105deg;--r:175px"/>
+              <circle class="spark" r="6" style="--a:-75deg;--r:180px"/>
+              <circle class="spark" r="5" style="--a:-45deg;--r:100px"/>
+              <g class="boom">
+                <polygon class="boom-outer" points="0,-78 10,-39 38,-66 28,-28 68,-38 39,-10 78,0 39,10 62,36 28,28 36,64 10,39 0,74 -10,39 -38,66 -28,28 -66,38 -39,10 -76,0 -39,-10 -64,-36 -28,-28 -36,-64 -10,-39"/>
+                <polygon class="boom-inner" points="0,-48 6,-24 23,-40 17,-17 41,-23 24,-6 47,0 24,6 38,22 17,17 22,39 6,24 0,45 -6,24 -23,40 -17,17 -40,23 -24,6 -46,0 -24,-6 -39,-22 -17,-17 -22,-39 -6,-24"/>
+                <text class="boom-text" x="0" y="9" text-anchor="middle">BAM!</text>
+              </g>
+              <circle class="puff p1" cx="-18" cy="-10" r="16"/>
+              <circle class="puff p2" cx="10" cy="-18" r="20"/>
+              <circle class="puff p3" cx="26" cy="-4" r="14"/>
+            </g>
+          </svg>
           <p class="why-line">Stay for the fun. <span class="gradient-text">Leave more productive.</span></p>
         </div>
       </div>
