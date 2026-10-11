@@ -21,6 +21,7 @@ body.deck-body { overflow: hidden; height: 100vh; }
   align-items: safe center;   /* if a scene is taller than the screen, scroll instead of clipping the top */
   justify-content: center;
   overflow-y: auto;
+  overflow-x: hidden;         /* things flying in from off-screen never cause a sideways scrollbar */
   padding: clamp(64px, 9vh, 110px) clamp(16px, 5vw, 80px) clamp(72px, 10vh, 110px);
   opacity: 0;
   visibility: hidden;
