@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stop Micromanaging Your AI · AI in Practice</title>
+  <meta name="description" content="Productivity Ideas sample: why long, step-by-step prompts hold today's AI back, and the short brief that works better.">
+  <meta property="og:title" content="Stop Micromanaging Your AI · AI in Practice">
+  <meta property="og:description" content="Old prompts gave AI turn-by-turn directions. Today's AI does better with a destination.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css?v=3">
+  <link rel="stylesheet" href="../../assets/css/slides.css?v=3">
+  <link rel="stylesheet" href="prod.css?v=3">
+</head>
+<body class="deck-body">
+
+  <div class="deck-progress" aria-hidden="true"><span></span></div>
+  <a class="deck-brand" href="../../"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
+  <a class="deck-back" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+
+  <main class="deck" data-deck-title="Productivity Ideas">
+    <div class="deck-bg" aria-hidden="true">
+      <canvas id="network"></canvas>
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
+    </div>
+
+    <!-- ========== 1 · Title ========== -->
+    <section class="slide prod-title" data-title="Stop Micromanaging Your AI">
+      <div class="slide-inner">
+        <span class="eyebrow enter"><span class="pulse"></span>Lane 5 · Productivity Ideas · Sample</span>
+        <h1 class="enter" style="--d:.15s">Stop <span class="strike">micromanaging</span><br><span class="gradient-text">your AI.</span></h1>
+        <p class="lead enter" style="--d:.35s">Old prompts gave AI turn-by-turn directions.<br>Today's AI does better when you give it the <b>destination</b>.</p>
+      </div>
+    </section>
+
+    <!-- ========== 2 · The old way ========== -->
+    <section class="slide old-slide" data-title="The old way">
+      <div class="slide-inner split">
+        <div class="split-text">
+          <div class="kicker enter old-kicker">The old way</div>
+          <h2 class="enter" style="--d:.1s">Script <span class="old-word">every</span> step.</h2>
+          <p class="lead enter" style="--d:.2s">Long. Prescriptive. Shouty. Back when AI needed hand-holding, this is how we wrote prompts.</p>
+          <div class="meters enter" style="--d:.35s">
+            <div class="meter old"><b class="n-words">0</b><span>words</span></div>
+            <div class="meter old"><b class="n-steps">0</b><span>scripted steps</span></div>
+            <div class="meter old"><b class="n-shout">0</b><span>shouty words</span></div>
+          </div>
+        </div>
+        <div class="doc old enter" style="--d:.2s">
+          <div class="doc-bar"><i></i><i></i><i></i><span>prompt_v7_FINAL_final.txt</span></div>
+          <div class="doc-scroll"><pre class="doc-body"></pre></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3 · The new way ========== -->
+    <section class="slide new-slide" data-title="The new way">
+      <div class="slide-inner split">
+        <div class="split-text">
+          <div class="kicker enter new-kicker">The new way</div>
+          <h2 class="enter" style="--d:.1s">Give it the <span class="gradient-text">destination.</span></h2>
+          <p class="lead enter" style="--d:.2s">A short brief: what you want, why, and what “great” looks like. The AI works out the how.</p>
+          <div class="meters enter" style="--d:.35s">
+            <div class="meter new"><b class="n-words">0</b><span>words</span></div>
+            <div class="meter new"><b class="n-steps">0</b><span>scripted steps</span></div>
+            <div class="meter new"><b class="n-shout">0</b><span>shouty words</span></div>
+          </div>
+        </div>
+        <div class="doc new enter" style="--d:.2s">
+          <div class="doc-bar"><i></i><i></i><i></i><span>brief.txt</span></div>
+          <div class="doc-body brief"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4 · Spot the difference ========== -->
+    <section class="slide" data-title="Spot the difference">
+      <div class="slide-inner">
+        <h2 class="enter vs-head">Spot the <span class="gradient-text">difference.</span></h2>
+        <div class="vs">
+          <div class="vs-col old">
+            <div class="vs-title">❌ Old: what goes wrong</div>
+            <div class="vs-item" data-step="1"><code>You MUST… NEVER… CRITICAL!!!</code><p><b>Shouting.</b> Newer AI takes it too literally and overreacts.</p></div>
+            <div class="vs-item" data-step="3"><code>STEP 1… STEP 2… STEP 12</code><p><b>Every step scripted.</b> The AI can't take a better route than yours.</p></div>
+            <div class="vs-item" data-step="5"><code>=== WEEKLY FEEDBACK REPORT ===</code><p><b>Rigid template.</b> No space for what actually matters this week.</p></div>
+            <div class="vs-item" data-step="7"><code>Do NOT add any other sections.</code><p><b>No “why.”</b> When something unexpected shows up, the AI has no way to adapt.</p></div>
+          </div>
+          <div class="vs-col new">
+            <div class="vs-title">✅ New: why it works</div>
+            <div class="vs-item" data-step="2"><code>Goal: Summarize this week's emails…</code><p><b>Calm, clear goal.</b> One sentence says what you want.</p></div>
+            <div class="vs-item" data-step="4"><code>Why it matters: 15 minutes to decide…</code><p><b>Explains why.</b> The AI can make smart calls on its own.</p></div>
+            <div class="vs-item" data-step="6"><code>What I know: new login page on Tuesday</code><p><b>Shares context.</b> Facts it couldn't guess, so it can connect the dots.</p></div>
+            <div class="vs-item" data-step="8"><code>Done = first line shows our #1 priority</code><p><b>Defines “great,” not the steps.</b> The how is left to the AI.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5 · Same task, two results ========== -->
+    <section class="slide results-slide" data-title="Same task, two results">
+      <div class="slide-inner">
+        <h2 class="enter vs-head">Same emails. Same AI. <span class="gradient-text">Different prompt.</span></h2>
+        <div class="outputs">
+          <div class="out out-old">
+            <div class="out-bar">Old prompt's answer</div>
+            <pre class="out-body"></pre>
+            <div class="verdict old">🤷 Followed every step… and missed the story.</div>
+          </div>
+          <div class="out out-new">
+            <div class="out-bar">New brief's answer</div>
+            <div class="out-body"></div>
+            <div class="verdict new">💡 Found the real problem.</div>
+          </div>
+        </div>
+        <p class="footnote">Illustrative example. The old template never asked “what's causing the complaints?”, so it couldn't report it.</p>
+      </div>
+    </section>
+
+    <!-- ========== 6 · Scorecard ========== -->
+    <section class="slide" data-title="The scorecard">
+      <div class="slide-inner">
+        <h2 class="enter vs-head">The <span class="gradient-text">scorecard.</span></h2>
+        <div class="score">
+          <div class="score-row head enter" style="--d:.15s"><span></span><span class="old">❌ Old way</span><span class="new">✅ New way</span></div>
+          <div class="score-row" data-step="1"><span>⏱️ Time to write</span><span class="old">Long and fiddly</span><span class="new">A few minutes</span></div>
+          <div class="score-row" data-step="2"><span>🔀 When things change</span><span class="old">Breaks, or follows the script anyway</span><span class="new">Adapts, because it knows the goal</span></div>
+          <div class="score-row" data-step="3"><span>🚀 How good can it get?</span><span class="old">Capped at your own plan</span><span class="new">Can beat your plan</span></div>
+          <div class="score-row" data-step="4"><span>🔊 Tone</span><span class="old">Shouting makes it overreact</span><span class="new">Calm gets proportionate results</span></div>
+          <div class="score-row" data-step="5"><span>♻️ Reuse</span><span class="old">Rewrite it for every task</span><span class="new">Same 5-part brief, every time</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 7 · Your turn ========== -->
+    <section class="slide" data-title="Your turn">
+      <div class="slide-inner turn">
+        <div class="turn-left">
+          <div class="kicker enter">Your turn</div>
+          <h2 class="enter" style="--d:.1s">Steal this <span class="gradient-text">brief.</span></h2>
+          <div class="tpl enter" style="--d:.25s">
+            <div class="tpl-body"></div>
+            <button type="button" class="copy-btn">📋 Copy template</button>
+          </div>
+        </div>
+        <div class="turn-right">
+          <aside class="pro-tip enter" style="--d:.4s">
+            <span class="pro-tip-badge">Pro Tip</span>
+            <p><b>When should you still be specific?</b> When the exact <b>format</b> matters (a spreadsheet, a form, a legal clause) or the <b>order</b> of steps truly matters. Spell out the result you need, not every thought along the way.</p>
+          </aside>
+          <div class="sources enter" style="--d:.55s">
+            <p>Based on Anthropic's prompting guidance:</p>
+            <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">Prompting best practices ↗</a>
+            <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents ↗</a>
+          </div>
+          <a class="btn btn-primary enter" style="--d:.7s" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="deck-ui">
+    <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
+    <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
+    <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
+    <span class="deck-counter" aria-live="polite">1 / 7</span>
+    <button type="button" data-deck="next" aria-label="Next (→)">→</button>
+  </div>
+
+  <script src="prod.js?v=4"></script>
+  <script src="../../assets/js/slides.js?v=3"></script>
+  <script src="../../assets/js/site.js?v=3"></script>
+</body>
+</html>

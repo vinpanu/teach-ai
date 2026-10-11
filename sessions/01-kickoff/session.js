@@ -10,7 +10,8 @@ const LANES = [
   { icon: "🚨", title: "AI Gone Rogue", blurb: "True stories of AI misbehaving, from bending the rules to breaking into websites.",
     href: "../../samples/ai-gone-rogue/" },
   { icon: "🗞️", title: "Fresh Off the Press", blurb: "The newest AI features, released this week or this month." },
-  { icon: "⚡", title: "Productivity Ideas", blurb: "Practical ways to use AI to save time on everyday work." },
+  { icon: "⚡", title: "Productivity Ideas", blurb: "Practical ways to use AI to save time on everyday work.",
+    href: "../../samples/productivity-ideas/" },
 ];
 
 (() => {
