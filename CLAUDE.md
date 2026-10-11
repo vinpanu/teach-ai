@@ -33,6 +33,12 @@ The visual impact of the website matters **as much as the material itself**. Eve
 - **Publishing workflow:** edit, then preview locally in the browser pane, then **ask me before pushing**, then commit and push. The live site updates about a minute after a push.
 - Later we may add a custom domain. The project folder is in Google Drive; if Drive sync ever conflicts with `.git`, move the project to a local folder.
 
+## Explain what you're doing (I'm learning too)
+I want to learn how Claude works, so explain your actions in simple language as you go:
+- When you run a command, start a server, use a tool, or ask for permission, say in a sentence or two **what it does and why**. Avoid jargon, and define any technical term you do use.
+- When I ask about a command, explain the **command itself** piece by piece, not just what it's for.
+- Keep explanations short. We'll adjust the level of detail as we go if it's too much or too little.
+
 ## Workflow
 1. At the start of each session, confirm the theme, the audience level, and the goals with me.
 2. Draft the content, then build the web page(s) for it.
