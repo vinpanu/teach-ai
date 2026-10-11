@@ -50,6 +50,8 @@ The visual impact of the website matters **as much as the material itself**. Eve
   - `index.html`: the course home page (hero section plus a grid of session cards; a live session's card is an `<a class="card live">`)
   - `assets/`: the shared design system (`site.css`/`site.js`) and the slide engine (`slides.css`/`slides.js`)
   - `sessions/NN-<theme>/`: one folder per session (`index.html`, plus `session.css`/`session.js` for scene-specific work)
+  - `samples/<lane>/`: a short preview deck for each topic lane, linked from that lane's road sign in the kickoff (set the lane's `href` in `LANES`). Each sample ends with a "← Back to the lanes" link to `../../sessions/01-kickoff/#5`. Done so far: `samples/ai-gone-rogue/` (the Anthropic multi-agent "turf war" story).
+- **Stories based on real research:** find and read the **primary source** (for example, Anthropic's own post), not only news coverage. Label dramatized parts as dramatized, link the source on the page, use at most one short direct quote, and never invent statistics.
 - Plain static HTML/CSS/JS only, with no build step. Use relative links (`assets/...`, `../../assets/...`) because the site is served from a `/teach-ai/` subpath.
 - **Local preview:** the `site` server in `.claude/launch.json` runs `python -m http.server` at http://localhost:8000. Pages need this to load properly; opening the file directly won't load the styles.
 - **Publishing workflow:** edit, then preview locally in the browser pane, then **ask me before pushing**, then commit and push. The live site updates about a minute after a push.

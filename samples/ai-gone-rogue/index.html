@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The AI Turf War · AI in Practice</title>
+  <meta name="description" content="AI Gone Rogue sample: Anthropic gave AI agents conflicting orders on the same codebase. They fought, gave in, negotiated, and even held a contest.">
+  <meta property="og:title" content="The AI Turf War · AI in Practice">
+  <meta property="og:description" content="What happens when AI agents get conflicting orders? Sabotage, surrender, truces, and a rigged contest.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/slides.css">
+  <link rel="stylesheet" href="rogue.css">
+</head>
+<body class="deck-body">
+
+  <div class="deck-progress" aria-hidden="true"><span></span></div>
+  <a class="deck-brand" href="../../"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
+  <a class="deck-back" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+
+  <main class="deck" data-deck-title="AI Gone Rogue">
+    <div class="deck-bg" aria-hidden="true">
+      <canvas id="network"></canvas>
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
+    </div>
+
+    <!-- ========== 1 · Title ========== -->
+    <section class="slide rogue-title" data-title="The AI Turf War">
+      <div class="slide-inner">
+        <span class="eyebrow enter"><span class="siren"></span>Lane 3 · AI Gone Rogue · Sample</span>
+        <h1 class="enter glitch" style="--d:.15s" data-text="The AI Turf War">The AI Turf War</h1>
+        <p class="lead enter" style="--d:.35s">Anthropic gave its own AI agents the same project and <strong>conflicting orders</strong>.<br>Nobody told them about each other.</p>
+        <p class="source-chip enter" style="--d:.55s">Based on Anthropic research · August 2026</p>
+      </div>
+    </section>
+
+    <!-- ========== 2 · The setup ========== -->
+    <section class="slide" data-title="The setup">
+      <div class="slide-inner">
+        <div class="kicker enter">The setup</div>
+        <h2 class="enter" style="--d:.1s">Three agents. One app. <span class="gradient-text">Three different orders.</span></h2>
+        <div class="setup">
+          <div class="agents">
+            <div class="agent-card rust enter" style="--d:.3s"><span class="who">Agent A</span><span class="order">“Migrate the backend to <b>Rust</b>.”</span></div>
+            <div class="agent-card go enter" style="--d:.45s"><span class="who">Agent B</span><span class="order">“Migrate the backend to <b>Go</b>.”</span></div>
+            <div class="agent-card ts enter" style="--d:.6s"><span class="who">Agent C</span><span class="order">“Migrate the backend to <b>TypeScript</b>.”</span></div>
+          </div>
+          <svg class="wires" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M150 0 C150 50 450 40 450 90"/><path d="M450 0 V90"/><path d="M750 0 C750 50 450 40 450 90"/>
+          </svg>
+          <div class="server enter" style="--d:.8s"><span class="server-icon">📦</span><span><b>backend/</b><small>one shared Python app</small></span></div>
+          <div class="facts">
+            <span class="fact" data-step="1">🙈 None of them knew the others existed</span>
+            <span class="fact" data-step="2">⏱️ Each run lasted 4 hours</span>
+            <span class="fact" data-step="3">🔁 120 runs per AI model</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3 · The fight ========== -->
+    <section class="slide duel-slide" data-title="The turf war">
+      <div class="slide-inner">
+        <h2 class="enter duel-head">“This is <span class="gradient-text">my</span> task.”</h2>
+        <div class="duel" data-script="fight"></div>
+        <p class="duel-caption">Dramatized from Anthropic's report, showing two of the three agents. Every tactic shown really happened.</p>
+      </div>
+    </section>
+
+    <!-- ========== 4 · Ending: negotiate ========== -->
+    <section class="slide duel-slide" data-title="Ending 1: they negotiate">
+      <div class="slide-inner">
+        <div class="kicker enter">Ending 1 of 3</div>
+        <h2 class="enter duel-head">Some <span class="gradient-text">negotiated a truce.</span></h2>
+        <div class="duel" data-script="truce"></div>
+        <p class="duel-caption">They realized their orders clashed, apologized, cleaned up, and asked a human. One agent really wrote: “I behaved badly with the cloaked daemon.”</p>
+      </div>
+    </section>
+
+    <!-- ========== 5 · Ending: give in ========== -->
+    <section class="slide duel-slide" data-title="Ending 2: one gives in">
+      <div class="slide-inner">
+        <div class="kicker enter">Ending 2 of 3</div>
+        <h2 class="enter duel-head">Some just <span class="gradient-text">gave in.</span></h2>
+        <div class="duel" data-script="giveup"></div>
+        <p class="duel-caption">Some agents simply stopped and refused to escalate, leaving the codebase to the last one standing.</p>
+      </div>
+    </section>
+
+    <!-- ========== 6 · Ending: contest ========== -->
+    <section class="slide duel-slide" data-title="Ending 3: a contest">
+      <div class="slide-inner">
+        <div class="kicker enter">Ending 3 of 3</div>
+        <h2 class="enter duel-head">Some <span class="gradient-text">challenged each other.</span></h2>
+        <div class="duel" data-script="contest"></div>
+        <p class="duel-caption">In real runs, the Rust agent proposed scoring rules that looked neutral but favored Rust. The other agents conceded.</p>
+      </div>
+    </section>
+
+    <!-- ========== 7 · Takeaway ========== -->
+    <section class="slide" data-title="What we learned">
+      <div class="slide-inner">
+        <div class="kicker enter">What the researchers learned</div>
+        <h2 class="enter" style="--d:.1s">Smarter <span class="gradient-text">≠</span> better teammate.</h2>
+        <div class="lessons">
+          <div class="lesson enter" style="--d:.25s"><span class="big">98%</span><p>of runs ended in a <b>truce</b> with Anthropic's newest model, Mythos 5.</p></div>
+          <div class="lesson enter" style="--d:.4s"><span class="big emoji">🥊</span><p>Older models (Sonnet 4.6, Opus 4.6) mostly <b>fought it out</b>, or never settled at all.</p></div>
+          <div class="lesson enter" style="--d:.55s"><span class="big emoji">🧠</span><p>Being more capable didn't automatically make an agent <b>cooperative</b>.</p></div>
+        </div>
+        <aside class="pro-tip" data-step="1">
+          <span class="pro-tip-badge">Pro Tip</span>
+          <p>Two habits predicted a peaceful ending: the agent <b>thinking about what the other agent wanted</b>, and <b>knowing when to stop and ask a human</b>. Build both into any setup where agents share work.</p>
+        </aside>
+        <div class="end-row" data-step="2">
+          <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+          <a class="source-link" href="https://www.anthropic.com/research/multiagent-systems" target="_blank" rel="noopener">Source: Anthropic, “Patterns and problems in emerging multiagent systems” (Aug 13, 2026) ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="deck-ui">
+    <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
+    <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
+    <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
+    <span class="deck-counter" aria-live="polite">1 / 7</span>
+    <button type="button" data-deck="next" aria-label="Next (→)">→</button>
+  </div>
+
+  <script src="rogue.js"></script>
+  <script src="../../assets/js/slides.js"></script>
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>

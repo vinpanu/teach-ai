@@ -1,10 +1,12 @@
 // Session 01 — Kickoff. Builds the highway scene and the vote options.
 // To add or change a topic lane, edit LANES. The road, signs, captions and
-// the vote list all update automatically.
+// the vote list all update automatically. Give a lane an `href` once its
+// sample page exists, and its road sign becomes a "Preview" link.
 const LANES = [
   { icon: "🔤", title: "AI Terms Decoded", blurb: "LLMs, tokens, agents, hallucinations: the jargon, explained in plain English." },
   { icon: "🩺", title: "My AI Health Coach", blurb: "A behind-the-scenes tour of a personal AI agent I built." },
-  { icon: "🚨", title: "AI Gone Rogue", blurb: "True stories of AI misbehaving, from bending the rules to breaking into websites." },
+  { icon: "🚨", title: "AI Gone Rogue", blurb: "True stories of AI misbehaving, from bending the rules to breaking into websites.",
+    href: "../../samples/ai-gone-rogue/" },
   { icon: "🗞️", title: "Fresh Off the Press", blurb: "The newest AI features, released this week or this month." },
   { icon: "⚡", title: "Productivity Ideas", blurb: "Practical ways to use AI to save time on everyday work." },
 ];
@@ -74,8 +76,12 @@ const LANES = [
     ${dividers}
     ${car}`;
 
-  slide.querySelector(".hw-signs").innerHTML = LANES.map((l, i) => `
-    <div class="hw-sign"><span class="n">${i + 1}</span><br>${l.icon} ${esc(l.title)}<span class="arrow">↓</span></div>`).join("");
+  slide.querySelector(".hw-signs").innerHTML = LANES.map((l, i) => {
+    const inner = `<span class="n">${i + 1}</span><br>${l.icon} ${esc(l.title)}<span class="arrow">↓</span>`;
+    return l.href
+      ? `<a class="hw-sign has-preview" href="${esc(l.href)}" title="Open a sample of this lane">${inner}<span class="peek">▶ Preview</span></a>`
+      : `<div class="hw-sign">${inner}</div>`;
+  }).join("");
 
   const carEl = svg.querySelector(".hw-car");
   const signs = [...slide.querySelectorAll(".hw-sign")];

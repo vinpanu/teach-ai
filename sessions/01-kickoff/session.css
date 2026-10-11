@@ -7,7 +7,7 @@
 .title-slide[data-at="1"] .deck-hint { display: none; }
 
 /* "Why it's different" (first click): the Fun car and the Productivity car crash head-on.
-   Timeline (s): drive in 0–1.125 · impact 1.125 (flash, BAM!, sparks, shake) · bounce back · smoke 1.3+ · tagline 2.25 */
+   Timeline (s): drive in 0–1.46 · impact 1.46 (flash, BAM!, sparks, shake) · bounce back · smoke 1.7+ · tagline 2.9
 .why { width: 100%; margin-top: clamp(16px, 3.5vh, 40px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 22px); }
 .crash { width: 100%; max-width: 1100px; max-height: 33vh; overflow: visible; }
 .crash .floor { stroke: var(--border); stroke-width: 3; }
@@ -30,8 +30,8 @@
 .car-pro .car-tilt { transform-box: fill-box; transform-origin: 100% 100%; }
 .crash .roof-sign { transform-box: fill-box; transform-origin: 50% 100%; }
 
-.why.on .car-fun { animation: driveFun 2s both; }
-.why.on .car-pro { animation: drivePro 2s both; }
+.why.on .car-fun { animation: driveFun 2.6s both; }
+.why.on .car-pro { animation: drivePro 2.6s both; }
 @keyframes driveFun {
   0% { transform: translateX(-900px); animation-timing-function: cubic-bezier(.5, 0, .9, .6); }
   56% { transform: translateX(58px); animation-timing-function: ease-out; }
@@ -46,34 +46,34 @@
   85% { transform: translateX(-4px); }
   100% { transform: translateX(0); }
 }
-.why.on .wheel { animation: spin 0.2812s linear 4; }
+.why.on .wheel { animation: spin 0.3656s linear 4; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.why.on .speed { animation: speedLines 1.125s linear; }
+.why.on .speed { animation: speedLines 1.4625s linear; }
 @keyframes speedLines { 15%, 90% { opacity: 1; } }
 
-.why.on .car-fun .car-tilt { animation: tipFun 0.875s ease-out 1.125s; }
-.why.on .car-pro .car-tilt { animation: tipPro 0.875s ease-out 1.125s; }
+.why.on .car-fun .car-tilt { animation: tipFun 1.1375s ease-out 1.4625s; }
+.why.on .car-pro .car-tilt { animation: tipPro 1.1375s ease-out 1.4625s; }
 @keyframes tipFun { 30% { transform: rotate(-8deg); } 65% { transform: rotate(2deg); } }
 @keyframes tipPro { 30% { transform: rotate(8deg); } 65% { transform: rotate(-2deg); } }
-.why.on .car-fun .roof-sign { animation: wobbleFun 1.125s ease-out 1.125s; }
-.why.on .car-pro .roof-sign { animation: wobblePro 1.125s ease-out 1.125s; }
+.why.on .car-fun .roof-sign { animation: wobbleFun 1.4625s ease-out 1.4625s; }
+.why.on .car-pro .roof-sign { animation: wobblePro 1.4625s ease-out 1.4625s; }
 @keyframes wobbleFun { 20% { transform: rotate(16deg); } 45% { transform: rotate(-10deg); } 70% { transform: rotate(5deg); } }
 @keyframes wobblePro { 20% { transform: rotate(-16deg); } 45% { transform: rotate(10deg); } 70% { transform: rotate(-5deg); } }
 
-.why.on .crash { animation: shake 0.5s ease-in-out 1.125s; }
+.why.on .crash { animation: shake 0.65s ease-in-out 1.4625s; }
 @keyframes shake {
   20% { transform: translate(-8px, 3px); } 40% { transform: translate(7px, -3px); }
   60% { transform: translate(-5px, 2px); } 80% { transform: translate(2px, -1px); }
 }
 
 .crash .flash { fill: #fff; opacity: 0; }
-.why.on .flash { animation: flash 0.75s ease-out 1.1s both; }
+.why.on .flash { animation: flash 0.975s ease-out 1.43s both; }
 @keyframes flash { 0% { opacity: 0; transform: scale(0.2); } 15% { opacity: 0.95; } 100% { opacity: 0; transform: scale(7); } }
 
 .crash .spark { fill: var(--accent-2); opacity: 0; }
 .crash .spark:nth-of-type(3n) { fill: #ff4fd8; }
 .crash .spark:nth-of-type(3n + 1) { fill: var(--pro); }
-.why.on .spark { animation: spark 1.125s cubic-bezier(.1, .7, .3, 1) 1.125s both; }
+.why.on .spark { animation: spark 1.4625s cubic-bezier(.1, .7, .3, 1) 1.4625s both; }
 @keyframes spark {
   0% { opacity: 1; transform: rotate(var(--a)) translateX(0) scale(1.2); }
   100% { opacity: 0; transform: rotate(var(--a)) translateX(var(--r)) scale(0.3); }
@@ -83,7 +83,7 @@
 .boom-outer { fill: #ffc83d; stroke: #ff6b3d; stroke-width: 5; stroke-linejoin: round; }
 .boom-inner { fill: #ff6b3d; }
 .boom-text { font: 800 26px var(--font-display); fill: #fff; letter-spacing: 0.02em; }
-.why.on .boom { animation: boom 2.125s ease-out 1.125s both; }
+.why.on .boom { animation: boom 2.7625s ease-out 1.4625s both; }
 @keyframes boom {
   0% { opacity: 0; transform: scale(0.1) rotate(-25deg); }
   14% { opacity: 1; transform: scale(1.25) rotate(8deg); }
@@ -93,10 +93,10 @@
 }
 
 .crash .puff { fill: var(--text-muted); opacity: 0; }
-.why.on .puff { animation: puff 2.25s ease-out both; }
-.why.on .p1 { animation-delay: 1.3125s; }
-.why.on .p2 { animation-delay: 1.5s; }
-.why.on .p3 { animation-delay: 1.6875s; }
+.why.on .puff { animation: puff 2.925s ease-out both; }
+.why.on .p1 { animation-delay: 1.7063s; }
+.why.on .p2 { animation-delay: 1.95s; }
+.why.on .p3 { animation-delay: 2.1938s; }
 @keyframes puff {
   0% { opacity: 0; transform: translateY(0) scale(0.3); }
   20% { opacity: 0.5; }
@@ -104,7 +104,7 @@
 }
 
 .why-line { margin: 0; opacity: 0; font: 600 clamp(1.25rem, 4vmin, 2.6rem) var(--font-display); letter-spacing: -0.01em; }
-.why.on .why-line { animation: enterUp 1s cubic-bezier(.2, .7, .2, 1) 2.25s both; }
+.why.on .why-line { animation: enterUp 1.3s cubic-bezier(.2, .7, .2, 1) 2.925s both; }
 
 /* ---------- Scene 2: the sleeping student ---------- */
 .lecture-slide .slide-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -125,27 +125,27 @@
 .classroom .limb { transform-box: fill-box; transform-origin: 50% 0; }
 .classroom .upper { transform-box: fill-box; transform-origin: 50% 100%; }
 
-/* Timeline (seconds): walk 0.5–4.75 · sit 4.9 · writing 5.5–10.5 · head down 11 · Zzz 12 · YOU 13 · ME 13.9 */
-.play .student-walk { animation: walkIn 4.25s linear 0.5s both; }
+/* Timeline (seconds): walk 0.45–4.3 · sit 4.4 · writing 4.95–9.45 · head down 9.9 · Zzz 10.8 · YOU 11.7 · ME 12.5 */
+.play .student-walk { animation: walkIn 3.825s linear 0.45s both; }
 @keyframes walkIn { from { transform: translateX(-520px); } to { transform: translateX(0); } }
 
-.play .leg-a, .play .arm-b { animation: swingA 1.0625s ease-in-out 0.5s 4; }
-.play .leg-b { animation: swingB 1.0625s ease-in-out 0.5s 4; }
-.play .arm-a { animation: swingB 1.0625s ease-in-out 0.5s 4, armsOnDesk 0.625s ease-out 5.125s forwards; }
-.play .arm-b { animation: swingA 1.0625s ease-in-out 0.5s 4, armsOnDesk 0.625s ease-out 5.125s forwards; }
+.play .leg-a, .play .arm-b { animation: swingA 0.9563s ease-in-out 0.45s 4; }
+.play .leg-b { animation: swingB 0.9563s ease-in-out 0.45s 4; }
+.play .arm-a { animation: swingB 0.9563s ease-in-out 0.45s 4, armsOnDesk 0.5625s ease-out 4.6125s forwards; }
+.play .arm-b { animation: swingA 0.9563s ease-in-out 0.45s 4, armsOnDesk 0.5625s ease-out 4.6125s forwards; }
 @keyframes swingA { 25% { transform: rotate(24deg); } 75% { transform: rotate(-24deg); } }
 @keyframes swingB { 25% { transform: rotate(-24deg); } 75% { transform: rotate(24deg); } }
 @keyframes armsOnDesk { to { transform: rotate(-105deg); } }
 
-.play .student-sit { animation: sitDown 0.75s ease-in-out 4.875s both; }
+.play .student-sit { animation: sitDown 0.675s ease-in-out 4.3875s both; }
 @keyframes sitDown { from { transform: translateY(0); } to { transform: translateY(40px); } }
 .legs-sit { opacity: 0; }
-.play .legs-stand { animation: hide 0.0125s linear 5.0625s forwards; }
-.play .legs-sit { animation: show 0.0125s linear 5.0625s forwards; }
+.play .legs-stand { animation: hide 0.0113s linear 4.5563s forwards; }
+.play .legs-sit { animation: show 0.0113s linear 4.5563s forwards; }
 @keyframes hide { to { opacity: 0; } }
 @keyframes show { to { opacity: 1; } }
 
-.play .t-arm { animation: writing 5s ease-in-out 5.5s both; }
+.play .t-arm { animation: writing 4.5s ease-in-out 4.95s both; }
 @keyframes writing {
   0% { transform: rotate(0); }
   10% { transform: rotate(128deg); }
@@ -156,19 +156,19 @@
   100% { transform: rotate(0); }
 }
 .chalk { clip-path: inset(0 100% 0 0); }
-.play .chalk.l1 { animation: chalkIn 1.375s linear 5.875s forwards; }
-.play .chalk.l2 { animation: chalkIn 1.5s linear 7.375s forwards; }
-.play .chalk.l3 { animation: chalkIn 1.5s linear 9s forwards; }
+.play .chalk.l1 { animation: chalkIn 1.2375s linear 5.2875s forwards; }
+.play .chalk.l2 { animation: chalkIn 1.35s linear 6.6375s forwards; }
+.play .chalk.l3 { animation: chalkIn 1.35s linear 8.1s forwards; }
 @keyframes chalkIn { to { clip-path: inset(0 0 0 0); } }
 
-.play .upper { animation: headDown 1.125s cubic-bezier(.5, 0, .6, 1) 11s both; }
+.play .upper { animation: headDown 1.0125s cubic-bezier(.5, 0, .6, 1) 9.9s both; }
 @keyframes headDown { to { transform: rotate(62deg); } }
 
 .zzz { font: 700 40px var(--font-display); fill: var(--accent-2); opacity: 0; }
-.play .zzz { animation: snore 3.25s ease-out infinite; }
-.play .z1 { animation-delay: 12s; }
-.play .z2 { animation-delay: 13s; font-size: 50px; }
-.play .z3 { animation-delay: 14s; font-size: 62px; }
+.play .zzz { animation: snore 2.925s ease-out infinite; }
+.play .z1 { animation-delay: 10.8s; }
+.play .z2 { animation-delay: 11.7s; font-size: 50px; }
+.play .z3 { animation-delay: 12.6s; font-size: 62px; }
 @keyframes snore {
   0% { opacity: 0; transform: translate(0, 0); }
   25% { opacity: 1; }
@@ -176,13 +176,13 @@
 }
 
 .you-bubble { transform-box: fill-box; transform-origin: 70% 100%; opacity: 0; }
-.play .you-bubble { animation: pop 0.875s cubic-bezier(.3, 1.6, .5, 1) 13s forwards, bob 3.5s ease-in-out 14s infinite; }
+.play .you-bubble { animation: pop 0.7875s cubic-bezier(.3, 1.6, .5, 1) 11.7s forwards, bob 3.15s ease-in-out 12.6s infinite; }
 @keyframes pop { 0% { opacity: 0; transform: scale(0.2); } 100% { opacity: 1; transform: scale(1); } }
 @keyframes bob { 0%, 100% { opacity: 1; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-8px); } }
 .you-text { font: 700 54px var(--font-display); fill: #fff; letter-spacing: 0.04em; }
 
 .me-bubble { transform-box: fill-box; transform-origin: 50% 100%; opacity: 0; }
-.play .me-bubble { animation: pop 0.875s cubic-bezier(.3, 1.6, .5, 1) 13.875s forwards, bob 3.5s ease-in-out 15s infinite; }
+.play .me-bubble { animation: pop 0.7875s cubic-bezier(.3, 1.6, .5, 1) 12.4875s forwards, bob 3.15s ease-in-out 13.5s infinite; }
 
 /* ---------- Scene 3: expect / don't expect ---------- */
 .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 48px); margin-top: 0.6em; }
@@ -259,7 +259,15 @@
   font: 700 clamp(0.85rem, 2.4vmin, 1.6rem) var(--font-display); line-height: 1.15;
   transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
 }
-.hw-sign { min-width: 0; overflow-wrap: anywhere; }
+.hw-sign { min-width: 0; overflow-wrap: anywhere; position: relative; }
+a.hw-sign { text-decoration: none; cursor: pointer; }
+a.hw-sign:hover { opacity: 1; transform: translateY(-6px) scale(1.05); box-shadow: 0 0 36px rgba(60, 220, 140, 0.6); }
+.hw-sign .peek {
+  position: absolute; top: -0.9em; right: -0.5em;
+  font: 700 0.62em var(--font-display); letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.25em 0.6em; border-radius: 999px; background: var(--pro); color: #1a1400;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--pro) 60%, transparent);
+}
 @media (max-width: 640px) {
   .hw-signs { padding: 0 1%; gap: 4px; }
   .hw-sign { font-size: 0.68rem; padding: 5px 3px; border-width: 2px; outline-width: 2px; border-radius: 8px; }
