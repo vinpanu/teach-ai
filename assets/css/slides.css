@@ -1,0 +1,118 @@
+/* ==========================================================
+   AI in Practice — slide engine styles
+   Used by every session page (with site.css loaded first).
+   Markup: .deck > .slide > .slide-inner ; reveal items with data-step="n".
+   ========================================================== */
+
+body.deck-body { overflow: hidden; height: 100vh; }
+
+.deck { position: fixed; inset: 0; }
+
+/* Shared animated background (network canvas + glows) */
+.deck-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; transition: opacity 0.8s ease; }
+.deck:not([data-slide="1"]) .deck-bg { opacity: 0.35; }
+
+/* ---------- Slides ---------- */
+.slide {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: safe center;   /* if a scene is taller than the screen, scroll instead of clipping the top */
+  justify-content: center;
+  overflow-y: auto;
+  padding: clamp(64px, 9vh, 110px) clamp(16px, 5vw, 80px) clamp(72px, 10vh, 110px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(48px);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
+}
+.slide.past { transform: translateX(-48px); }
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s;
+}
+.slide-inner { width: 100%; max-width: 1500px; }
+
+.slide h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 11vmin, 9rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0.3em 0 0.25em;
+}
+.slide h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 7vmin, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.4em;
+}
+.slide .lead {
+  font-size: clamp(1.2rem, 3.4vmin, 2.2rem);
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+.slide .kicker {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: clamp(0.85rem, 1.9vmin, 1.2rem);
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: 0.6em;
+}
+
+/* Entrance animation, replayed each time a slide is entered. Use style="--d:.3s" to stagger. */
+.slide.play .enter { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) var(--d, 0s) both; }
+@keyframes enterUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+/* Step-by-step reveals (each click shows the next data-step) */
+.slide [data-step] { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2, .7, .2, 1); }
+.slide [data-step].on { opacity: 1; transform: none; }
+
+/* ---------- Chrome: progress, brand, controls ---------- */
+.deck-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 20; background: var(--surface); }
+.deck-progress span { display: block; height: 100%; width: 0; background: var(--gradient); transition: width 0.5s ease; }
+
+.deck-brand {
+  position: fixed; top: 18px; left: clamp(16px, 3vw, 32px); z-index: 20;
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+  text-decoration: none; opacity: 0.8;
+}
+.deck-brand .logo-mark { width: 22px; height: 22px; border-radius: 7px; }
+.deck-brand:hover { opacity: 1; }
+
+.deck-ui {
+  position: fixed; right: clamp(16px, 3vw, 32px); bottom: 18px; z-index: 20;
+  display: flex; align-items: center; gap: 8px;
+  opacity: 0.25; transition: opacity 0.4s ease;
+}
+.deck.ui-show ~ .deck-ui, .deck-ui:hover, .deck-ui:focus-within { opacity: 1; }
+.deck-ui button {
+  border: 1px solid var(--border); background: var(--bg-elev); color: var(--text);
+  min-width: 40px; height: 40px; padding: 0 10px; border-radius: 12px; cursor: pointer;
+  font: 600 0.95rem var(--font-body);
+}
+.deck-ui button:hover { background: var(--surface-hover); }
+.deck-counter { font: 600 0.9rem var(--font-display); color: var(--text-muted); min-width: 52px; text-align: center; }
+
+.deck-hint {
+  position: absolute; bottom: clamp(24px, 6vh, 60px); left: 50%; transform: translateX(-50%);
+  font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.04em;
+  animation: hintPulse 2.4s ease-in-out infinite;
+}
+@keyframes hintPulse { 50% { opacity: 0.35; } }
+kbd {
+  font: 600 0.85em var(--font-body); padding: 2px 8px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--surface);
+}
+
+@media (max-width: 640px) {
+  .deck-ui { opacity: 1; }
+  .deck-ui .ui-optional { display: none; }
+}

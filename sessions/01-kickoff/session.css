@@ -1,0 +1,200 @@
+/* Session 01 — Kickoff: scene-specific styles. */
+
+/* ---------- Scene 1: title ---------- */
+.title-slide { text-align: center; }
+.title-slide .slide-inner { display: flex; flex-direction: column; align-items: center; }
+.title-slide .eyebrow { font-size: clamp(0.9rem, 2vmin, 1.15rem); }
+
+/* ---------- Scene 2: the sleeping student ---------- */
+.lecture-slide .slide-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.classroom { width: 100%; max-height: 60vh; overflow: visible; }
+.classroom .ink { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.classroom .head { fill: var(--bg); }
+.classroom .furniture { fill: none; stroke: var(--text-muted); stroke-width: 7; stroke-linecap: round; }
+.classroom .floor { stroke: var(--border); stroke-width: 3; }
+.classroom .guide { fill: none; stroke: none; }
+.board-frame { fill: #6b4a2b; }
+.board-surface { fill: #1d3a2f; }
+.chalk { font-family: "Caveat", cursive; font-size: 44px; fill: #f4f1e6; }
+.chalk.small { font-size: 34px; fill: #cfe8dc; }
+
+/* Pivots: lines/groups rotate around their own top or bottom */
+.classroom .limb { transform-box: fill-box; transform-origin: 50% 0; }
+.classroom .upper { transform-box: fill-box; transform-origin: 50% 100%; }
+
+/* Timeline (seconds): walk 0.4–3.8 · sit 3.9 · writing 4.4–8.4 · head down 8.8 · Zzz 9.6 · YOU 10.4 */
+.play .student-walk { animation: walkIn 3.4s linear 0.4s both; }
+@keyframes walkIn { from { transform: translateX(-520px); } to { transform: translateX(0); } }
+
+.play .leg-a, .play .arm-b { animation: swingA 0.85s ease-in-out 0.4s 4; }
+.play .leg-b { animation: swingB 0.85s ease-in-out 0.4s 4; }
+.play .arm-a { animation: swingB 0.85s ease-in-out 0.4s 4, armsOnDesk 0.5s ease-out 4.1s forwards; }
+.play .arm-b { animation: swingA 0.85s ease-in-out 0.4s 4, armsOnDesk 0.5s ease-out 4.1s forwards; }
+@keyframes swingA { 25% { transform: rotate(24deg); } 75% { transform: rotate(-24deg); } }
+@keyframes swingB { 25% { transform: rotate(-24deg); } 75% { transform: rotate(24deg); } }
+@keyframes armsOnDesk { to { transform: rotate(-105deg); } }
+
+.play .student-sit { animation: sitDown 0.6s ease-in-out 3.9s both; }
+@keyframes sitDown { from { transform: translateY(0); } to { transform: translateY(40px); } }
+.legs-sit { opacity: 0; }
+.play .legs-stand { animation: hide 0.01s linear 4.05s forwards; }
+.play .legs-sit { animation: show 0.01s linear 4.05s forwards; }
+@keyframes hide { to { opacity: 0; } }
+@keyframes show { to { opacity: 1; } }
+
+.play .t-arm { animation: writing 4s ease-in-out 4.4s both; }
+@keyframes writing {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(128deg); }
+  20% { transform: rotate(116deg); } 30% { transform: rotate(134deg); }
+  40% { transform: rotate(118deg); } 50% { transform: rotate(136deg); }
+  60% { transform: rotate(120deg); } 70% { transform: rotate(138deg); }
+  80% { transform: rotate(124deg); } 90% { transform: rotate(130deg); }
+  100% { transform: rotate(0); }
+}
+.chalk { clip-path: inset(0 100% 0 0); }
+.play .chalk.l1 { animation: chalkIn 1.1s linear 4.7s forwards; }
+.play .chalk.l2 { animation: chalkIn 1.2s linear 5.9s forwards; }
+.play .chalk.l3 { animation: chalkIn 1.2s linear 7.2s forwards; }
+@keyframes chalkIn { to { clip-path: inset(0 0 0 0); } }
+
+.play .upper { animation: headDown 0.9s cubic-bezier(.5, 0, .6, 1) 8.8s both; }
+@keyframes headDown { to { transform: rotate(62deg); } }
+
+.zzz { font: 700 40px var(--font-display); fill: var(--accent-2); opacity: 0; }
+.play .zzz { animation: snore 2.6s ease-out infinite; }
+.play .z1 { animation-delay: 9.6s; }
+.play .z2 { animation-delay: 10.4s; font-size: 50px; }
+.play .z3 { animation-delay: 11.2s; font-size: 62px; }
+@keyframes snore {
+  0% { opacity: 0; transform: translate(0, 0); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(34px, -70px); }
+}
+
+.you-bubble { transform-box: fill-box; transform-origin: 70% 100%; opacity: 0; }
+.play .you-bubble { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 10.4s forwards, bob 2.8s ease-in-out 11.2s infinite; }
+@keyframes pop { 0% { opacity: 0; transform: scale(0.2); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes bob { 0%, 100% { opacity: 1; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-8px); } }
+.you-text { font: 700 54px var(--font-display); fill: #fff; letter-spacing: 0.04em; }
+
+.punchline { margin-top: 0.4em; font-size: clamp(1.4rem, 4.2vmin, 2.8rem); font-weight: 600; color: var(--text); }
+
+/* ---------- Scene 3: expect / don't expect ---------- */
+.expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 48px); margin-top: 0.6em; }
+.expect-col {
+  border: 1px solid var(--border); background: var(--bg-elev); border-radius: 24px;
+  padding: clamp(18px, 3vmin, 36px) clamp(18px, 3vmin, 40px);
+}
+.expect-col h3 {
+  display: flex; align-items: center; gap: 14px; margin: 0 0 0.5em;
+  font: 700 clamp(1.5rem, 4vmin, 2.6rem) var(--font-display);
+}
+.expect-col .mark {
+  display: grid; place-items: center; width: 1.4em; height: 1.4em; border-radius: 12px;
+  font-size: 0.8em; color: #fff;
+}
+.expect-col.yes .mark { background: linear-gradient(135deg, #12b886, var(--accent-2)); }
+.expect-col.no .mark { background: linear-gradient(135deg, #ff6b6b, var(--accent-3)); }
+.expect-col ul { list-style: none; margin: 0; padding: 0; }
+.expect-col li {
+  font-size: clamp(1.1rem, 3vmin, 1.9rem); line-height: 1.3;
+  padding: 0.42em 0; border-top: 1px solid var(--border);
+}
+.expect-col li:first-child { border-top: 0; }
+.expect-col.no li { color: var(--text-muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--accent-3) 70%, transparent); text-decoration-thickness: 2px; }
+@media (max-width: 760px) { .expect-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Scene 4: two scales ---------- */
+.levels { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(24px, 5vw, 80px); align-items: center; }
+.levels .lead { max-width: 24ch; }
+.levels .lead .pro-tip-badge { font-size: 0.75em; }
+.meters { display: flex; justify-content: center; align-items: flex-end; gap: clamp(28px, 6vw, 90px); }
+.meter { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.meter-bar { display: flex; flex-direction: column-reverse; gap: 6px; }
+.meter-bar i {
+  display: block; width: clamp(70px, 11vmin, 130px); height: clamp(16px, 4.2vh, 42px); border-radius: 8px;
+  background: var(--surface-hover); border: 1px solid var(--border);
+}
+.play .meter-bar i { animation: segOn 0.3s ease-out calc(0.5s + var(--i) * 0.16s) forwards; }
+@keyframes segOn { to { background: hsl(calc(250 - var(--i) * 17) 90% 62%); border-color: transparent; box-shadow: 0 0 18px hsl(calc(250 - var(--i) * 17) 90% 62% / 0.5); } }
+.meter-label { font: 700 clamp(1.2rem, 3.4vmin, 2.2rem) var(--font-display); opacity: 0; }
+.meter-name { font-size: clamp(0.95rem, 2.2vmin, 1.3rem); color: var(--text-muted); }
+.play .beginner .meter-label { animation: enterUp 0.6s ease-out 1.3s both; }
+.play .expert .meter-label { animation: enterUp 0.6s ease-out 2.3s both; }
+
+.bulb-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0; }
+.play .bulb-wrap { animation: pop 0.8s cubic-bezier(.3, 1.6, .5, 1) 2.8s forwards; }
+.bulb { width: clamp(64px, 11vmin, 120px); height: auto; overflow: visible; }
+.bulb .glass { fill: var(--pro); }
+.bulb .base { fill: var(--text-muted); }
+.bulb .rays { stroke: var(--pro); stroke-width: 5; stroke-linecap: round; }
+.play .bulb { animation: glowPulse 2.2s ease-in-out 3.6s infinite; }
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px color-mix(in srgb, var(--pro) 60%, transparent)); }
+  50% { filter: drop-shadow(0 0 34px var(--pro)); }
+}
+.bulb-wrap .pro-tip-badge { font-size: clamp(0.9rem, 2.4vmin, 1.4rem); }
+@media (max-width: 760px) {
+  .levels { grid-template-columns: 1fr; gap: 20px; }
+  .levels .lead { max-width: none; }
+  .meter-bar i { height: clamp(10px, 2.4vh, 22px); width: 64px; }
+  .bulb { width: 52px; }
+}
+
+/* ---------- Scene 5: the highway ---------- */
+.highway-slide .slide-inner { display: flex; flex-direction: column; height: 100%; justify-content: center; }
+.hw-head { text-align: center; }
+.hw-caption { min-height: 2.9em; max-width: 40ch; margin: 0 auto !important; transition: opacity 0.3s; }
+.hw-caption strong { color: var(--text); }
+.hw-signs { display: flex; gap: clamp(6px, 1.2vw, 18px); padding: 0 8%; margin: clamp(10px, 2.5vh, 28px) 0 -2px; }
+.hw-sign {
+  flex: 1; text-align: center; color: #fff;
+  background: #0b6b3a; border: 3px solid #e8f5ec; outline: 3px solid #0b6b3a;
+  border-radius: 12px; padding: clamp(6px, 1.2vh, 14px) 8px;
+  font: 700 clamp(0.85rem, 2.4vmin, 1.6rem) var(--font-display); line-height: 1.15;
+  transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+}
+.hw-sign .n {
+  display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%;
+  background: #fff; color: #0b6b3a; font-size: 0.8em; margin-bottom: 4px;
+}
+.hw-sign .arrow { display: block; font-size: 1.1em; opacity: 0.85; }
+.choosing .hw-sign { opacity: 0.35; }
+.hw-sign.active { opacity: 1; transform: translateY(-6px) scale(1.05); box-shadow: 0 0 36px rgba(60, 220, 140, 0.6); }
+
+.hw-road { width: 100%; max-height: 46vh; overflow: visible; }
+.hw-road .asphalt { fill: #262632; }
+.hw-road .edge { stroke: #e9e9f2; stroke-width: 6; }
+.hw-road .divider { stroke: #f5d76e; stroke-width: 5; stroke-dasharray: 26 24; animation: roll 0.6s linear infinite; }
+@keyframes roll { to { stroke-dashoffset: -50; } }
+.hw-road .lane-glow { fill: var(--accent-2); opacity: 0; transition: opacity 0.5s ease; }
+.hw-road .lane-glow.active { opacity: 0.22; }
+.hw-car { transition: transform 0.9s cubic-bezier(.45, 0, .2, 1); }
+.hw-car .bounce { animation: carBob 0.5s ease-in-out infinite alternate; }
+@keyframes carBob { to { transform: translateY(-3px); } }
+
+/* ---------- Scene 6: vote ---------- */
+.vote-slide .slide-inner { text-align: center; }
+.live-dot { display: inline-flex; align-items: center; gap: 10px; }
+.vote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 40px); margin-top: 0.8em; text-align: left; }
+.vote-card {
+  border: 1px solid var(--border); background: var(--bg-elev); border-radius: 24px;
+  padding: clamp(18px, 3vmin, 36px);
+}
+.vote-card .q {
+  display: inline-block; font: 700 0.9rem var(--font-display); letter-spacing: 0.1em;
+  padding: 4px 12px; border-radius: 999px; color: #fff; background: var(--gradient);
+}
+.vote-card h3 { font: 700 clamp(1.3rem, 3.6vmin, 2.3rem) var(--font-display); margin: 0.5em 0 0.6em; line-height: 1.15; }
+.vote-card ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.vote-card li {
+  display: flex; align-items: center; gap: 14px;
+  font-size: clamp(1rem, 2.6vmin, 1.6rem); line-height: 1.25;
+  padding: 0.5em 0.7em; border-radius: 14px; background: var(--surface); border: 1px solid var(--border);
+}
+.vote-card li b {
+  flex: none; display: grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 10px;
+  font-family: var(--font-display); background: var(--surface-hover); color: var(--accent-2);
+}
+@media (max-width: 760px) { .vote-grid { grid-template-columns: 1fr; } }

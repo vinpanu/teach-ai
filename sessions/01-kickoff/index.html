@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kickoff · AI in Practice</title>
+  <meta name="description" content="Session 01 of AI in Practice: what to expect from the series, and which road we take next. You decide.">
+  <meta property="og:title" content="Kickoff · AI in Practice">
+  <meta property="og:description" content="Not another AI lecture. See what's coming, then vote on where we go next.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/slides.css">
+  <link rel="stylesheet" href="session.css">
+</head>
+<body class="deck-body">
+
+  <div class="deck-progress" aria-hidden="true"><span></span></div>
+  <a class="deck-brand" href="../../"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
+
+  <main class="deck" data-deck-title="AI in Practice">
+    <div class="deck-bg" aria-hidden="true">
+      <canvas id="network"></canvas>
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
+    </div>
+
+    <!-- ========== 1 · Title ========== -->
+    <section class="slide title-slide" data-title="Kickoff">
+      <div class="slide-inner">
+        <span class="eyebrow enter"><span class="pulse"></span>Session 01 · Kickoff</span>
+        <h1 class="enter" style="--d:.15s">AI in <span class="gradient-text">Practice</span></h1>
+        <p class="lead enter" style="--d:.35s">A different kind of AI training.</p>
+      </div>
+      <div class="deck-hint">Press <kbd>→</kbd> or click to begin</div>
+    </section>
+
+    <!-- ========== 2 · Not another lecture ========== -->
+    <section class="slide lecture-slide" data-title="Not another lecture">
+      <div class="slide-inner">
+        <div class="kicker enter">Picture this…</div>
+        <svg class="classroom" viewBox="0 0 1200 560" role="img"
+             aria-label="A stick figure walks into a classroom and sits down. The teacher writes a complicated formula on the board, and the student falls asleep on the desk. A bubble above the sleeping student says: YOU.">
+          <defs>
+            <linearGradient id="youGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7c5cff"/><stop offset="0.55" stop-color="#00b8e6"/><stop offset="1" stop-color="#ff4fd8"/>
+            </linearGradient>
+          </defs>
+
+          <line class="floor" x1="0" y1="522" x2="1200" y2="522"/>
+
+          <!-- Chalkboard -->
+          <rect class="board-frame" x="560" y="70" width="540" height="290" rx="10"/>
+          <rect class="board-surface" x="574" y="84" width="512" height="262" rx="4"/>
+          <text class="chalk l1" x="600" y="150">Attention(Q, K, V) =</text>
+          <text class="chalk l2" x="640" y="225">softmax(QKᵀ/√dₖ)·V</text>
+          <text class="chalk small l3" x="600" y="300">∇θ L = −Σ y log ŷ + λ‖θ‖²</text>
+
+          <!-- Desk and chair -->
+          <g class="furniture">
+            <line x1="262" y1="368" x2="262" y2="520"/>
+            <line x1="262" y1="467" x2="334" y2="467"/>
+            <line x1="334" y1="467" x2="334" y2="520"/>
+            <line x1="372" y1="432" x2="545" y2="432"/>
+            <line x1="390" y1="432" x2="390" y2="520"/>
+            <line x1="528" y1="432" x2="528" y2="520"/>
+          </g>
+
+          <!-- Teacher -->
+          <g transform="translate(1150 420)">
+            <g class="ink">
+              <line x1="0" y1="0" x2="-16" y2="100"/>
+              <line x1="0" y1="0" x2="16" y2="100"/>
+              <line x1="0" y1="0" x2="0" y2="-90"/>
+              <line x1="0" y1="-75" x2="14" y2="-15"/>
+              <line class="limb t-arm" x1="0" y1="-75" x2="0" y2="-15"/>
+              <circle class="head" cx="0" cy="-118" r="26"/>
+            </g>
+          </g>
+
+          <!-- Student (hip is the 0,0 point) -->
+          <g transform="translate(300 420)">
+            <g class="student-walk">
+              <g class="student-sit ink">
+                <g class="legs-stand">
+                  <line class="limb leg-a" x1="0" y1="0" x2="0" y2="100"/>
+                  <line class="limb leg-b" x1="0" y1="0" x2="0" y2="100"/>
+                </g>
+                <g class="legs-sit">
+                  <polyline points="0,0 55,0 55,60"/>
+                  <polyline points="0,2 48,6 46,60"/>
+                </g>
+                <g class="upper">
+                  <rect class="guide" x="-60" y="-160" width="120" height="160"/>
+                  <line x1="0" y1="0" x2="0" y2="-90"/>
+                  <line class="limb arm-a" x1="0" y1="-75" x2="0" y2="-15"/>
+                  <line class="limb arm-b" x1="0" y1="-75" x2="0" y2="-15"/>
+                  <circle class="head" cx="0" cy="-118" r="26"/>
+                </g>
+              </g>
+            </g>
+          </g>
+
+          <!-- Zzz -->
+          <text class="zzz z1" x="420" y="355">Z</text>
+          <text class="zzz z2" x="448" y="318">Z</text>
+          <text class="zzz z3" x="478" y="276">Z</text>
+
+          <!-- "YOU" bubble -->
+          <g class="you-bubble">
+            <path d="M174 196 H326 Q350 196 350 220 V272 Q350 296 326 296 H312 L338 352 L284 296 H174 Q150 296 150 272 V220 Q150 196 174 196 Z" fill="url(#youGrad)"/>
+            <text class="you-text" x="250" y="266" text-anchor="middle">YOU</text>
+          </g>
+        </svg>
+        <p class="punchline" data-step="1">YouTube already has thousands of tutorials. <span class="gradient-text">This isn't one of them.</span></p>
+      </div>
+    </section>
+
+    <!-- ========== 3 · Expect / don't expect ========== -->
+    <section class="slide" data-title="What to expect">
+      <div class="slide-inner">
+        <h2 class="enter">What this <span class="gradient-text">is</span>, and what it isn't.</h2>
+        <div class="expect-grid">
+          <div class="expect-col yes enter" style="--d:.15s">
+            <h3><span class="mark">✓</span>Expect</h3>
+            <ul>
+              <li data-step="1">Real demos, not slides about demos</li>
+              <li data-step="2">Things you can use the next day</li>
+              <li data-step="3">Stories from real projects</li>
+              <li data-step="4">You help steer the topics</li>
+              <li data-step="5">Something for every level</li>
+            </ul>
+          </div>
+          <div class="expect-col no enter" style="--d:.3s">
+            <h3><span class="mark">✕</span>Don't expect</h3>
+            <ul>
+              <li data-step="6">Lectures and formulas</li>
+              <li data-step="7">Step-by-step tutorials</li>
+              <li data-step="8">Hype or doom</li>
+              <li data-step="9">Having to write code</li>
+              <li data-step="10">Having to be an expert</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4 · Every level + Pro Tip ========== -->
+    <section class="slide" data-title="Built for every level">
+      <div class="slide-inner levels">
+        <div>
+          <div class="kicker enter">Beginner or expert?</div>
+          <h2 class="enter" style="--d:.1s">Built for <span class="gradient-text">every level.</span></h2>
+          <p class="lead" data-step="1">See this badge? <span class="pro-tip-badge">Pro Tip</span><br>It's a bonus for the advanced crowd, and it can show up anywhere, even in the basics.</p>
+        </div>
+        <div class="meters" aria-label="Two skill scales: the left one rises to Beginner, the right one rises all the way to Expert, topped by a Pro Tip lightbulb.">
+          <div class="meter beginner">
+            <span class="meter-label">Beginner</span>
+            <div class="meter-bar"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i></div>
+            <span class="meter-name">New to AI</span>
+          </div>
+          <div class="meter expert">
+            <div class="bulb-wrap">
+              <svg class="bulb" viewBox="0 0 100 120" aria-hidden="true">
+                <g class="rays"><line x1="50" y1="2" x2="50" y2="14"/><line x1="10" y1="22" x2="19" y2="30"/><line x1="90" y1="22" x2="81" y2="30"/><line x1="0" y1="58" x2="12" y2="58"/><line x1="100" y1="58" x2="88" y2="58"/></g>
+                <path class="glass" d="M50 22 a32 32 0 0 0 -18 58 v10 a4 4 0 0 0 4 4 h28 a4 4 0 0 0 4 -4 v-10 A32 32 0 0 0 50 22z"/>
+                <rect class="base" x="36" y="98" width="28" height="7" rx="3"/>
+                <rect class="base" x="39" y="108" width="22" height="7" rx="3"/>
+              </svg>
+              <span class="pro-tip-badge">Pro Tip</span>
+            </div>
+            <span class="meter-label">Expert</span>
+            <div class="meter-bar"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i></div>
+            <span class="meter-name">Building with AI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5 · You drive the content (built by session.js) ========== -->
+    <section class="slide highway-slide" data-title="You drive the content">
+      <div class="slide-inner">
+        <div class="hw-head">
+          <h2 class="enter">You <span class="gradient-text">drive</span> the content.</h2>
+          <p class="lead hw-caption" aria-live="polite">Several lanes ahead. Every one leads somewhere interesting.</p>
+        </div>
+        <div class="hw-signs"></div>
+        <svg class="hw-road" viewBox="0 0 1200 430" role="img" aria-label="A car on a multi-lane highway, changing lanes toward each topic."></svg>
+      </div>
+    </section>
+
+    <!-- ========== 6 · Vote ========== -->
+    <!-- PLACEHOLDER poll questions: replace once the real Teams poll questions are decided. -->
+    <section class="slide vote-slide" data-title="Vote now">
+      <div class="slide-inner">
+        <div class="kicker enter live-dot"><span class="pulse"></span>Live poll</div>
+        <h2 class="enter" style="--d:.1s">Your turn. Vote in the <span class="gradient-text">Teams chat.</span></h2>
+        <div class="vote-grid">
+          <div class="vote-card enter" style="--d:.25s">
+            <span class="q">Q1</span>
+            <h3>What format works for you?</h3>
+            <ol>
+              <li><b>A</b><span>Keep it short: 10 minutes at the end of meetings</span></li>
+              <li><b>B</b><span>A dedicated 1-hour session each week</span></li>
+            </ol>
+          </div>
+          <div class="vote-card enter" style="--d:.4s">
+            <span class="q">Q2</span>
+            <h3>Which lane should we take first?</h3>
+            <ol data-lane-options></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="deck-ui">
+    <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
+    <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
+    <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
+    <span class="deck-counter" aria-live="polite">1 / 6</span>
+    <button type="button" data-deck="next" aria-label="Next (→)">→</button>
+  </div>
+
+  <script src="session.js"></script>
+  <script src="../../assets/js/slides.js"></script>
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>

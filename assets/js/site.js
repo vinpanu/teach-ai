@@ -1,4 +1,4 @@
-// Teach AI — shared site behavior: theme toggle, scroll reveal,
+// AI in Practice — shared site behavior: theme toggle, scroll reveal,
 // card spotlight/tilt, hero neural-network canvas, typing effect.
 (() => {
   const root = document.documentElement;
