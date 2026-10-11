@@ -6,6 +6,7 @@ const LANES = [
   { icon: "🩺", title: "My AI Health Coach", blurb: "A behind-the-scenes tour of a personal AI agent I built." },
   { icon: "🚨", title: "AI Gone Rogue", blurb: "True stories of AI misbehaving, from bending the rules to breaking into websites." },
   { icon: "🗞️", title: "Fresh Off the Press", blurb: "The newest AI features, released this week or this month." },
+  { icon: "⚡", title: "Productivity Ideas", blurb: "Practical ways to use AI to save time on everyday work." },
 ];
 
 (() => {
