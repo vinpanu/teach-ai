@@ -1,12 +1,6 @@
 /* AI Gone Rogue sample — scene styles. */
 :root { --rust: #ff8a3d; --go: #00c2ff; --ts: #7c9cff; --danger: #ff4d6d; --mono: "JetBrains Mono", ui-monospace, monospace; }
 
-.deck-back {
-  position: fixed; top: 14px; right: clamp(16px, 3vw, 32px); z-index: 20;
-  font: 600 0.9rem var(--font-body); text-decoration: none; color: var(--text-muted);
-  padding: 8px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev);
-}
-.deck-back:hover { color: var(--text); }
 
 /* ---------- 1 · Title: glitchy siren headline ---------- */
 .rogue-title { text-align: center; }

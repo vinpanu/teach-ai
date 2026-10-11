@@ -54,6 +54,10 @@ const SCRIPTS = {
   ],
 };
 
+// Reading pace (milliseconds). Lines type slowly, pauses grow with line length,
+// and switching to the other terminal adds an extra beat so eyes can move across.
+const PACE = { perChar: 45, pauseBase: 900, pausePerChar: 28, sidePause: 1400, sysPause: 1100 };
+
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wait = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
@@ -93,7 +97,8 @@ const SCRIPTS = {
     const badge = duel.querySelector(".lang");
 
     await wait(900);
-    for (const step of SCRIPTS[duel.dataset.script]) {
+    const script = SCRIPTS[duel.dataset.script];
+    for (const [n, step] of script.entries()) {
       if (!alive()) return;
       if (step.war) { codebase.classList.add("war"); await wait(600); continue; }
       if (step.race) { codebase.classList.add("racing"); await wait(2600); continue; }
@@ -113,7 +118,7 @@ const SCRIPTS = {
         for (let i = 1; i <= step.t.length; i++) {
           if (!alive()) return;
           line.textContent = step.t.slice(0, i);
-          await wait(26);
+          await wait(PACE.perChar);
         }
         line.classList.remove("typing");
       }
@@ -123,7 +128,9 @@ const SCRIPTS = {
         badge.dataset.lang = step.lang;
         codebase.classList.remove("hit"); void codebase.offsetWidth; codebase.classList.add("hit");
       }
-      await wait(step.k === "sys" ? 500 : 750);
+      const nextSide = script.slice(n + 1).find((s) => s.s)?.s;
+      const read = step.k === "sys" ? PACE.sysPause : PACE.pauseBase + step.t.length * PACE.pausePerChar;
+      await wait(read + (nextSide && nextSide !== step.s ? PACE.sidePause : 0));
     }
     if (alive()) slide.classList.add("duel-done");
   };

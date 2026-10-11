@@ -1,10 +1,12 @@
 // Session 01 — Kickoff. Builds the highway scene and the vote options.
 // To add or change a topic lane, edit LANES. The road, signs, captions and
-// the vote list all update automatically. Give a lane an `href` once its
-// sample page exists, and its road sign becomes a "Preview" link.
+// the vote list all update automatically. Clicking a sign drives the car into
+// that lane. Give a lane an `href` once its sample page exists: its sign gets a
+// "Preview" tag and its caption gets a "Take a test drive" link.
 const LANES = [
   { icon: "🔤", title: "AI Terms Decoded", blurb: "LLMs, tokens, agents, hallucinations: the jargon, explained in plain English." },
-  { icon: "🩺", title: "My AI Health Coach", blurb: "A behind-the-scenes tour of a personal AI agent I built." },
+  { icon: "🩺", title: "My AI Health Coach", blurb: "A behind-the-scenes tour of a personal AI agent I built.",
+    href: "../../samples/health-coach/" },
   { icon: "🚨", title: "AI Gone Rogue", blurb: "True stories of AI misbehaving, from bending the rules to breaking into websites.",
     href: "../../samples/ai-gone-rogue/" },
   { icon: "🗞️", title: "Fresh Off the Press", blurb: "The newest AI features, released this week or this month." },
@@ -51,6 +53,9 @@ const LANES = [
           <linearGradient id="carBody" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#00b8e6"/>
           </linearGradient>
+          <linearGradient id="youTagGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7c5cff"/><stop offset="0.55" stop-color="#00b8e6"/><stop offset="1" stop-color="#ff4fd8"/>
+          </linearGradient>
         </defs>
         <rect x="-100" y="-16" width="36" height="22" rx="6" fill="#0d0d12"/>
         <rect x="64" y="-16" width="36" height="22" rx="6" fill="#0d0d12"/>
@@ -64,6 +69,10 @@ const LANES = [
         <rect x="-26" y="-60" width="52" height="22" rx="4" fill="#f4f4f8"/>
         <text x="0" y="-43" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="16" fill="#1a1a2e">AI</text>
         <rect x="-104" y="-26" width="208" height="10" rx="5" fill="#16161f"/>
+        <g class="you-tag">
+          <path d="M-62 -236 H62 Q78 -236 78 -220 V-190 Q78 -174 62 -174 H14 L0 -150 L-14 -174 H-62 Q-78 -174 -78 -190 V-220 Q-78 -236 -62 -236 Z" fill="url(#youTagGrad)"/>
+          <text x="0" y="-191" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="#fff">YOU</text>
+        </g>
       </g>
     </g>`;
 
@@ -76,12 +85,16 @@ const LANES = [
     ${dividers}
     ${car}`;
 
-  slide.querySelector(".hw-signs").innerHTML = LANES.map((l, i) => {
-    const inner = `<span class="n">${i + 1}</span><br>${l.icon} ${esc(l.title)}<span class="arrow">↓</span>`;
-    return l.href
-      ? `<a class="hw-sign has-preview" href="${esc(l.href)}" title="Open a sample of this lane">${inner}<span class="peek">▶ Preview</span></a>`
-      : `<div class="hw-sign">${inner}</div>`;
-  }).join("");
+  // Each sign is a button: clicking it drives the car into that lane.
+  slide.querySelector(".hw-signs").innerHTML = LANES.map((l, i) => `
+    <button type="button" class="hw-sign" data-lane="${i}" title="Drive into this lane">
+      <span class="n">${i + 1}</span><br>${l.icon} ${esc(l.title)}<span class="arrow">↓</span>
+      ${l.href ? '<span class="peek">▶ Preview</span>' : ""}
+    </button>`).join("");
+  slide.querySelector(".hw-signs").addEventListener("click", (e) => {
+    const sign = e.target.closest(".hw-sign");
+    if (sign) window.slideDeck?.setStep(Number(sign.dataset.lane) + 1);
+  });
 
   const carEl = svg.querySelector(".hw-car");
   const signs = [...slide.querySelectorAll(".hw-sign")];
@@ -100,7 +113,8 @@ const LANES = [
     signs.forEach((s, i) => s.classList.toggle("active", i === lane || at === N + 1));
     laneGlows.forEach((g, i) => g.classList.toggle("active", i === lane));
     caption.innerHTML =
-      lane >= 0 ? `<strong>Lane ${lane + 1}:</strong> ${esc(LANES[lane].blurb)}`
+      lane >= 0 ? `<strong>Lane ${lane + 1}:</strong> ${esc(LANES[lane].blurb)}` +
+        (LANES[lane].href ? ` <a class="hw-link" href="${esc(LANES[lane].href)}">Take a test drive ▶</a>` : "")
       : at === N + 1 ? `<strong>Which lane first? You decide.</strong>`
       : intro;
   });

@@ -88,6 +88,14 @@ body.deck-body { overflow: hidden; height: 100vh; }
 .deck-brand .logo-mark { width: 22px; height: 22px; border-radius: 7px; }
 .deck-brand:hover { opacity: 1; }
 
+/* Top-right return link used by sample pages */
+.deck-back {
+  position: fixed; top: 14px; right: clamp(16px, 3vw, 32px); z-index: 20;
+  font: 600 0.9rem var(--font-body); text-decoration: none; color: var(--text-muted);
+  padding: 8px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev);
+}
+.deck-back:hover { color: var(--text); }
+
 .deck-ui {
   position: fixed; right: clamp(16px, 3vw, 32px); bottom: 18px; z-index: 20;
   display: flex; align-items: center; gap: 8px;

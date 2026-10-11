@@ -1,0 +1,146 @@
+/* "Meet the POA Team" sample — scene styles. */
+:root { --human: #5b9dff; --max: #2de2b5; --xhigh: #22c3a0; --high: #1fa58e; }
+
+/* Avatars (stick-figure person / robot) */
+.avatar { width: 100%; height: auto; overflow: visible; --acc: var(--high); }
+.avatar.human { --acc: var(--human); }
+.avatar.max { --acc: var(--max); } .avatar.xhigh { --acc: var(--xhigh); } .avatar.high { --acc: var(--high); }
+.av-ink { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.av-ink.thin { stroke-width: 4; }
+.av-head { fill: var(--bg); stroke: var(--text); stroke-width: 6; }
+.avatar.human .av-head { stroke: var(--acc); }
+.av-accent { fill: var(--acc); }
+.av-chest { fill: color-mix(in srgb, var(--acc) 30%, transparent); stroke: var(--text); stroke-width: 5; }
+.av-prop { font-size: 34px; }
+
+/* ---------- 1 · Title ---------- */
+.coach-title { text-align: center; }
+.coach-title .slide-inner { display: flex; flex-direction: column; align-items: center; }
+.title-icons { display: flex; gap: 18px; font-size: clamp(2rem, 7vmin, 4.4rem); margin-top: 0.4em; }
+.title-icons span { display: inline-block; animation: hop 2.4s ease-in-out infinite; }
+.title-icons span:nth-child(2) { animation-delay: 0.3s; } .title-icons span:nth-child(3) { animation-delay: 0.6s; }
+@keyframes hop { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-14px) rotate(-6deg); } }
+.coach-title .lead b { color: var(--text); }
+
+/* ---------- 2 · Roll call ---------- */
+.rollcall .slide-inner { display: flex; flex-direction: column; height: 100%; justify-content: center; }
+.rc-head { text-align: center; font-size: clamp(1.8rem, 5.4vmin, 3.8rem) !important; }
+.rc-stage {
+  display: grid; grid-template-columns: minmax(120px, 0.32fr) 1fr; align-items: center;
+  gap: clamp(16px, 3vw, 48px); min-height: clamp(220px, 42vh, 460px);
+}
+.rc-intro { grid-column: 1 / -1; text-align: center; font: 600 clamp(1.3rem, 4vmin, 2.6rem) var(--font-display); color: var(--text-muted); }
+.rc-intro .big { font-size: 1.6em; color: var(--text); }
+.rc-intro p { font: 500 0.6em var(--font-body); margin-top: 1em; animation: hintPulse 2.4s ease-in-out infinite; }
+.rc-figure { display: flex; flex-direction: column; align-items: center; animation: walkOn 0.8s cubic-bezier(.3, 1.3, .5, 1) both; }
+.rc-figure .avatar { max-height: 40vh; width: auto; height: clamp(160px, 38vh, 400px); }
+.rc-figure .avatar { animation: wave 2.4s ease-in-out 0.9s infinite; transform-origin: 50% 100%; }
+@keyframes walkOn { from { opacity: 0; transform: translateX(120px) rotate(8deg); } to { opacity: 1; transform: none; } }
+@keyframes wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-3deg) translateY(-4px); } }
+.rc-name { margin-top: 6px; font: 700 clamp(1rem, 2.6vmin, 1.5rem) var(--font-display); }
+.rc-bubble {
+  position: relative; padding: clamp(18px, 3vmin, 34px); border-radius: 26px;
+  background: var(--bg-elev); border: 2px solid color-mix(in srgb, var(--acc) 60%, var(--border));
+  box-shadow: 0 20px 60px -30px var(--acc); --acc: var(--high);
+  animation: bubbleIn 0.6s cubic-bezier(.3, 1.4, .5, 1) 0.25s both;
+}
+.rc-bubble.human { --acc: var(--human); }
+.rc-bubble::before {
+  content: ""; position: absolute; left: -16px; top: 42%; width: 28px; height: 28px; transform: rotate(45deg);
+  background: var(--bg-elev); border-left: 2px solid color-mix(in srgb, var(--acc) 60%, var(--border)); border-bottom: 2px solid color-mix(in srgb, var(--acc) 60%, var(--border));
+}
+@keyframes bubbleIn { from { opacity: 0; transform: scale(0.85) translateX(-20px); } to { opacity: 1; transform: none; } }
+.rc-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: clamp(0.8rem, 1.9vmin, 1.1rem); }
+.rc-no { font: 700 1em var(--font-display); color: var(--text-muted); }
+.rc-tag { padding: 3px 10px; border-radius: 999px; font-weight: 700; color: #04121f; background: var(--high); }
+.rc-tag.human { background: var(--human); }
+.rc-it { color: var(--text-muted); } .rc-it b { color: var(--text); }
+.rc-bubble h3 { margin: 0.35em 0 0.3em; font: 700 clamp(1.6rem, 5vmin, 3.4rem) / 1.05 var(--font-display); color: var(--acc); }
+.rc-says { margin: 0; min-height: 3.9em; font-size: clamp(1.05rem, 3vmin, 1.9rem); line-height: 1.38; }
+.typing::after { content: "▌"; color: var(--acc); animation: blink 0.8s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.rc-lineup { display: flex; justify-content: center; gap: clamp(4px, 1vw, 14px); margin-top: clamp(10px, 2.4vh, 26px); }
+.rc-mini {
+  appearance: none; border: 1px solid var(--border); background: var(--surface); border-radius: 14px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 6px 4px; width: clamp(40px, 6.4vmin, 74px);
+  opacity: 0.3; filter: grayscale(1); transition: opacity 0.4s, filter 0.4s, transform 0.3s, border-color 0.3s;
+  color: var(--text-muted); font: 700 0.7rem var(--font-display);
+}
+.rc-mini .avatar { height: clamp(30px, 6vh, 64px); width: auto; }
+.rc-mini.met { opacity: 0.85; filter: none; }
+.rc-mini.now { opacity: 1; transform: translateY(-8px) scale(1.12); border-color: var(--accent-2); box-shadow: 0 0 24px -4px var(--accent-2); }
+.rc-mini:hover { opacity: 1; filter: none; }
+@media (max-width: 760px) {
+  .rc-stage { grid-template-columns: 1fr; text-align: left; }
+  .rc-figure .avatar { height: 22vh; }
+  .rc-bubble::before { display: none; }
+  .rc-mini { width: 34px; padding: 4px 2px; }
+  .rc-mini span { display: none; }
+}
+
+/* ---------- 3 · Team photo ---------- */
+.tp-wrap { text-align: center; }
+.flash { position: fixed; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 5; }
+.play .flash { animation: camFlash 0.7s ease-out 1.4s; }
+@keyframes camFlash { 0% { opacity: 0; } 10% { opacity: 0.9; } 100% { opacity: 0; } }
+.team-photo { display: flex; justify-content: center; align-items: flex-end; gap: clamp(16px, 3vw, 48px); margin: 0.3em 0 clamp(12px, 2.5vh, 26px); }
+.tp-group { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.tp-label { font: 700 clamp(0.8rem, 1.9vmin, 1.1rem) var(--font-display); text-transform: uppercase; letter-spacing: 0.12em; color: var(--human); }
+.tp-group.agent .tp-label { color: var(--high); }
+.tp-row { display: flex; align-items: flex-end; gap: clamp(4px, 1vw, 14px); padding: 14px; border-radius: 22px; background: var(--surface); border: 1px solid var(--border); }
+.tp-member { margin: 0; width: clamp(62px, 9.5vmin, 120px); display: flex; flex-direction: column; align-items: center; }
+.tp-member .avatar { height: clamp(90px, 20vh, 210px); width: auto; }
+.tp-member figcaption { margin-top: 4px; font-size: clamp(0.6rem, 1.35vmin, 0.85rem); line-height: 1.2; }
+.tp-member figcaption b { display: block; }
+.tp-member figcaption span { color: var(--text-muted); }
+.slide.play .tp-member { animation: lineUp 0.6s cubic-bezier(.3, 1.4, .5, 1) calc(0.15s + var(--k) * 0.12s) both; }
+@keyframes lineUp { from { opacity: 0; transform: translateY(40px) scale(0.8); } to { opacity: 1; transform: none; } }
+.tp-wrap .pro-tip { text-align: left; max-width: 980px; margin: 0 auto; font-size: clamp(0.95rem, 2.4vmin, 1.35rem); }
+@media (max-width: 760px) { .team-photo { flex-direction: column; align-items: center; } .tp-row { flex-wrap: wrap; justify-content: center; } }
+
+/* ---------- 4 · Fun break: team workout ---------- */
+.break-wrap { text-align: center; }
+.gym { display: flex; justify-content: center; align-items: flex-end; gap: clamp(10px, 2.4vw, 40px); margin-top: clamp(10px, 3vh, 34px); padding-bottom: 8px; border-bottom: 3px solid var(--border); }
+.gym .avatar { height: clamp(110px, 24vh, 250px); width: auto; }
+.coach { position: relative; display: flex; flex-direction: column; align-items: center; margin-right: clamp(10px, 3vw, 50px); }
+.coach .avatar { animation: coachBounce 1.6s ease-in-out infinite; }
+@keyframes coachBounce { 50% { transform: translateY(-6px); } }
+.coach-name { font: 700 clamp(0.8rem, 1.9vmin, 1.1rem) var(--font-display); color: var(--human); }
+.whistle-bubble {
+  position: absolute; top: -2.2em; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  padding: 6px 14px; border-radius: 14px; background: var(--human); color: #fff; font: 700 clamp(0.85rem, 2.2vmin, 1.3rem) var(--font-display);
+  animation: shout 1.6s ease-in-out infinite;
+}
+@keyframes shout { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.08); } }
+.lifter { position: relative; display: flex; flex-direction: column; align-items: center; }
+.lifter .avatar { animation: squat 1.6s ease-in-out var(--d) infinite; transform-origin: 50% 100%; }
+@keyframes squat { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.88); } }
+.barbell { display: flex; align-items: center; width: clamp(80px, 13vmin, 150px); margin-bottom: -6px; animation: press 1.6s ease-in-out var(--d) infinite; }
+.barbell b { flex: 1; height: 6px; border-radius: 3px; background: var(--text-muted); }
+.barbell i { width: 14px; height: clamp(26px, 5vmin, 44px); border-radius: 5px; background: var(--accent-3); }
+@keyframes press { 0%, 100% { transform: translateY(28px); } 50% { transform: translateY(-14px); } }
+.lifter.wobbly .barbell { animation: wobbly 3.2s ease-in-out infinite; }
+.lifter.wobbly .avatar { animation: wobbleBody 3.2s ease-in-out infinite; }
+@keyframes wobbly { 0%, 100% { transform: translateY(28px) rotate(0); } 25% { transform: translateY(-10px) rotate(-14deg); } 45% { transform: translateY(-6px) rotate(18deg); } 60% { transform: translateY(20px) rotate(-8deg); } }
+@keyframes wobbleBody { 25% { transform: rotate(-6deg); } 45% { transform: rotate(7deg); } 60% { transform: rotate(-3deg); } }
+.oops { position: absolute; top: -1.6em; right: -0.6em; font: 800 clamp(1rem, 3vmin, 1.8rem) var(--font-display); color: var(--pro); animation: oops 3.2s ease-in-out infinite; }
+@keyframes oops { 0%, 20%, 70%, 100% { opacity: 0; transform: scale(0.6); } 35%, 55% { opacity: 1; transform: scale(1.1); } }
+.rep-counter { margin-top: clamp(10px, 2.4vh, 24px); font: 700 clamp(1.2rem, 3.6vmin, 2.4rem) var(--font-display); color: var(--text-muted); }
+.reps::after { content: "1"; color: var(--text); margin-left: 0.3em; animation: reps 4.8s steps(1) infinite; }
+@keyframes reps { 0% { content: "1"; } 33.3% { content: "2"; } 66.6% { content: "3 💪"; } }
+@media (max-width: 760px) { .gym .lifter:nth-child(n + 5) { display: none; } .gym .avatar { height: 90px; } }
+
+/* ---------- 5 · Story time ---------- */
+.story-slide .slide-inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.spotlight {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at var(--sx, 50%) 40%, color-mix(in srgb, var(--pro) 22%, transparent), transparent 38%);
+  animation: sweep 6s ease-in-out infinite;
+}
+@property --sx { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+@keyframes sweep { 0%, 100% { --sx: 30%; } 50% { --sx: 70%; } }
+.mic { font-size: clamp(3rem, 12vmin, 7rem); line-height: 1; }
+.slide.play .mic { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) both, micTap 1.8s ease-in-out 1s infinite; }
+@keyframes micTap { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-10deg); } 40% { transform: rotate(8deg); } 60% { transform: rotate(0); } }
+.story-slide .end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 2em; }

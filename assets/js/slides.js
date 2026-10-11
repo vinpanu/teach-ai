@@ -54,6 +54,12 @@
     if (at > 0) { at--; render(false); }
     else if (index > 0) go(index - 1, stepsIn(slides[index - 1]));
   };
+  // Lets interactive scenes jump to a step, e.g. clicking a road sign picks that lane.
+  window.slideDeck = {
+    next, prev, go,
+    setStep(step) { at = Math.max(0, Math.min(step, stepsIn(slides[index]))); render(false); },
+  };
+
   const toggleFullscreen = () => {
     if (document.fullscreenElement) document.exitFullscreen();
     else document.documentElement.requestFullscreen?.().catch(() => {});

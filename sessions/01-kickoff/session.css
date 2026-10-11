@@ -260,8 +260,16 @@
   transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
 }
 .hw-sign { min-width: 0; overflow-wrap: anywhere; position: relative; }
-a.hw-sign { text-decoration: none; cursor: pointer; }
-a.hw-sign:hover { opacity: 1; transform: translateY(-6px) scale(1.05); box-shadow: 0 0 36px rgba(60, 220, 140, 0.6); }
+button.hw-sign { appearance: none; cursor: pointer; }
+button.hw-sign:hover { opacity: 1; transform: translateY(-6px) scale(1.05); box-shadow: 0 0 36px rgba(60, 220, 140, 0.6); }
+.hw-link {
+  display: inline-block; margin-left: 0.3em; padding: 0.1em 0.6em; border-radius: 999px; white-space: nowrap;
+  font-weight: 700; color: #1a1400; background: var(--pro); text-decoration: none;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--pro) 55%, transparent);
+}
+.hw-link:hover { filter: brightness(1.1); }
+.hw-car .you-tag { transform-box: fill-box; transform-origin: 50% 100%; opacity: 0; }
+.play .hw-car .you-tag { animation: pop 0.6s cubic-bezier(.3, 1.6, .5, 1) 0.6s forwards, bob 2.8s ease-in-out 1.4s infinite; }
 .hw-sign .peek {
   position: absolute; top: -0.9em; right: -0.5em;
   font: 700 0.62em var(--font-display); letter-spacing: 0.04em; text-transform: uppercase;

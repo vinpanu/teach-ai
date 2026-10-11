@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meet the POA Team · AI in Practice</title>
+  <meta name="description" content="My AI Health Coach sample: meet the human and AI agent team building POA, the Physique Optimization Agent.">
+  <meta property="og:title" content="Meet the POA Team · AI in Practice">
+  <meta property="og:description" content="One human, seven AI agent roles, one mission: building an AI health coach.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/slides.css">
+  <link rel="stylesheet" href="coach.css">
+</head>
+<body class="deck-body">
+
+  <div class="deck-progress" aria-hidden="true"><span></span></div>
+  <a class="deck-brand" href="../../"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
+  <a class="deck-back" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+
+  <main class="deck" data-deck-title="My AI Health Coach">
+    <div class="deck-bg" aria-hidden="true">
+      <canvas id="network"></canvas>
+      <div class="glow g1"></div>
+      <div class="glow g2"></div>
+      <div class="glow g3"></div>
+    </div>
+
+    <!-- ========== 1 · Title ========== -->
+    <section class="slide coach-title" data-title="Meet the POA Team">
+      <div class="slide-inner">
+        <span class="eyebrow enter"><span class="pulse"></span>Lane 2 · My AI Health Coach · Sample</span>
+        <div class="title-icons enter" style="--d:.1s" aria-hidden="true"><span>🧪</span><span>🏋️</span><span>🤖</span></div>
+        <h1 class="enter" style="--d:.2s">Meet the <span class="gradient-text">POA Team</span></h1>
+        <p class="lead enter" style="--d:.35s"><b>POA</b> = Physique Optimization Agent.<br>Where coaching experience meets science and AI.</p>
+      </div>
+    </section>
+
+    <!-- ========== 2 · Roll call (built by coach.js) ========== -->
+    <section class="slide rollcall" data-title="The roll call">
+      <div class="slide-inner">
+        <h2 class="enter rc-head">Who's building my <span class="gradient-text">AI health coach?</span></h2>
+        <div class="rc-stage" aria-live="polite"></div>
+        <div class="rc-lineup" aria-label="The team: click a member to jump to them"></div>
+      </div>
+    </section>
+
+    <!-- ========== 3 · Team photo ========== -->
+    <section class="slide" data-title="Team photo">
+      <div class="slide-inner tp-wrap">
+        <div class="flash" aria-hidden="true"></div>
+        <h2 class="enter">Say “<span class="gradient-text">protein!</span>” 📸</h2>
+        <div class="team-photo"></div>
+        <aside class="pro-tip" data-step="1">
+          <span class="pro-tip-badge">Pro Tip</span>
+          <p>Notice the <b>Testing Grader</b> is separate from the <b>Builder</b>. Just like a human team, an AI team works better when nobody grades their own work.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== 4 · Fun break ========== -->
+    <section class="slide" data-title="Fun break">
+      <div class="slide-inner break-wrap">
+        <div class="kicker enter">Fun break</div>
+        <h2 class="enter" style="--d:.1s">Even AI agents <span class="gradient-text">skip leg day.</span></h2>
+        <div class="gym" aria-label="Coach Vince leads the robot agents through a lifting workout. One robot wobbles under its barbell."></div>
+        <div class="rep-counter" aria-hidden="true"><span>Rep</span><b class="reps"></b></div>
+      </div>
+    </section>
+
+    <!-- ========== 5 · Story time ========== -->
+    <section class="slide story-slide" data-title="Story time">
+      <div class="spotlight" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <div class="mic enter" aria-hidden="true">🎤</div>
+        <div class="kicker enter" style="--d:.15s">Story time</div>
+        <h2 class="enter" style="--d:.25s">The fun side of building <span class="gradient-text">my health coach.</span></h2>
+        <p class="lead enter" style="--d:.4s">Over to Vince…</p>
+        <div class="end-row enter" style="--d:.8s">
+          <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+          <a class="btn btn-ghost" href="https://poa-executive-dashboard.vince-panu.chatgpt.site/#team" target="_blank" rel="noopener">See the real POA dashboard ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="deck-ui">
+    <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
+    <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
+    <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
+    <span class="deck-counter" aria-live="polite">1 / 5</span>
+    <button type="button" data-deck="next" aria-label="Next (→)">→</button>
+  </div>
+
+  <script src="coach.js"></script>
+  <script src="../../assets/js/slides.js"></script>
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>
