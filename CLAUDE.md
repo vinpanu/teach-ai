@@ -24,7 +24,9 @@ The visual impact of the website matters **as much as the material itself**. Eve
 - Make the content engaging, with real-world examples, live demos, and moments that make the audience say "wow."
 
 ## Hosting
-- **Host: GitHub Pages** (free, static). The live site deploys from the `main` branch, root folder. I'm new to hosting, so explain any step I have to do myself plainly and one at a time.
+- **Host: GitHub Pages** (free, static). The live site deploys from the `main` branch, root folder.
+  - Live site: https://vinpanu.github.io/teach-ai/
+  - Repo: https://github.com/vinpanu/teach-ai (commits use the private noreply email set in the repo's git config) I'm new to hosting, so explain any step I have to do myself plainly and one at a time.
 - **Site structure:**
   - `index.html`: the course home page (hero section plus a grid of session cards)
   - `assets/css/site.css` and `assets/js/site.js`: the shared design system that every page uses
