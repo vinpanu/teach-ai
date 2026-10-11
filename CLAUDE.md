@@ -54,6 +54,7 @@ The visual impact of the website matters **as much as the material itself**. Eve
   - Interactive scenes can jump steps with `window.slideDeck.setStep(n)` (from `assets/js/slides.js`).
 - **Reading pace:** typed-out text must leave time to read. Especially when text alternates between two panels, pause before the other side starts (see `PACE` in `samples/ai-gone-rogue/rogue.js`).
 - **Stories based on real research:** find and read the **primary source** (for example, Anthropic's own post), not only news coverage. Label dramatized parts as dramatized, link the source on the page, use at most one short direct quote, and never invent statistics.
+- **Version tags:** every page loads local CSS/JS with a version tag (`slides.js?v=3`). When you change any CSS or JS file, bump the number in **every** page that loads it, so browsers can't keep using an old copy. A stale copy is why a sign click once silently did nothing.
 - Plain static HTML/CSS/JS only, with no build step. Use relative links (`assets/...`, `../../assets/...`) because the site is served from a `/teach-ai/` subpath.
 - **Local preview:** the `site` server in `.claude/launch.json` runs `python -m http.server` at http://localhost:8000. Pages need this to load properly; opening the file directly won't load the styles.
 - **Publishing workflow:** edit, then preview locally in the browser pane, then **ask me before pushing**, then commit and push. The live site updates about a minute after a push.
