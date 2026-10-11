@@ -1,0 +1,9 @@
+# OS / Google Drive clutter
+desktop.ini
+Thumbs.db
+.DS_Store
+*.tmp
+~$*
+
+# Local Claude Code settings
+.claude/settings.local.json
