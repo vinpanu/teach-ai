@@ -35,6 +35,11 @@ The visual impact of the website matters **as much as the material itself**. Eve
 - Badge: `<span class="pro-tip-badge">Pro Tip</span>`. Callout: `<aside class="pro-tip"><span class="pro-tip-badge">Pro Tip</span><p>…</p></aside>` (styles live in `assets/css/site.css`).
 - Look for chances to add a Pro Tip in every session.
 
+## 🎤 Story Time: the segue into a live story
+- When I'm about to tell a real story myself (usually at the end of a topic), use a **Story Time** slide: a flickering neon "Story Time" sign, a spotlight, a microphone, the line "A real story. No slides, no script.", and a one-line teaser for the story.
+- It's a shared component: `<section class="slide story-time">` (markup template is in the comment above `.story-time` in `assets/css/slides.css`). Use it in every session and sample going forward.
+- Don't confuse it with a **Fun break**, which is a light animated breather (like the robot workout on the health coach page), not a story.
+
 ## Content standards
 - Write for learners. Explain clearly, avoid unnecessary jargon, and layer the content: core ideas for beginners, Pro Tips for experts.
 - Check facts carefully, since this is public material. AI moves fast, so verify current model names, features, and pricing before publishing them.

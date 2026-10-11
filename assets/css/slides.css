@@ -121,6 +121,47 @@ kbd {
   border: 1px solid var(--border); background: var(--surface);
 }
 
+/* ---------- 🎤 Story Time: the standard segue into a live story ----------
+   <section class="slide story-time" data-title="Story time">
+     <div class="spotlight" aria-hidden="true"></div>
+     <div class="slide-inner">
+       <div class="mic enter" aria-hidden="true">🎤</div>
+       <div class="neon enter" style="--d:.2s">Story Time</div>
+       <p class="neon-sub enter" style="--d:.5s">A real story. No slides, no script.</p>
+       <h2 class="enter" style="--d:.7s">One-line teaser for the story</h2>
+     </div>
+   </section> */
+.story-time .slide-inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.story-time .spotlight {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at var(--sx, 50%) 38%, color-mix(in srgb, var(--pro) 22%, transparent), transparent 38%);
+  animation: sweep 6s ease-in-out infinite;
+}
+@property --sx { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+@keyframes sweep { 0%, 100% { --sx: 30%; } 50% { --sx: 70%; } }
+.story-time .mic { font-size: clamp(2.6rem, 10vmin, 6rem); line-height: 1; }
+.story-time.play .mic { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) both, micTap 1.8s ease-in-out 1.2s infinite; }
+@keyframes micTap { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-10deg); } 40% { transform: rotate(8deg); } 60% { transform: rotate(0); } }
+.neon {
+  --glow: #ff4fd8;
+  margin: 0.15em 0 0.1em; padding: 0.08em 0.45em; border-radius: 0.25em;
+  font: 700 clamp(2.6rem, 11vmin, 7.5rem) / 1.1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase;
+  color: #fff7fd; border: 0.06em solid #ffd6f5;
+  text-shadow: 0 0 0.05em #fff, 0 0 0.2em var(--glow), 0 0 0.5em var(--glow), 0 0 1em var(--glow);
+  box-shadow: 0 0 0.2em var(--glow), inset 0 0 0.2em var(--glow), 0 0 0.8em color-mix(in srgb, var(--glow) 60%, transparent);
+}
+:root[data-theme="light"] .neon { color: #fff; background: #1a0b22; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .neon { color: #fff; background: #1a0b22; } }
+.story-time.play .neon { animation: neonOn 1.4s steps(1) 0.2s both, neonHum 3s ease-in-out 2s infinite; }
+@keyframes neonOn {
+  0% { opacity: 0.1; } 10% { opacity: 1; } 14% { opacity: 0.15; } 22% { opacity: 1; }
+  26% { opacity: 0.3; } 34% { opacity: 1; } 70% { opacity: 0.6; } 74% { opacity: 1; } 100% { opacity: 1; }
+}
+@keyframes neonHum { 50% { filter: brightness(1.18); } }
+.neon-sub { margin: 0.6em 0 0.2em; font-size: clamp(1rem, 2.8vmin, 1.7rem); color: var(--text-muted); letter-spacing: 0.04em; }
+.story-time h2 { margin-top: 0.4em; }
+.story-time .end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 1.6em; }
+
 @media (max-width: 640px) {
   .deck-ui { opacity: 1; }
   .deck-ui .ui-optional { display: none; }

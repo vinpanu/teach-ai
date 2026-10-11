@@ -130,17 +130,3 @@
 .reps::after { content: "1"; color: var(--text); margin-left: 0.3em; animation: reps 4.8s steps(1) infinite; }
 @keyframes reps { 0% { content: "1"; } 33.3% { content: "2"; } 66.6% { content: "3 💪"; } }
 @media (max-width: 760px) { .gym .lifter:nth-child(n + 5) { display: none; } .gym .avatar { height: 90px; } }
-
-/* ---------- 5 · Story time ---------- */
-.story-slide .slide-inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
-.spotlight {
-  position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(circle at var(--sx, 50%) 40%, color-mix(in srgb, var(--pro) 22%, transparent), transparent 38%);
-  animation: sweep 6s ease-in-out infinite;
-}
-@property --sx { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
-@keyframes sweep { 0%, 100% { --sx: 30%; } 50% { --sx: 70%; } }
-.mic { font-size: clamp(3rem, 12vmin, 7rem); line-height: 1; }
-.slide.play .mic { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) both, micTap 1.8s ease-in-out 1s infinite; }
-@keyframes micTap { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-10deg); } 40% { transform: rotate(8deg); } 60% { transform: rotate(0); } }
-.story-slide .end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 2em; }
