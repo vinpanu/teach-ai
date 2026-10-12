@@ -62,7 +62,7 @@ The visual impact of the website matters **as much as the material itself**. Eve
 - **Version tags:** every page loads local CSS/JS with a version tag (`slides.js?v=3`). When you change any CSS or JS file, bump the number in **every** page that loads it, so browsers can't keep using an old copy. A stale copy is why a sign click once silently did nothing.
 - Plain static HTML/CSS/JS only, with no build step. Use relative links (`assets/...`, `../../assets/...`) because the site is served from a `/teach-ai/` subpath.
 - **Local preview:** the `site` server in `.claude/launch.json` runs `python -m http.server` at http://localhost:8000. Pages need this to load properly; opening the file directly won't load the styles.
-- **Publishing workflow:** edit, then preview locally in the browser pane, then **ask me before pushing**, then commit and push. The live site updates about a minute after a push.
+- **Publishing workflow (decided Oct 11, 2026, while I work remotely from my phone):** edit, test locally in the browser pane, then **commit and push right away without asking**. Wait for the live site to update (about a minute), check it, and send me the live link so I can review it on my phone. Every push stays in Git history, so any change can be rolled back.
 - Later we may add a custom domain. The project folder is in Google Drive; if Drive sync ever conflicts with `.git`, move the project to a local folder.
 
 ## Explain what you're doing (I'm learning too)
@@ -75,4 +75,4 @@ I want to learn how Claude works, so explain your actions in simple language as 
 1. At the start of each session, confirm the theme, the audience level, the length, and the goals with me. Plan mode works well for this.
 2. Draft the content, then build the session's scenes.
 3. Preview in the browser and check projector (1920×1080), laptop, and phone sizes in both light and dark mode before calling anything done.
-4. Ask me before publishing or deploying anything publicly.
+4. Publish tested changes straight to the live site (see Publishing workflow) and send me the live link. Still ask first before anything outside this website, like changing repo settings, adding a custom domain, or deleting history.
