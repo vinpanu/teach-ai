@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../assets/css/slides.css?v=5">
-  <link rel="stylesheet" href="learned.css?v=1">
+  <link rel="stylesheet" href="learned.css?v=2">
 </head>
 <body class="deck-body">
 
@@ -45,6 +45,7 @@
           <path class="av-ink" d="M43 80 L24 50 M77 80 L96 50 M52 122 L44 190 M68 122 L76 190"/>
         </symbol>
         <linearGradient id="wifeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4fd8"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient>
+        <linearGradient id="meGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b9dff"/><stop offset="1" stop-color="#3d6bff"/></linearGradient>
         <linearGradient id="aiGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#00b8e6"/></linearGradient>
         <radialGradient id="lampGlow"><stop offset="0" stop-color="#ffd84d" stop-opacity=".55"/><stop offset="1" stop-color="#ffd84d" stop-opacity="0"/></radialGradient>
       </defs>
@@ -99,20 +100,16 @@
       <div class="slide-inner ball-wrap">
         <div class="kicker enter">Today</div>
         <h2 class="enter" style="--d:.1s">These days, I don't play <span class="gradient-text">solo.</span></h2>
-        <svg class="ballgame" viewBox="0 0 1200 480" role="img" aria-label="My stick figure and four AI agent robots stand in a line, tossing a beach ball back and forth.">
+        <svg class="ballgame" viewBox="0 0 1200 480" role="img" aria-label="My stick figure stands between two AI agent robots, ChatGPT on my left and Claude on my right, tossing a beach ball back and forth.">
           <line class="floor" x1="0" y1="430" x2="1200" y2="430"/>
-          <g class="shadows"><ellipse cx="161" cy="432" rx="50" ry="8"/><ellipse cx="401" cy="432" rx="50" ry="8"/><ellipse cx="631" cy="432" rx="50" ry="8"/><ellipse cx="861" cy="432" rx="50" ry="8"/><ellipse cx="1081" cy="432" rx="50" ry="8"/></g>
-          <!-- Players: each one hops when the ball reaches them (animation-delay = catch time) -->
-          <use href="#bot" class="player" x="90" y="210" width="143" height="230" style="--acc:#2de2b5;--catch:3s"/>
-          <use href="#bot" class="player" x="330" y="210" width="143" height="230" style="--acc:#22c3a0;--catch:6s"/>
-          <use href="#me" class="player" x="560" y="210" width="143" height="230" style="--acc:#5b9dff;--catch:0s"/>
-          <use href="#bot" class="player" x="790" y="210" width="143" height="230" style="--acc:#1fa58e;--catch:1.5s"/>
-          <use href="#bot" class="player" x="1010" y="210" width="143" height="230" style="--acc:#2de2b5;--catch:4.5s"/>
-          <text class="tag me-tag" x="631" y="470" text-anchor="middle">Me</text>
-          <text class="tag" x="161" y="470" text-anchor="middle">AI agent</text>
-          <text class="tag" x="401" y="470" text-anchor="middle">AI agent</text>
-          <text class="tag" x="861" y="470" text-anchor="middle">AI agent</text>
-          <text class="tag" x="1081" y="470" text-anchor="middle">AI agent</text>
+          <g class="shadows"><ellipse cx="270" cy="432" rx="50" ry="8"/><ellipse cx="600" cy="432" rx="50" ry="8"/><ellipse cx="930" cy="432" rx="50" ry="8"/></g>
+          <!-- Players: ChatGPT (left), me (middle), Claude (right). Each hops when the ball reaches them (--catch = catch time) -->
+          <use href="#bot" class="player" x="198.5" y="210" width="143" height="230" style="--acc:#10a37f;--catch:3s"/>
+          <use href="#me" class="player" x="528.5" y="210" width="143" height="230" style="--acc:#5b9dff;--catch:0s"/>
+          <use href="#bot" class="player" x="858.5" y="210" width="143" height="230" style="--acc:#e07a52;--catch:1.5s"/>
+          <text class="tag me-tag" x="600" y="470" text-anchor="middle">Me</text>
+          <text class="tag ai-tag" x="270" y="470" text-anchor="middle" style="fill:#10a37f">ChatGPT</text>
+          <text class="tag ai-tag" x="930" y="470" text-anchor="middle" style="fill:#e07a52">Claude</text>
           <!-- Beach ball: ball-x moves between players, ball-y adds the arc, ball-spin rotates it -->
           <g class="ball-x"><g class="ball-y"><g class="ball-spin">
             <circle r="22" fill="#fff"/>
@@ -127,11 +124,12 @@
     </section>
 
     <!-- ========== 4 · My wife's suggestion ========== -->
-    <!-- Step 1: twin beds slide in, the AI agent pops up in my bed. Step 2: "Good night, Vince", lights out. -->
+    <!-- Step 1: twin beds slide in, the AI agent pops up in my bed, then the "My wife", "Me" and AI labels. Step 2: lights out. -->
     <section class="slide bedroom-slide" data-title="My wife's suggestion">
       <div class="slide-inner bedroom-wrap">
-        <h2 class="enter bed-head">Recently, my wife suggested a way I could spend <span class="gradient-text">more time with AI…</span></h2>
-        <svg class="bedroom" viewBox="0 0 1200 500" role="img" aria-label="Two separate beds. My wife sleeps alone in one. In the other, I sleep next to an AI agent labeled Claude slash ChatGPT, who says: Good night, Vince. Then the lamp switches off.">
+        <p class="family-line enter"><span aria-hidden="true">❤️</span> Family support is critical to your learning success.</p>
+        <h2 class="enter bed-head" style="--d:.15s">Recently, my wife suggested a way I could spend <span class="gradient-text">more time with AI…</span></h2>
+        <svg class="bedroom" viewBox="0 0 1200 500" role="img" aria-label="Two separate beds. My wife sleeps alone in one. In the other, I sleep next to an AI agent labeled Claude slash ChatGPT. Then the lamp switches off.">
           <line class="floor" x1="0" y1="482" x2="1200" y2="482"/>
 
           <!-- Window and nightstand lamp between the beds -->
@@ -177,6 +175,10 @@
               <path class="blanket" d="M715 348 H1105 L1132 432 H688 Z"/>
               <path class="fold" d="M710 362 H1110"/>
               <rect class="bed-front" x="688" y="432" width="444" height="38" rx="6"/>
+              <g class="bubble pop-me">
+                <path d="M818 150 H882 Q902 150 902 170 V200 Q902 220 882 220 H866 L850 252 L842 220 H818 Q798 220 798 200 V170 Q798 150 818 150 Z" fill="url(#meGrad)"/>
+                <text class="bubble-text" x="850" y="196" text-anchor="middle">Me</text>
+              </g>
               <g class="bubble pop-2">
                 <path d="M1030 118 H1162 Q1182 118 1182 138 V200 Q1182 220 1162 220 H1050 L990 276 L1022 220 H1030 Q1010 220 1010 200 V138 Q1010 118 1030 118 Z" fill="url(#aiGrad)"/>
                 <text class="bubble-text" x="1096" y="161" text-anchor="middle">Claude /</text>
@@ -187,10 +189,6 @@
 
           <g data-step="2" class="night">
             <!-- Lights out: the room dims; the moon and the robot's eyes keep glowing -->
-            <g class="speech">
-              <path d="M702 128 H962 Q982 128 982 148 V186 Q982 206 962 206 H948 L960 262 L902 206 H702 Q682 206 682 186 V148 Q682 128 702 128 Z"/>
-              <text x="832" y="179" text-anchor="middle">Good night, Vince</text>
-            </g>
             <g class="robot-eyes"><circle cx="960" cy="313" r="6"/><circle cx="984" cy="313" r="6"/></g>
             <g class="zzz-group"><text class="zz z1" x="236" y="306">z</text><text class="zz z2" x="214" y="280">Z</text><text class="zz z3" x="796" y="306">z</text><text class="zz z4" x="774" y="280">Z</text></g>
           </g>

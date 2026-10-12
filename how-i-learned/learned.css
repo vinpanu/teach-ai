@@ -77,36 +77,41 @@
 .ballgame .me-tag { fill: #5b9dff; font-size: 30px; font-weight: 700; }
 .ball-line { stroke: #12121a; stroke-width: 2.5; }
 
-/* Timeline: 5 passes × 1.5s = 7.5s loop. Order: Me → agent 4 → agent 1 → agent 5 → agent 2 → Me.
-   ball-x moves at a steady speed; ball-y rises and falls (longer passes get higher arcs). */
-.ball-x { transform: translate(631px, 255px); }
-.slide.play .ball-x { animation: ballX 7.5s linear infinite; }
+.ballgame .ai-tag { font-size: 30px; font-weight: 700; }
+
+/* Timeline: 3 passes × 1.5s = 4.5s loop. Order: Me → Claude → ChatGPT (the long pass over my head) → Me.
+   ball-x moves at a steady speed; ball-y rises and falls (the long pass gets a higher arc). */
+.ball-x { transform: translate(600px, 255px); }
+.slide.play .ball-x { animation: ballX 4.5s linear infinite; }
 @keyframes ballX {
-  0%, 100% { transform: translate(631px, 255px); }
-  20% { transform: translate(861px, 255px); }
-  40% { transform: translate(161px, 255px); }
-  60% { transform: translate(1081px, 255px); }
-  80% { transform: translate(401px, 255px); }
+  0%, 100% { transform: translate(600px, 255px); }
+  33.333% { transform: translate(930px, 255px); }
+  66.667% { transform: translate(270px, 255px); }
 }
-.slide.play .ball-y { animation: ballY 7.5s infinite; }
+.slide.play .ball-y { animation: ballY 4.5s infinite; }
 @keyframes ballY {
-  0%, 20%, 40%, 60%, 80% { transform: translateY(0); animation-timing-function: cubic-bezier(.33, .66, .66, 1); }
-  10% { transform: translateY(-120px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
-  30% { transform: translateY(-210px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
-  50% { transform: translateY(-240px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
-  70% { transform: translateY(-200px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
-  90% { transform: translateY(-120px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  0%, 33.333%, 66.667% { transform: translateY(0); animation-timing-function: cubic-bezier(.33, .66, .66, 1); }
+  16.667% { transform: translateY(-150px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  50% { transform: translateY(-250px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  83.333% { transform: translateY(-150px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
   100% { transform: translateY(0); }
 }
 .slide.play .ball-spin { animation: spin 1.5s linear infinite; }
 /* Each player bounces as the ball lands in their hands (--catch = when the ball arrives) */
-.slide.play .player { animation: catch 7.5s ease-out var(--catch) infinite both; }
+.slide.play .player { animation: catch 4.5s ease-out var(--catch) infinite both; }
 @keyframes catch {
-  0% { transform: none; } 3% { transform: translateY(10px); } 8% { transform: translateY(-14px); } 13%, 100% { transform: none; }
+  0% { transform: none; } 5% { transform: translateY(10px); } 13% { transform: translateY(-14px); } 22%, 100% { transform: none; }
 }
 
 /* ---------- 4 · The bedroom ---------- */
 .bedroom-wrap { text-align: center; }
+.family-line {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  margin: 0 auto 0.5em; padding: 0.45em 1.1em; border-radius: 999px;
+  font: 600 clamp(1rem, 2.6vmin, 1.6rem) var(--font-display); color: var(--text);
+  background: color-mix(in srgb, #ff4fd8 14%, transparent);
+  border: 1px solid color-mix(in srgb, #ff4fd8 45%, transparent);
+}
 .bed-head { font-size: clamp(1.7rem, 5vmin, 3.8rem) !important; max-width: 24ch; margin-inline: auto !important; }
 .bedroom { width: 100%; max-width: 1300px; max-height: 60vh; overflow: visible; }
 .bedroom [data-step] { transform: none; }
@@ -129,8 +134,8 @@
 .stand { fill: color-mix(in srgb, var(--text) 14%, var(--bg)); stroke: var(--text); stroke-width: 5; }
 .stand-line { stroke: var(--text); stroke-width: 3; }
 .lamp-base { stroke: var(--text); stroke-width: 5; stroke-linecap: round; fill: none; }
-.lamp-shade { fill: #ffd84d; stroke: var(--text); stroke-width: 4; stroke-linejoin: round; transition: fill 0.3s ease 2.2s; }
-.lamp-glow { transition: opacity 0.3s ease 2.2s; }
+.lamp-shade { fill: #ffd84d; stroke: var(--text); stroke-width: 4; stroke-linejoin: round; transition: fill 0.3s ease 0.6s; }
+.lamp-glow { transition: opacity 0.3s ease 0.6s; }
 .bubble-text { font: 700 31px var(--font-display); fill: #fff; letter-spacing: 0.01em; }
 
 /* Step 1: the beds slide in from both sides, the AI agent pops up, then the labels */
@@ -144,27 +149,24 @@
 @keyframes popUp { from { opacity: 0; transform: translateY(56px); } to { opacity: 1; transform: none; } }
 .bubble { opacity: 0; transform-origin: 50% 100%; }
 .beds.on .pop-1 { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 1.9s both; }
-.beds.on .pop-2 { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 2.6s both; }
+.beds.on .pop-me { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 2.3s both; }
+.beds.on .pop-2 { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 2.7s both; }
 @keyframes pop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
 
-/* Step 2: "Good night, Vince", then the lamp clicks off and the room goes dark */
-.speech { opacity: 0; transform-box: fill-box; transform-origin: 82% 100%; }
-.speech path { fill: var(--bg-elev); stroke: #7c5cff; stroke-width: 4; stroke-linejoin: round; }
-.speech text { font: 700 32px var(--font-display); fill: var(--text); }
-.night.on .speech { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 0.2s both; }
-/* Lights out: dim the furniture and beds (the moon, speech bubble and robot eyes stay bright) */
+/* Step 2: the lamp clicks off and the room goes dark
+   (the moon, the name bubbles and the robot's eyes stay bright) */
 .room, .bed > :not(.bubble) { transition: filter 1.2s ease; }
-.bedroom-slide[data-at="2"] .room, .bedroom-slide[data-at="2"] .bed > :not(.bubble) { filter: brightness(0.42) saturate(0.7); transition-delay: 2.2s; }
+.bedroom-slide[data-at="2"] .room, .bedroom-slide[data-at="2"] .bed > :not(.bubble) { filter: brightness(0.42) saturate(0.7); transition-delay: 0.6s; }
 .bedroom-slide[data-at="2"] .lamp-glow { opacity: 0; }
 .bedroom-slide[data-at="2"] .lamp-shade { fill: color-mix(in srgb, var(--text) 25%, var(--bg)); }
 .robot-eyes circle { fill: #2de2b5; filter: drop-shadow(0 0 6px #2de2b5); opacity: 0; }
-.night.on .robot-eyes circle { animation: eyesOn 0.5s ease 2.9s both, glowPulse 2.4s ease-in-out 3.4s infinite; }
+.night.on .robot-eyes circle { animation: eyesOn 0.5s ease 1.3s both, glowPulse 2.4s ease-in-out 1.8s infinite; }
 @keyframes eyesOn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes glowPulse { 50% { opacity: 0.55; } }
 .zz { font: 700 34px var(--font-display); fill: #7d9bff; opacity: 0; }
 .night.on .zz { animation: snore 3s ease-out infinite; }
-.night.on .z1, .night.on .z3 { animation-delay: 3.4s; }
-.night.on .z2, .night.on .z4 { animation-delay: 4.1s; }
+.night.on .z1, .night.on .z3 { animation-delay: 1.8s; }
+.night.on .z2, .night.on .z4 { animation-delay: 2.5s; }
 @keyframes snore { 0% { opacity: 0; transform: translate(0, 0); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -34px); } }
 
 /* ---------- 5 · Your turn ---------- */

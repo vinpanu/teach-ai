@@ -4,7 +4,6 @@
 // that lane. Give a lane an `href` once its sample page exists: its sign gets a
 // "Preview" tag and its caption gets a "Take a test drive" link.
 const LANES = [
-  { icon: "🔤", title: "AI Terms Decoded", blurb: "LLMs, tokens, agents, hallucinations: the jargon, explained in plain English." },
   { icon: "🩺", title: "My AI Health Coach", blurb: "A behind-the-scenes tour of a personal AI agent I built.",
     href: "../../samples/health-coach/" },
   { icon: "🚨", title: "AI Gone Rogue", blurb: "True stories of AI misbehaving, from bending the rules to breaking into websites.",
