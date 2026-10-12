@@ -7,7 +7,7 @@
 .title-slide[data-at="1"] .deck-hint { display: none; }
 
 /* "Why it's different" (first click): the Fun car and the Productivity car crash head-on.
-   Timeline (s): drive in 0–1.46 · impact 1.46 (flash, BAM!, sparks, shake) · bounce back · smoke 1.7+ · tagline 2.9
+   Timeline (s): drive in 0–1.46 · impact 1.46 (flash, BAM!, sparks, shake) · bounce back · smoke 1.7+ · tagline 2.9 · short-bursts pill 4.4 */
 .why { width: 100%; margin-top: clamp(16px, 3.5vh, 40px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 22px); }
 .crash { width: 100%; max-width: 1100px; max-height: 33vh; overflow: visible; }
 .crash .floor { stroke: var(--border); stroke-width: 3; }
@@ -105,6 +105,27 @@
 
 .why-line { margin: 0; opacity: 0; font: 600 clamp(1.25rem, 4vmin, 2.6rem) var(--font-display); letter-spacing: -0.01em; }
 .why.on .why-line { animation: enterUp 1.3s cubic-bezier(.2, .7, .2, 1) 2.925s both; }
+
+/* "Short bursts" pill: lands after the tagline has had time to be read */
+.bursts {
+  display: inline-flex; align-items: center; gap: 0.55em; margin: 0; opacity: 0;
+  padding: 0.5em 1.1em; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent-1) 45%, transparent);
+  background: color-mix(in srgb, var(--accent-1) 12%, var(--surface));
+  font: 600 clamp(1rem, 2.8vmin, 1.7rem) var(--font-display); color: var(--text);
+}
+.bursts .bolt { display: inline-block; }
+.bursts .bursts-time { color: var(--text-muted); font-weight: 500; }
+.why.on .bursts { animation: enterUp 1s cubic-bezier(.2, .7, .2, 1) 4.4s both; }
+.why.on .bursts .bolt { animation: zap 0.9s ease-out 5.1s; }
+@keyframes zap { 30% { transform: scale(1.45) rotate(-12deg); } 60% { transform: scale(0.95) rotate(6deg); } }
+
+/* Phones: the scene's art sits in the middle 60% of its frame, so widen the frame
+   (the empty edges spill off-screen) to make the cars and signs big enough to read. */
+@media (max-width: 640px) {
+  .crash { width: 160%; max-width: none; max-height: none; flex-shrink: 0; }
+  .bursts { flex-wrap: wrap; justify-content: center; text-align: center; }
+}
 
 /* ---------- Scene 2: the sleeping student ---------- */
 .lecture-slide .slide-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
