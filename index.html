@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=3">
+  <link rel="stylesheet" href="assets/css/site.css?v=4">
 </head>
 <body>
 
@@ -35,15 +35,55 @@
       <h1 class="reveal" data-delay="1">Learn AI <span class="gradient-text">the&nbsp;fun&nbsp;way.</span></h1>
       <p class="lede reveal" data-delay="2">
         Practical, real-life scenarios and lessons learned that turn AI from buzzword into everyday superpower.
-        Learn to <span class="typed" data-words='["write better prompts","automate busywork","analyze data","build with AI agents","think critically about AI"]'></span>
+        Real stories of AI that <span class="typed" data-words='["saves hours every week","went completely rogue","coaches a real fitness plan","shipped just this week","finally makes sense"]'></span>
       </p>
       <div class="btn-row reveal" data-delay="3">
         <a class="btn btn-primary" href="sessions/01-kickoff/">What should I expect? →</a>
       </div>
+      <ul class="facts reveal" data-delay="4" aria-label="At a glance">
+        <li><span aria-hidden="true">⚡</span>10–15 minutes each</li>
+        <li><span aria-hidden="true">🎤</span>True stories, lessons learned</li>
+        <li><span aria-hidden="true">💡</span>Pro Tips for the experts</li>
+      </ul>
     </div>
+    <a class="scroll-cue" href="#test-drive" aria-label="Scroll to the sample sessions"></a>
   </header>
 
   <main>
+    <section id="test-drive">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Take a test drive</div>
+          <h2>Three lanes. <span class="gradient-text">Three short previews.</span></h2>
+          <p>Each one is a quick sample of a topic the team can vote for. Tap one and click through.</p>
+        </div>
+        <!-- One card per sample deck in samples/. --lane sets the card's accent color. -->
+        <div class="sessions-grid">
+          <a class="card lane-card reveal" data-delay="1" href="samples/ai-gone-rogue/" style="--lane:#ff3b5c">
+            <span class="lane-icon" aria-hidden="true">🚨</span>
+            <span class="lane-name">AI Gone Rogue</span>
+            <h3>The AI Turf War</h3>
+            <p>What happens when AI agents get conflicting orders? Sabotage, surrender, and a rigged contest. A true story.</p>
+            <span class="tag">Test drive ▶</span>
+          </a>
+          <a class="card lane-card reveal" data-delay="2" href="samples/productivity-ideas/" style="--lane:#12c97f">
+            <span class="lane-icon" aria-hidden="true">⚡</span>
+            <span class="lane-name">Productivity Ideas</span>
+            <h3>Stop Micromanaging Your AI</h3>
+            <p>Old prompts gave AI turn-by-turn directions. Today's AI does better when you give it a destination.</p>
+            <span class="tag">Test drive ▶</span>
+          </a>
+          <a class="card lane-card reveal" data-delay="3" href="samples/health-coach/" style="--lane:#ff8a3d">
+            <span class="lane-icon" aria-hidden="true">🩺</span>
+            <span class="lane-name">My AI Health Coach</span>
+            <h3>Meet the POA Team</h3>
+            <p>One human, a team of AI agents, one mission: building a personal AI health coach.</p>
+            <span class="tag">Test drive ▶</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Sessions and Format are hidden for now (kept for later): remove "hidden" to bring one back,
          and re-add its link in the nav and the hero buttons. -->
     <section id="sessions" hidden>

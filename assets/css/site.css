@@ -263,6 +263,33 @@ img { max-width: 100%; display: block; }
 }
 @keyframes scrollcue { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(14px); } }
 
+/* Hero "at a glance" chips */
+.facts { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.facts li {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface);
+  font-size: 0.92rem; font-weight: 500; color: var(--text-muted);
+}
+
+/* Sample-deck cards on the home page (--lane = accent color) */
+.card.lane-card { --lane: var(--accent-1); border-top: 3px solid var(--lane); }
+.lane-card::before { background: radial-gradient(400px circle at var(--mx) var(--my), color-mix(in srgb, var(--lane) 22%, transparent), transparent 60%); }
+.card.lane-card:hover { border-color: color-mix(in srgb, var(--lane) 55%, var(--border)); border-top-color: var(--lane); }
+.lane-icon {
+  width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; font-size: 1.7rem;
+  background: color-mix(in srgb, var(--lane) 16%, transparent);
+  transition: transform 0.3s cubic-bezier(.3, 1.6, .5, 1);
+}
+.lane-card:hover .lane-icon { transform: scale(1.12) rotate(-6deg); }
+.lane-name {
+  margin-top: 18px; font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em; color: var(--lane);
+}
+.lane-card h3 { margin-top: 6px; }
+.lane-card .tag { transition: transform 0.2s ease; }
+.lane-card:hover .tag { transform: translateX(4px); }
+
 /* ---------- Sections ---------- */
 section { padding: clamp(72px, 12vw, 140px) 0; position: relative; }
 .section-head { max-width: 680px; margin-bottom: 56px; }
