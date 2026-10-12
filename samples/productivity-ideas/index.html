@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
-  <link rel="stylesheet" href="../../assets/css/slides.css?v=5">
+  <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
   <link rel="stylesheet" href="prod.css?v=4">
 </head>
 <body class="deck-body">
@@ -150,6 +150,33 @@
       </div>
     </section>
 
+    <!-- ========== 5 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#12c97f">
+      <div class="lane-glow" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <span class="pitch-badge enter"><span aria-hidden="true">⚡</span>If you pick this lane</span>
+        <h2 class="enter" style="--d:.1s">Here's what <span class="gradient-text">you'll get.</span></h2>
+        <div class="pitch-cards">
+          <div class="pitch-card" data-step="1"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🏠</span>
+            <h3>At work <i>and</i> at home</h3>
+            <p>Tips and tricks to get more done at your desk, and around the house.</p></div>
+          <div class="pitch-card" data-step="2"><span class="pc-no">02</span><span class="pc-icon" aria-hidden="true">💰</span>
+            <h3>Save money</h3>
+            <p>Smart, everyday ways AI can help you <b>spend less</b>.</p></div>
+          <div class="pitch-card" data-step="3"><span class="pc-no">03</span><span class="pc-icon" aria-hidden="true">⏳</span>
+            <h3>Time for what matters</h3>
+            <p>Free up hours for the people and things <b>you care about most</b>.</p></div>
+        </div>
+        <div class="pitch-foot" data-step="3">
+          <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>Productivity Ideas</b></span>
+          <div class="end-row">
+            <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
+            <a class="btn btn-ghost" href="../../">Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Parked scenes (unlinked Oct 12, 2026 to keep this sample short). A <template> is never
          shown, so the deck skips them. To bring one back, move its <section> above this line. -->
     <template id="parked-scenes">
@@ -256,7 +283,7 @@
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 4</span>
+    <span class="deck-counter" aria-live="polite">1 / 5</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 

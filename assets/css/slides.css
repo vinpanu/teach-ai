@@ -162,6 +162,94 @@ kbd {
 .story-time h2 { margin-top: 0.4em; }
 .story-time .end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 1.6em; }
 
+/* ---------- 🎟️ Lane Pitch: "If you pick this lane, here's what you'll get" (last scene of every sample) ----------
+   <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#3d9bff">
+     <div class="slide-inner">
+       <span class="pitch-badge enter"><span aria-hidden="true">🗞️</span>If you pick this lane</span>
+       <h2 class="enter" style="--d:.1s">Here's what <span class="gradient-text">you'll get.</span></h2>
+       <div class="pitch-cards">
+         <div class="pitch-card" data-step="1"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🗓️</span>
+           <h3>Short title</h3><p>One line on what they get.</p></div>
+         … cards 2 and 3 (data-step="2", "3") …
+       </div>
+       <div class="pitch-foot" data-step="3">
+         <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>Lane name</b></span>
+         <div class="end-row">…buttons…</div>
+       </div>
+     </div>
+   </section>
+   --lane sets the accent (use the lane's color from the home page cards). */
+.lane-pitch { --lane: var(--accent-2); }
+.lane-pitch .slide-inner { text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 1400px; }
+.lane-pitch .lane-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 45% at 50% 18%, color-mix(in srgb, var(--lane) 20%, transparent), transparent 70%);
+}
+.pitch-badge {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  padding: 0.45em 1.1em; border-radius: 999px; margin-bottom: 0.9em;
+  font: 600 clamp(0.85rem, 2vmin, 1.25rem) var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--lane); background: color-mix(in srgb, var(--lane) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lane) 45%, transparent);
+  box-shadow: 0 0 30px -6px color-mix(in srgb, var(--lane) 55%, transparent);
+}
+.pitch-badge > span { font-size: 1.3em; letter-spacing: 0; }
+.pitch-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); width: 100%; margin-top: 0.4em; }
+.pitch-card {
+  position: relative; overflow: hidden; text-align: left;
+  padding: clamp(18px, 2.6vmin, 32px); border-radius: 22px;
+  background: color-mix(in srgb, var(--lane) 7%, var(--bg-elev));
+  border: 1px solid color-mix(in srgb, var(--lane) 30%, var(--border));
+}
+.pitch-card::before {   /* lane-colored light bar along the top */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
+  background: linear-gradient(90deg, transparent, var(--lane), transparent);
+}
+.pitch-card::after {    /* one shine sweep when the card appears */
+  content: ""; position: absolute; top: 0; bottom: 0; width: 45%; left: -70%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, #fff 14%, transparent), transparent);
+  transform: skewX(-18deg);
+}
+.pitch-card.on::after { animation: pcShine 1.1s ease 0.25s; }
+@keyframes pcShine { to { left: 130%; } }
+.pitch-card.on { box-shadow: 0 18px 50px -24px color-mix(in srgb, var(--lane) 70%, transparent); }
+.pc-no { position: absolute; top: 18px; right: 22px; font: 700 clamp(0.8rem, 1.8vmin, 1.1rem) var(--font-display); color: color-mix(in srgb, var(--lane) 70%, var(--text-muted)); letter-spacing: 0.1em; }
+.pc-icon {
+  display: grid; place-items: center; width: clamp(52px, 8vmin, 76px); aspect-ratio: 1; border-radius: 18px;
+  font-size: clamp(1.7rem, 4.6vmin, 2.6rem); line-height: 1;
+  background: color-mix(in srgb, var(--lane) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lane) 40%, transparent);
+}
+.pitch-card.on .pc-icon { animation: pcPop 0.7s cubic-bezier(.3, 1.6, .5, 1) 0.1s both; }
+@keyframes pcPop { from { transform: scale(0.4) rotate(-12deg); } to { transform: none; } }
+.pitch-card h3 { margin: 0.7em 0 0.3em; font: 700 clamp(1.25rem, 3.3vmin, 2.1rem) / 1.15 var(--font-display); letter-spacing: -0.01em; }
+.pitch-card p { margin: 0; font-size: clamp(1rem, 2.4vmin, 1.45rem); line-height: 1.4; color: var(--text-muted); }
+.pitch-card p b { color: var(--text); }
+.pitch-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px 22px; margin-top: clamp(18px, 3.5vh, 40px); }
+.pitch-foot[data-step] { transition-delay: 0.5s; }
+.vote-ticket {
+  display: inline-flex; align-items: stretch; border-radius: 14px; overflow: hidden;
+  font-size: clamp(1rem, 2.3vmin, 1.35rem);
+  border: 2px solid var(--lane); box-shadow: 0 0 28px -8px var(--lane);
+}
+.vote-ticket .vt-stub {
+  padding: 0.55em 0.9em; font-weight: 600; color: #fff; background: var(--lane);
+  border-right: 2px dashed color-mix(in srgb, var(--bg) 70%, transparent);
+}
+.vote-ticket b { padding: 0.55em 1em; font-family: var(--font-display); background: color-mix(in srgb, var(--lane) 10%, var(--bg-elev)); }
+.pitch-foot.on .vote-ticket { animation: ticketPulse 2.6s ease-in-out 1s infinite; }
+@keyframes ticketPulse { 50% { box-shadow: 0 0 44px -4px var(--lane); } }
+.lane-pitch .end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 0; }
+@media (max-width: 900px) {
+  .pitch-cards { grid-template-columns: 1fr; }
+  .pitch-card { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: center; }
+  .pitch-card .pc-icon { grid-row: span 2; }
+  .pitch-card h3 { margin: 0 0 0.2em; padding-right: 2em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pitch-card.on::after, .pitch-card.on .pc-icon, .pitch-foot.on .vote-ticket { animation: none; }
+}
+
 @media (max-width: 640px) {
   .deck-ui { opacity: 1; }
   .deck-ui .ui-optional { display: none; }

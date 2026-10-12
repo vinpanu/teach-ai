@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
-  <link rel="stylesheet" href="../../assets/css/slides.css?v=5">
-  <link rel="stylesheet" href="fresh.css?v=1">
+  <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
+  <link rel="stylesheet" href="fresh.css?v=2">
 </head>
 <body class="deck-body">
 
@@ -161,33 +161,40 @@
       </div>
     </section>
 
-    <!-- ========== 3 · Want the full show? ========== -->
-    <section class="slide fresh-end" data-title="Want the full show?">
-      <div class="slide-inner end-grid">
-        <div class="end-left">
-          <div class="kicker enter">That was the sneak peek</div>
-          <h2 class="enter" style="--d:.1s">Want the <span class="gradient-text">full show?</span></h2>
-          <p class="lead enter" style="--d:.25s">Vote for 🗞️ <b>Fresh Off the Press</b> in Teams, and next time we'll do a full tour of what's new in AI.</p>
-          <div class="next-up enter" style="--d:.4s">
-            <span class="nu-label">Still in the queue</span>
-            <span class="chip">Claude Projects</span><span class="chip">Claude Dashboards</span><span class="chip">GPT-6</span><span class="chip">ChatGPT Space</span><span class="chip">+ whatever ships next</span>
-          </div>
-          <div class="end-row enter" style="--d:.55s">
+    <!-- ========== 3 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#3d9bff">
+      <div class="lane-glow" aria-hidden="true"></div>
+      <div class="slide-inner">
+        <span class="pitch-badge enter"><span aria-hidden="true">🗞️</span>If you pick this lane</span>
+        <h2 class="enter" style="--d:.1s">Here's what <span class="gradient-text">you'll get.</span></h2>
+        <div class="pitch-cards">
+          <div class="pitch-card" data-step="1"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🗓️</span>
+            <h3>This month's biggest drops</h3>
+            <p>The new releases from OpenAI, Anthropic and more, in one quick tour.</p>
+            <div class="queue"><span class="chip">Claude Projects</span><span class="chip">GPT-6</span><span class="chip">ChatGPT Space</span><span class="chip">+ more</span></div></div>
+          <div class="pitch-card" data-step="2"><span class="pc-no">02</span><span class="pc-icon" aria-hidden="true">👀</span>
+            <h3>Shown, not just told</h3>
+            <p>What each feature actually does, with animated demos like the ones you just saw.</p></div>
+          <div class="pitch-card" data-step="3"><span class="pc-no">03</span><span class="pc-icon" aria-hidden="true">✅</span>
+            <h3>Worth it, or hype?</h3>
+            <p>What you can <b>use right away</b>, and what you can safely ignore.</p></div>
+        </div>
+        <div class="pitch-foot" data-step="3">
+          <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>Fresh Off the Press</b></span>
+          <div class="end-row">
             <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
             <a class="btn btn-ghost" href="../../">Home</a>
           </div>
         </div>
-        <div class="end-right">
-          <aside class="pro-tip enter" style="--d:.45s">
-            <span class="pro-tip-badge">Pro Tip</span>
-            <p><b>Neither Motion nor Intelligent UI “draws pixels.”</b> Motion writes animation code, and Intelligent UI streams ready-made interface parts while the answer is still being written. That's why every word and number stays editable.</p>
-          </aside>
-          <!-- Sources (kept here for fact-checking, not shown on the slide):
-               https://openai.com/index/introducing-dots/
-               https://openai.com/index/gpt-6-for-everyone/
-               https://claude.com/resources/articles/dashboards-and-motion
-               https://support.claude.com/en/articles/12138966-release-notes (Sep 16) -->
-        </div>
+        <aside class="pro-tip pitch-tip" data-step="4">
+          <span class="pro-tip-badge">Pro Tip</span>
+          <p><b>Neither Motion nor Intelligent UI “draws pixels.”</b> Motion writes animation code, and Intelligent UI streams ready-made interface parts while the answer is still being written. That's why every word and number stays editable.</p>
+        </aside>
+        <!-- Sources (kept here for fact-checking, not shown on the slide):
+             https://openai.com/index/introducing-dots/
+             https://openai.com/index/gpt-6-for-everyone/
+             https://claude.com/resources/articles/dashboards-and-motion
+             https://support.claude.com/en/articles/12138966-release-notes (Sep 16) -->
       </div>
     </section>
   </main>

@@ -381,3 +381,9 @@
   .feat-demo { min-height: 170px; }
   .ticker { bottom: 64px; }
 }
+
+/* ---------- 3 · What you'll get: the Pro Tip under the pitch ---------- */
+.pitch-tip { text-align: left; max-width: 1100px; margin: clamp(16px, 3vh, 32px) auto 0; }
+.pitch-tip p { font-size: clamp(0.95rem, 2.1vmin, 1.25rem); }
+.pitch-card .queue { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.8em; }
+.pitch-card .queue .chip { font-size: clamp(0.75rem, 1.6vmin, 0.95rem); }
