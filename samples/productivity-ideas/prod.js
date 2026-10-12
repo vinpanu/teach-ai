@@ -102,8 +102,12 @@ What "done" looks like: How you'll judge if it's great.`;
     countUp(newSlide.querySelector(".n-steps"), 0, 300);
   });
 
-  // ---------- Scene 5: same task, two results (typed side by side) ----------
+  // ---------- Parked scenes (inside <template id="parked-scenes">, so usually absent) ----------
   const resultSlide = document.querySelector(".results-slide");
+  const tpl = document.querySelector(".tpl-body");
+  if (!resultSlide || !tpl) return;
+
+  // ---------- Same task, two results (typed side by side) ----------
   let token = 0;
   const typeInto = async (el, text, my, speed) => {
     for (let i = 1; i <= text.length; i++) {
@@ -135,8 +139,7 @@ What "done" looks like: How you'll judge if it's great.`;
     if (my === token) resultSlide.classList.add("results-done");
   });
 
-  // ---------- Scene 7: copyable brief template ----------
-  const tpl = document.querySelector(".tpl-body");
+  // ---------- Copyable brief template ----------
   tpl.innerHTML = BRIEF_TEMPLATE.split("\n").map((line) => {
     const [label, ...rest] = line.split(":");
     return `<div><b>${esc(label)}:</b>${esc(rest.join(":"))}</div>`;

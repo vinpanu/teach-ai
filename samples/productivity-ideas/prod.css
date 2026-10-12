@@ -112,3 +112,71 @@ div.out-body { font-size: clamp(0.95rem, 2.4vmin, 1.4rem); line-height: 1.35; }
   .score-row > span:first-child { grid-column: 1 / -1; }
   .out-body { min-height: 0; }
 }
+
+/* ---------- 3 · Analogy: hire an expert, then script their every move ---------- */
+.analogy-slide .slide-inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.analogy-head { margin-bottom: 0.1em; }
+.office { width: min(100%, 1200px); max-height: 60vh; overflow: visible; }
+.office .floor { stroke: var(--border); stroke-width: 4; stroke-linecap: round; }
+.office .av-ink { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.office .av-ink.thin { stroke-width: 4; }
+.office .av-head { fill: var(--bg); stroke: var(--text); stroke-width: 6; }
+.office .me-head { stroke: #5b9dff; }
+.office .tie { fill: #ffb02e; stroke: var(--text); stroke-width: 3; stroke-linejoin: round; }
+.office .glasses { fill: none; stroke: var(--text); stroke-width: 3; }
+.office .case { fill: #a8743f; stroke: var(--text); stroke-width: 4; }
+.office .case-handle { fill: none; stroke: var(--text); stroke-width: 4; stroke-linejoin: round; }
+.office .tag text { font: 700 28px var(--font-display); fill: #fff; text-anchor: middle; }
+
+/* Name tags pop in over each head */
+.office .tag, .office .say, .office .think, .office .me-point, .office .leg-a, .office .leg-b { transform-box: fill-box; }
+.office .tag { transform-origin: 50% 100%; }
+.analogy-slide.play .pop-a { animation: tagPop 0.6s cubic-bezier(.3, 1.6, .5, 1) 0.6s both; }
+.analogy-slide.play .pop-b { animation: tagPop 0.6s cubic-bezier(.3, 1.6, .5, 1) 0.8s both; }
+.consultant.on .pop-c { animation: tagPop 0.6s cubic-bezier(.3, 1.6, .5, 1) 1.7s both; }
+@keyframes tagPop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
+
+/* Speech and thought bubbles */
+.office .say path, .office .think path, .office .think circle { fill: var(--bg-elev); stroke: var(--accent-1); stroke-width: 4; stroke-linejoin: round; }
+.office .say text, .office .think text { font: 700 34px var(--font-display); fill: var(--text); text-anchor: middle; }
+.office .saad-say path { stroke: #ff8a3d; }
+.analogy-slide.play .saad-say { transform-origin: 30% 100%; animation: tagPop 0.7s cubic-bezier(.3, 1.6, .5, 1) 1.3s both; }
+.saad-say-wrap { transition: opacity 0.5s ease; }
+.analogy-slide:not([data-at="0"]) .saad-say-wrap { opacity: 0; }
+
+/* Step 1: the consultant walks in from the right, legs swinging */
+.analogy-slide .consultant[data-step] { transform: none; transition: none; }
+.consultant.on { animation: walkIn 1.6s cubic-bezier(.25, .7, .3, 1) both; }
+@keyframes walkIn { from { opacity: 0; transform: translateX(340px); } 15% { opacity: 1; } to { opacity: 1; transform: none; } }
+.office .leg-a { transform-origin: 100% 0%; }
+.office .leg-b { transform-origin: 0% 0%; }
+.consultant.on .leg-a { animation: stride 0.4s ease-in-out 4 alternate; }
+.consultant.on .leg-b { animation: stride 0.4s ease-in-out 4 alternate-reverse; }
+@keyframes stride { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+
+/* Step 2: I wag my finger and read off the script, one line at a time */
+.office .me-say path { stroke: var(--old); }
+.office .me-say text { text-anchor: start; font-size: 32px; }
+.office .me-say .shout { fill: var(--old); }
+.analogy-slide .me-say[data-step] { transform: none; transform-origin: 46% 100%; }
+.me-say.on { animation: tagPop 0.6s cubic-bezier(.3, 1.6, .5, 1) both; }
+.me-say .ln { opacity: 0; }
+.me-say.on .ln { animation: lineIn 0.45s ease both; }
+.me-say.on .ln:nth-of-type(1) { animation-delay: 0.6s; }
+.me-say.on .ln:nth-of-type(2) { animation-delay: 1.5s; }
+.me-say.on .ln:nth-of-type(3) { animation-delay: 2.4s; }
+.me-say.on .ln:nth-of-type(4) { animation-delay: 3.3s; }
+@keyframes lineIn { from { opacity: 0; } to { opacity: 1; } }
+.office .me-point { transform-origin: 0% 100%; }
+.analogy-slide[data-at="2"] .me-point { animation: wag 0.5s ease-in-out 0.4s 8 alternate; }
+@keyframes wag { from { transform: rotate(-10deg); } to { transform: rotate(8deg); } }
+
+/* Step 3: the expert wonders why he's even here */
+.office .think path, .office .think circle { stroke: #12c97f; }
+.analogy-slide .think[data-step] { transform: none; transform-origin: 70% 100%; }
+.think.on { animation: tagPop 0.7s cubic-bezier(.3, 1.6, .5, 1) 0.3s both; }
+.office .sweat { fill: #5bc8ff; opacity: 0; }
+.analogy-slide[data-at="3"] .sweat { animation: sweat 1.6s ease-in 0.2s infinite; }
+@keyframes sweat { 0% { opacity: 0; transform: translateY(-4px); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+.analogy-cap { margin: 0.5em 0 0; max-width: 40ch; font-size: clamp(1.15rem, 3.2vmin, 2rem); line-height: 1.35; color: var(--text-muted); }
+.analogy-cap b { color: var(--text); }

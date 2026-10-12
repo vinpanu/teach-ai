@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=5">
-  <link rel="stylesheet" href="prod.css?v=3">
+  <link rel="stylesheet" href="prod.css?v=4">
 </head>
 <body class="deck-body">
 
@@ -58,7 +58,79 @@
       </div>
     </section>
 
-    <!-- ========== 3 · The new way ========== -->
+    <!-- ========== 3 · The analogy: hire an expert, then script them ========== -->
+    <section class="slide analogy-slide" data-title="Hire an expert… then script them?">
+      <div class="slide-inner">
+        <div class="kicker enter">An everyday analogy</div>
+        <h2 class="enter analogy-head" style="--d:.1s">Picture <span class="gradient-text">this…</span></h2>
+        <svg class="office" viewBox="0 0 1200 540" role="img" aria-label="My boss Saad tells me: I'm bringing in an expert to help you. A consultant walks in. I hand him step-by-step orders: open my spreadsheet, use my formulas in my order, click exactly where I click, never try anything new. The consultant thinks: So, why did you hire me?">
+          <defs>
+            <linearGradient id="meGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b9dff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+            <linearGradient id="bossGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb02e"/><stop offset="1" stop-color="#ff6a3d"/></linearGradient>
+            <linearGradient id="proGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12c97f"/><stop offset="1" stop-color="#00b8e6"/></linearGradient>
+          </defs>
+          <path class="floor" d="M20 518 H1180"/>
+
+          <!-- Saad, my boss -->
+          <g class="fig enter" style="--d:.2s">
+            <circle class="av-head" cx="170" cy="300" r="26"/>
+            <path class="av-ink" d="M170 326 V420 M170 350 L140 402 M170 350 L218 318 M170 420 L145 515 M170 420 L195 515"/>
+            <path class="tie" d="M170 332 L162 346 L170 384 L178 346 Z"/>
+            <g class="tag pop-a"><path d="M128 206 H212 Q228 206 228 222 V238 Q228 254 212 254 H180 L170 268 L160 254 H128 Q112 254 112 238 V222 Q112 206 128 206 Z" fill="url(#bossGrad)"/><text x="170" y="240">Saad</text></g>
+          </g>
+
+          <!-- Me -->
+          <g class="fig enter" style="--d:.35s">
+            <circle class="av-head me-head" cx="520" cy="300" r="26"/>
+            <path class="av-ink" d="M520 326 V420 M520 350 L490 402 M520 420 L495 515 M520 420 L545 515"/>
+            <path class="av-ink me-point" d="M520 350 L580 322"/>
+            <g class="tag pop-b"><path d="M490 206 H550 Q566 206 566 222 V238 Q566 254 550 254 H530 L520 268 L510 254 H490 Q474 254 474 238 V222 Q474 206 490 206 Z" fill="url(#meGrad)"/><text x="520" y="240">Me</text></g>
+          </g>
+
+          <!-- Saad: "I'm bringing in an expert…" (shown until the consultant arrives) -->
+          <g class="saad-say-wrap">
+            <g class="say saad-say">
+              <path d="M60 40 H580 Q600 40 600 60 V150 Q600 170 580 170 H230 L186 200 L196 170 H60 Q40 170 40 150 V60 Q40 40 60 40 Z"/>
+              <text x="320" y="96">I'm bringing in an expert</text>
+              <text x="320" y="140">to help you.</text>
+            </g>
+          </g>
+
+          <!-- Step 1: the consultant walks in -->
+          <g class="consultant" data-step="1">
+            <circle class="av-head" cx="1010" cy="300" r="26"/>
+            <path class="av-ink thin" d="M1007 297 h6"/>
+            <circle class="glasses" cx="1000" cy="298" r="7"/><circle class="glasses" cx="1020" cy="298" r="7"/>
+            <path class="av-ink" d="M1010 326 V420 M1010 350 L972 398 M1010 350 L1040 404"/>
+            <path class="av-ink leg-a" d="M1010 420 L985 515"/>
+            <path class="av-ink leg-b" d="M1010 420 L1035 515"/>
+            <rect class="case" x="1022" y="404" width="46" height="34" rx="6"/><path class="case-handle" d="M1036 404 v-7 h18 v7"/>
+            <path class="sweat" d="M1046 276 q7 12 0 16 q-7 -4 0 -16 Z"/>
+            <g class="tag pop-c"><path d="M936 206 H1084 Q1100 206 1100 222 V238 Q1100 254 1084 254 H1020 L1010 268 L1000 254 H936 Q920 254 920 238 V222 Q920 206 936 206 Z" fill="url(#proGrad)"/><text x="1010" y="240">Consultant</text></g>
+          </g>
+
+          <!-- Step 2: I script every move -->
+          <g class="say me-say" data-step="2">
+            <path d="M280 6 H860 Q880 6 880 26 V176 Q880 196 860 196 H572 L534 214 L544 196 H280 Q260 196 260 176 V26 Q260 6 280 6 Z"/>
+            <text class="ln" x="290" y="52">1. Open <tspan class="shout">MY</tspan> spreadsheet.</text>
+            <text class="ln" x="290" y="92">2. Use <tspan class="shout">MY</tspan> formulas, in <tspan class="shout">MY</tspan> order.</text>
+            <text class="ln" x="290" y="132">3. Click <tspan class="shout">EXACTLY</tspan> where I click.</text>
+            <text class="ln" x="290" y="172">4. <tspan class="shout">NEVER</tspan> try anything new!!!</text>
+          </g>
+
+          <!-- Step 3: the expert's thought -->
+          <g class="think" data-step="3">
+            <path d="M926 40 H1170 Q1190 40 1190 60 V146 Q1190 166 1170 166 H926 Q906 166 906 146 V60 Q906 40 926 40 Z"/>
+            <circle cx="1128" cy="186" r="10"/><circle cx="1118" cy="212" r="6"/>
+            <text x="1048" y="96">So… why did</text>
+            <text x="1048" y="138">you hire me?</text>
+          </g>
+        </svg>
+        <p class="analogy-cap" data-step="3"><b>Scripting every step for AI</b> is like hiring an expert, then making them do it <span class="old-word">exactly your way</span>.</p>
+      </div>
+    </section>
+
+    <!-- ========== 4 · The new way ========== -->
     <section class="slide new-slide" data-title="The new way">
       <div class="slide-inner split">
         <div class="split-text">
@@ -78,6 +150,9 @@
       </div>
     </section>
 
+    <!-- Parked scenes (unlinked Oct 12, 2026 to keep this sample short). A <template> is never
+         shown, so the deck skips them. To bring one back, move its <section> above this line. -->
+    <template id="parked-scenes">
     <!-- ========== 4 · Spot the difference ========== -->
     <section class="slide" data-title="Spot the difference">
       <div class="slide-inner">
@@ -174,17 +249,18 @@
         </div>
       </div>
     </section>
+    </template>
   </main>
 
   <div class="deck-ui">
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 8</span>
+    <span class="deck-counter" aria-live="polite">1 / 4</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="prod.js?v=4"></script>
+  <script src="prod.js?v=5"></script>
   <script src="../../assets/js/slides.js?v=3"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
