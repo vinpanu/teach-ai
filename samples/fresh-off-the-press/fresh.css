@@ -1,0 +1,383 @@
+/* ==========================================================
+   Fresh Off the Press · "What's New?" sneak peek
+   Theme: an AI "release feed". Cards start as shimmering placeholders,
+   then their text streams in word by word, like an AI writing a reply.
+   ========================================================== */
+
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+:root { --openai: #10c98f; --claude: #ff7a59; }
+
+/* Company label chips */
+.lab {
+  display: inline-flex; align-items: center; gap: 0.45em;
+  font: 700 clamp(0.72rem, 1.5vmin, 0.95rem) var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.3em 0.75em; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface);
+}
+.lab::before { content: ""; width: 0.55em; height: 0.55em; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.lab.openai { --c: var(--openai); }
+.lab.claude { --c: var(--claude); }
+
+/* ---------- 1 · Title ---------- */
+.fresh-title .slide-inner { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.fresh-title h1 { margin: 0.25em 0 0.2em; font-size: clamp(3.4rem, 15vmin, 11rem); }
+.fresh-title .lead { max-width: 30ch; }
+.fresh-title .lead b { color: var(--text); }
+
+.boot {
+  margin: 1.4em 0 0; min-height: 1.6em;
+  font: 500 clamp(0.95rem, 2.3vmin, 1.4rem) "JetBrains Mono", monospace;
+  color: var(--accent-2);
+}
+.boot .ok { color: var(--openai); }
+.caret { display: inline-block; width: 0.55em; height: 1.1em; margin-left: 0.15em; vertical-align: -0.18em; background: currentColor; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Holographic grid floor rolling toward the viewer */
+.holo-floor {
+  position: absolute; left: -40%; right: -40%; bottom: -6%; height: 58%;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--accent-2) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-1) 45%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(560px) rotateX(64deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, #000 5%, transparent 80%);
+          mask-image: linear-gradient(to top, #000 5%, transparent 80%);
+  opacity: 0.45; pointer-events: none;
+}
+.fresh-title.play .holo-floor { animation: floorRoll 3.5s linear infinite; }
+@keyframes floorRoll { to { background-position: 0 64px, 0 0; } }
+
+/* "AI core": slow concentric rings behind the headline */
+.core {
+  position: absolute; left: 50%; top: 46%; width: min(86vmin, 820px); height: auto;
+  transform: translate(-50%, -50%); opacity: 0.5; pointer-events: none;
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--accent-2) 50%, transparent));
+}
+.core .ring { fill: none; stroke: url(#coreGrad); stroke-width: 2; transform-origin: 200px 200px; }
+.core .r1 { stroke-width: 3; }
+.core .r3 { stroke-width: 4; }
+.fresh-title.play .core { animation: coreIn 1.4s cubic-bezier(.2, .7, .2, 1) both; }
+.fresh-title.play .core .r1 { animation: spin 60s linear infinite; }
+.fresh-title.play .core .r2 { animation: spin 28s linear infinite reverse; }
+.fresh-title.play .core .r3 { animation: spin 40s linear infinite; }
+.fresh-title.play .core .r4 { animation: spin 18s linear infinite reverse; }
+@keyframes coreIn { from { opacity: 0; transform: translate(-50%, -50%) scale(0.6); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+:root[data-theme="light"] .core { opacity: 0.35; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .core { opacity: 0.35; } }
+
+/* News ticker */
+.ticker {
+  position: absolute; left: 0; right: 0; bottom: clamp(70px, 10vh, 104px); z-index: 1;
+  overflow: hidden; white-space: nowrap;
+  border-block: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elev) 70%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track { display: inline-flex; padding: 0.7em 0; font: 500 clamp(0.85rem, 1.9vmin, 1.1rem) "JetBrains Mono", monospace; color: var(--text-muted); }
+.fresh-title.play .ticker-track { animation: tick 38s linear infinite; }
+.ticker-track span { padding: 0 2.2em; position: relative; }
+.ticker-track span::after { content: "◆"; position: absolute; right: -0.4em; color: var(--accent-1); opacity: 0.7; }
+.ticker-track b { margin-right: 0.6em; color: var(--text); text-transform: uppercase; letter-spacing: 0.08em; }
+.ticker-track .t-openai { color: var(--openai); }
+.ticker-track .t-claude { color: var(--claude); }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ---------- 2 · Feature cards ---------- */
+.feats-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 24px; margin-bottom: clamp(12px, 2vh, 24px); }
+.feats-head h2 { margin: 0; }
+.feats-head .kicker { margin: 0; font-family: "JetBrains Mono", monospace; letter-spacing: 0.06em; }
+
+.feats { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vmin, 26px); }
+
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+.feat {
+  --accent: var(--accent-1);
+  position: relative; isolation: isolate;
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(14px, 2vmin, 26px);
+  padding: clamp(14px, 2vmin, 24px);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--bg-elev) 80%, transparent);
+  border: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2, .7, .2, 1), filter 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+/* Rotating light around the border of the card in focus */
+.feat::before {
+  content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; padding: 2px;
+  background: conic-gradient(from var(--ang), transparent 0 55%, var(--accent) 75%, #fff 80%, transparent 88%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity 0.5s ease;
+  animation: angSpin 3.2s linear infinite;
+}
+@keyframes angSpin { to { --ang: 360deg; } }
+.feat.on { border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+.feat.focus { transform: scale(1.025); z-index: 2; box-shadow: 0 24px 70px -24px color-mix(in srgb, var(--accent) 70%, transparent); }
+.feat.focus::before { opacity: 1; }
+.feats.has-focus .feat.on:not(.focus) { opacity: 0.5; filter: saturate(0.5); }
+
+.feat-body { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.feat h3 {
+  font: 700 clamp(1.5rem, 4.2vmin, 2.9rem) / 1.05 var(--font-display); letter-spacing: -0.02em;
+  margin: 0.35em 0 0.25em; color: var(--accent);
+}
+:root[data-theme="light"] .feat { --ink: color-mix(in srgb, var(--accent) 62%, #000); }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .feat { --ink: color-mix(in srgb, var(--accent) 62%, #000); } }
+.feat h3, .feat .meta span:first-child, .demo-iui .each { color: var(--ink, var(--accent)); }
+.feat .hook { margin: 0 0 0.45em; font: 600 clamp(1.02rem, 2.45vmin, 1.6rem) / 1.3 var(--font-display); color: var(--text); }
+.feat .more { margin: 0; font-size: clamp(0.88rem, 1.85vmin, 1.18rem); line-height: 1.45; color: var(--text-muted); }
+.feat .meta { margin: auto 0 0; padding-top: 0.8em; display: flex; flex-wrap: wrap; gap: 6px; font: 500 clamp(0.75rem, 1.55vmin, 0.98rem) "JetBrains Mono", monospace; }
+.feat .meta span { padding: 0.2em 0.6em; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); }
+.feat .meta span:first-child { color: var(--ink, var(--accent)); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+
+/* Word-by-word streaming (words are wrapped in <span class="w" style="--i:n"> by fresh.js) */
+.feat .w { opacity: 0; filter: blur(4px); }
+.feat.on .w { animation: tok 0.35s ease calc(var(--base, 0.35s) + var(--i) * 45ms) both; }
+.feat.on .more { --base: 0.9s; }
+@keyframes tok { to { opacity: 1; filter: none; } }
+
+/* Placeholder shimmer shown until the card is revealed */
+.feat-body, .feat-demo { transition: opacity 0.4s ease; }
+.feat:not(.on) .feat-body, .feat:not(.on) .feat-demo { opacity: 0; }
+.feat-skel {
+  position: absolute; inset: clamp(14px, 2vmin, 24px); display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-rows: repeat(3, auto) 1fr;
+  gap: 12px clamp(14px, 2vmin, 26px); align-content: start;
+  pointer-events: none; transition: opacity 0.4s ease;
+}
+.feat.on .feat-skel { opacity: 0; }
+.feat-skel i {
+  height: 18px; border-radius: 8px;
+  background: linear-gradient(90deg, var(--surface-hover) 20%, color-mix(in srgb, var(--text) 12%, transparent) 40%, color-mix(in srgb, var(--accent) 30%, transparent) 50%, var(--surface-hover) 70%) 0 0 / 300% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+.feat-skel i:nth-child(1) { grid-column: 1; grid-row: 1 / -1; height: auto; min-height: 120px; border-radius: 14px; }
+.feat-skel i:nth-child(2) { grid-column: 2; width: 30%; }
+.feat-skel i:nth-child(3) { grid-column: 2; width: 70%; height: 30px; }
+.feat-skel i:nth-child(4) { grid-column: 2; width: 90%; }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -50% 0; } }
+
+/* Shared demo panel */
+.feat-demo {
+  position: relative; overflow: hidden; min-height: clamp(150px, 22vh, 250px);
+  border-radius: 14px; border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 50% 120%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+    linear-gradient(var(--surface), var(--surface));
+}
+.feat-demo::before {   /* faint dot grid */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(color-mix(in srgb, var(--text) 14%, transparent) 1px, transparent 1.5px) 0 0 / 16px 16px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 80%);
+          mask-image: radial-gradient(circle at 50% 50%, #000, transparent 80%);
+}
+.demo-label {
+  position: absolute; left: 0; right: 0; bottom: 8%; text-align: center;
+  font: 500 clamp(0.7rem, 1.4vmin, 0.9rem) "JetBrains Mono", monospace; color: var(--text-muted);
+}
+
+/* -- Dots: the chat closes, the agent keeps visiting apps -- */
+.demo-dots .mini-chat {
+  position: absolute; left: 50%; top: 50%; width: 46%; height: 46%; transform: translate(-50%, -50%);
+  border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev);
+  display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 10% 12%;
+}
+.demo-dots .mini-chat i { height: 7px; border-radius: 4px; background: var(--surface-hover); }
+.demo-dots .mini-chat i:nth-child(3) { width: 70%; align-self: flex-end; background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.demo-dots .mc-x { position: absolute; top: 4px; right: 8px; font-size: 0.75rem; color: var(--text-muted); }
+.demo-dots .app {
+  position: absolute; top: 32%; transform: translate(-50%, -50%);
+  width: clamp(36px, 5.5vmin, 58px); aspect-ratio: 1; display: grid; place-items: center;
+  font-size: clamp(1.1rem, 2.8vmin, 1.8rem); border-radius: 14px;
+  background: var(--bg-elev); border: 1px solid var(--border); opacity: 0;
+}
+.demo-dots .a1 { left: 22%; } .demo-dots .a2 { left: 50%; } .demo-dots .a3 { left: 78%; }
+.demo-dots .app b {
+  position: absolute; right: -6px; top: -6px; width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 0.7rem; color: #04130d; background: var(--accent);
+  transform: scale(0);
+}
+.demo-dots .agent-dot {
+  position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle at 35% 35%, #fff, var(--accent) 55%);
+  box-shadow: 0 0 18px var(--accent), 0 0 40px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.demo-dots .agent-dot::after {
+  content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid var(--accent);
+  animation: ping 1.4s ease-out infinite;
+}
+@keyframes ping { from { transform: scale(0.6); opacity: 0.9; } to { transform: scale(1.8); opacity: 0; } }
+.demo-dots .demo-label { opacity: 0; }
+
+.slide.play .feat.on .demo-dots .mini-chat { animation: chatClose 9s ease-in-out infinite; }
+.slide.play .feat.on .demo-dots .app { animation: appsIn 9s ease infinite; }
+.slide.play .feat.on .demo-dots .agent-dot { animation: dotRun 9s ease-in-out infinite; }
+.slide.play .feat.on .demo-dots .a1 b { animation: chk1 9s ease infinite; }
+.slide.play .feat.on .demo-dots .a2 b { animation: chk2 9s ease infinite; }
+.slide.play .feat.on .demo-dots .a3 b { animation: chk3 9s ease infinite; }
+.slide.play .feat.on .demo-dots .demo-label { animation: labelIn 9s ease infinite; }
+@keyframes chatClose {
+  0%, 10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  18%, 92% { opacity: 0; transform: translate(-50%, -50%) scale(0.05); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes appsIn { 0%, 16% { opacity: 0; } 22%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@keyframes labelIn { 0%, 18% { opacity: 0; } 24%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+@keyframes dotRun {
+  0%, 14% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0); }
+  19% { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1); }
+  28%, 34% { left: 22%; top: 58%; transform: translate(-50%, -50%) scale(1); }
+  43%, 49% { left: 50%; top: 58%; transform: translate(-50%, -50%) scale(1); }
+  58%, 64% { left: 78%; top: 58%; transform: translate(-50%, -50%) scale(1); }
+  76%, 88% { left: 50%; top: 66%; transform: translate(-50%, -50%) scale(1.15); }
+  94%, 100% { left: 50%; top: 66%; transform: translate(-50%, -50%) scale(0); }
+}
+@keyframes chk1 { 0%, 31% { transform: scale(0); } 34%, 90% { transform: scale(1); } 95%, 100% { transform: scale(0); } }
+@keyframes chk2 { 0%, 46% { transform: scale(0); } 49%, 90% { transform: scale(1); } 95%, 100% { transform: scale(0); } }
+@keyframes chk3 { 0%, 61% { transform: scale(0); } 64%, 90% { transform: scale(1); } 95%, 100% { transform: scale(0); } }
+
+/* -- Intelligent UI: the answer arrives as a working mini app -- */
+.demo-iui { display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 8px; padding: 10px 12px; }
+.demo-iui .q {
+  align-self: flex-end; max-width: 85%; padding: 6px 12px; border-radius: 14px 14px 4px 14px;
+  font-size: clamp(0.75rem, 1.55vmin, 0.98rem); background: color-mix(in srgb, var(--accent) 22%, var(--bg-elev)); border: 1px solid var(--border);
+}
+.demo-iui .widget {
+  position: relative; z-index: 1;
+  border-radius: 14px; padding: 10px 12px; background: var(--bg-elev);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: 0 12px 30px -16px color-mix(in srgb, var(--accent) 80%, transparent);
+  display: grid; gap: 6px; font-size: clamp(0.78rem, 1.6vmin, 1rem);
+}
+.demo-iui .w-head { font: 600 0.95em var(--font-display); color: var(--text-muted); }
+.demo-iui .w-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.demo-iui .stepper { display: inline-flex; align-items: center; gap: 8px; }
+.demo-iui .stepper button {
+  width: 2em; height: 2em; border-radius: 50%; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface-hover); color: var(--text);
+  font: 700 1em var(--font-body); line-height: 1;
+}
+.demo-iui .stepper button:hover { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+.demo-iui .n { min-width: 1.4em; text-align: center; font: 700 1.2em var(--font-display); }
+.demo-iui .people { display: flex; gap: 3px; min-height: 1.3em; font-size: 1em; }
+.demo-iui .people span { animation: pop 0.3s cubic-bezier(.3, 1.6, .5, 1) both; }
+.demo-iui .w-total { padding-top: 6px; border-top: 1px dashed var(--border); }
+.demo-iui .each { font: 700 1.45em var(--font-display); color: var(--ink, var(--accent)); }
+.demo-iui .each.bump { animation: bump 0.35s ease; }
+@keyframes pop { from { transform: scale(0); } }
+@keyframes bump { 40% { transform: scale(1.18); } }
+.slide.play .feat.on .demo-iui .q { animation: enterUp 0.5s ease 0.2s both; }
+.slide.play .feat.on .demo-iui .widget { animation: widgetIn 0.8s cubic-bezier(.2, .7, .2, 1) 0.7s both; }
+.slide.play .feat.on .demo-iui .widget > * { animation: enterUp 0.45s ease both; }
+.slide.play .feat.on .demo-iui .widget > :nth-child(1) { animation-delay: 1.0s; }
+.slide.play .feat.on .demo-iui .widget > :nth-child(2) { animation-delay: 1.15s; }
+.slide.play .feat.on .demo-iui .widget > :nth-child(3) { animation-delay: 1.3s; }
+.slide.play .feat.on .demo-iui .widget > :nth-child(4) { animation-delay: 1.45s; }
+@keyframes widgetIn { from { opacity: 0; transform: scale(0.85); filter: blur(6px); } }
+
+/* -- Claude Motion: a chart animates while the playhead runs -- */
+.demo-motion { display: flex; flex-direction: column; padding: 10px; gap: 8px; }
+.demo-motion .screen {
+  position: relative; flex: 1; min-height: 100px; border-radius: 10px; overflow: hidden;
+  background: linear-gradient(160deg, #1c1430, #0d1626); border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.demo-motion .code-chip {
+  position: absolute; top: calc(14px + 2.2vmin); left: 10px; z-index: 1;
+  font: 500 clamp(0.62rem, 1.25vmin, 0.8rem) "JetBrains Mono", monospace; color: #ffd2c4;
+  padding: 2px 7px; border-radius: 6px; background: rgba(255, 122, 89, 0.18); border: 1px solid rgba(255, 122, 89, 0.4);
+}
+.demo-motion .m-title { position: absolute; left: 10px; top: 9px; font: 700 clamp(0.72rem, 1.6vmin, 1rem) var(--font-display); color: #fff; }
+.demo-motion .m-bars { position: absolute; left: 10%; right: 10%; bottom: 10%; top: 42%; display: flex; align-items: flex-end; gap: 9%; }
+.demo-motion .m-bars i { flex: 1; height: var(--h); border-radius: 5px 5px 2px 2px; background: linear-gradient(#ffb199, #ff7a59); transform-origin: bottom; transform: scaleY(0.04); }
+.demo-motion .m-line { position: absolute; left: 10%; right: 10%; top: 36%; width: 80%; height: 50%; overflow: visible; }
+.demo-motion .m-line path { fill: none; stroke: #ffe08a; stroke-width: 2.5; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.demo-motion .timeline { display: flex; align-items: center; gap: 8px; font: 500 clamp(0.65rem, 1.35vmin, 0.85rem) "JetBrains Mono", monospace; color: var(--text-muted); }
+.demo-motion .play { color: var(--accent); }
+.demo-motion .track { position: relative; flex: 1; height: 5px; border-radius: 3px; background: var(--surface-hover); }
+.demo-motion .head { position: absolute; left: 0; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); transform: translate(-50%, -50%); box-shadow: 0 0 10px var(--accent); }
+.demo-motion .track::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 3px; background: var(--accent); }
+.demo-motion .mp4 { padding: 1px 6px; border-radius: 5px; color: #1a0c06; background: var(--accent); font-weight: 700; }
+.slide.play .feat.on .demo-motion .head { animation: playhead 7s linear infinite; }
+.slide.play .feat.on .demo-motion .track::before { animation: trackFill 7s linear infinite; }
+.slide.play .feat.on .demo-motion .m-bars i { animation: barGrow 7s cubic-bezier(.3, 1.3, .5, 1) infinite; animation-delay: calc(var(--i) * 0.35s); }
+.slide.play .feat.on .demo-motion .m-line path { animation: lineDraw 7s ease-in-out infinite; }
+.slide.play .feat.on .demo-motion .m-title { animation: titleIn 7s ease infinite; }
+@keyframes playhead { from { left: 0; } to { left: 100%; } }
+@keyframes trackFill { from { width: 0; } to { width: 100%; } }
+@keyframes barGrow { 0%, 6% { transform: scaleY(0.04); } 16%, 86% { transform: scaleY(1); } 94%, 100% { transform: scaleY(0.04); } }
+@keyframes lineDraw { 0%, 32% { stroke-dashoffset: 1; } 55%, 86% { stroke-dashoffset: 0; } 94%, 100% { stroke-dashoffset: 1; } }
+@keyframes titleIn { 0% { opacity: 0; transform: translateY(-8px); } 8%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+
+/* -- Chat + Cowork: two modes slide together into one box -- */
+.demo-merge .pill {
+  position: absolute; top: 28%; transform: translate(-50%, -50%);
+  padding: 6px 14px; border-radius: 999px; white-space: nowrap;
+  font: 600 clamp(0.75rem, 1.6vmin, 1rem) var(--font-display);
+  background: var(--bg-elev); border: 1px solid var(--border);
+}
+.demo-merge .p-chat { left: 24%; }
+.demo-merge .p-cowork { left: 76%; }
+.demo-merge .unified {
+  position: absolute; left: 7%; right: 7%; top: 28%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 14px; border-radius: 14px;
+  background: var(--bg-elev); border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+  opacity: 0;
+}
+.demo-merge .u-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: clamp(0.72rem, 1.5vmin, 0.95rem); color: var(--text-muted); }
+.demo-merge .u-send { width: 1.9em; height: 1.9em; flex: none; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #1d1404; background: var(--accent); }
+.demo-merge .outs { position: absolute; left: 0; right: 0; top: 62%; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; padding: 0 8px; }
+.demo-merge .outs span {
+  padding: 5px 10px; border-radius: 10px; font: 600 clamp(0.7rem, 1.45vmin, 0.92rem) var(--font-display);
+  background: var(--bg-elev); border: 1px solid var(--border); opacity: 0;
+}
+.slide.play .feat.on .demo-merge .p-chat { animation: mergeL 8s cubic-bezier(.6, 0, .3, 1) infinite; }
+.slide.play .feat.on .demo-merge .p-cowork { animation: mergeR 8s cubic-bezier(.6, 0, .3, 1) infinite; }
+.slide.play .feat.on .demo-merge .unified { animation: unify 8s ease infinite; }
+.slide.play .feat.on .demo-merge .outs span { animation: outPop 8s cubic-bezier(.3, 1.5, .5, 1) infinite; }
+.slide.play .feat.on .demo-merge .outs span:nth-child(2) { animation-name: outPop2; }
+.slide.play .feat.on .demo-merge .outs span:nth-child(3) { animation-name: outPop3; }
+@keyframes mergeL { 0%, 12% { left: 24%; opacity: 1; } 30% { left: 50%; opacity: 1; } 34%, 100% { left: 50%; opacity: 0; } }
+@keyframes mergeR { 0%, 12% { left: 76%; opacity: 1; } 30% { left: 50%; opacity: 1; } 34%, 100% { left: 50%; opacity: 0; } }
+@keyframes unify { 0%, 29% { opacity: 0; transform: translateY(-50%) scaleX(0.3); } 36%, 90% { opacity: 1; transform: translateY(-50%); } 97%, 100% { opacity: 0; transform: translateY(-50%); } }
+@keyframes outPop { 0%, 44% { opacity: 0; transform: translateY(10px) scale(0.6); } 48%, 90% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+@keyframes outPop2 { 0%, 50% { opacity: 0; transform: translateY(10px) scale(0.6); } 54%, 90% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+@keyframes outPop3 { 0%, 56% { opacity: 0; transform: translateY(10px) scale(0.6); } 60%, 90% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; } }
+
+/* ---------- 3 · Want the full show? ---------- */
+.end-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(24px, 5vw, 80px); align-items: center; }
+.end-left .lead b { color: var(--text); }
+.next-up { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 1.4em 0 0; }
+.nu-label { width: 100%; font: 600 clamp(0.75rem, 1.6vmin, 0.95rem) "JetBrains Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.chip {
+  padding: 0.35em 0.85em; border-radius: 999px; font: 600 clamp(0.85rem, 1.9vmin, 1.1rem) var(--font-display);
+  border: 1px dashed color-mix(in srgb, var(--accent-1) 60%, var(--border)); background: var(--surface);
+}
+.end-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 1.8em; }
+.end-right { display: grid; gap: 22px; }
+.end-right .pro-tip p { font-size: clamp(0.95rem, 2.1vmin, 1.25rem); }
+.sources { font-size: clamp(0.85rem, 1.9vmin, 1.05rem); color: var(--text-muted); display: grid; gap: 4px; }
+.sources p { margin: 0; }
+.sources a { color: var(--accent-2); }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1100px) {
+  .feat { grid-template-columns: 1fr; }
+  .feat-skel { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .feat-skel i:nth-child(n) { grid-column: 1; grid-row: auto; }
+  .feat-skel i:nth-child(1) { min-height: 110px; }
+}
+@media (max-width: 760px) {
+  .feats, .end-grid { grid-template-columns: 1fr; }
+  .feat.focus { transform: none; }
+  .feats.has-focus .feat.on:not(.focus) { opacity: 0.75; }
+  .feat-demo { min-height: 170px; }
+  .ticker { bottom: 64px; }
+}

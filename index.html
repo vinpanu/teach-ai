@@ -55,11 +55,11 @@
       <div class="container">
         <div class="section-head reveal">
           <div class="kicker">Take a test drive</div>
-          <h2>Three lanes. <span class="gradient-text">Three short previews.</span></h2>
+          <h2>Four lanes. <span class="gradient-text">Four short previews.</span></h2>
           <p>Each one is a quick sample of a topic the team can vote for. Tap one and click through.</p>
         </div>
         <!-- One card per sample deck in samples/. --lane sets the card's accent color. -->
-        <div class="sessions-grid">
+        <div class="sessions-grid" style="grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr))">
           <a class="card lane-card reveal" data-delay="1" href="samples/ai-gone-rogue/" style="--lane:#ff3b5c">
             <span class="lane-icon" aria-hidden="true">🚨</span>
             <span class="lane-name">AI Gone Rogue</span>
@@ -79,6 +79,13 @@
             <span class="lane-name">My AI Health Coach</span>
             <h3>Meet the POA Team</h3>
             <p>One human, a team of AI agents, one mission: building a personal AI health coach.</p>
+            <span class="tag">Test drive ▶</span>
+          </a>
+          <a class="card lane-card reveal" data-delay="4" href="samples/fresh-off-the-press/" style="--lane:#3d9bff">
+            <span class="lane-icon" aria-hidden="true">🗞️</span>
+            <span class="lane-name">Fresh Off the Press</span>
+            <h3>What's New?</h3>
+            <p>A sneak peek at the latest from OpenAI and Claude: Dots, Intelligent UI, Claude Motion, and Chat + Cowork.</p>
             <span class="tag">Test drive ▶</span>
           </a>
         </div>
