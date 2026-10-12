@@ -1,0 +1,177 @@
+/* "How I Learned" deck — scene styles. */
+
+/* Shared figures (same look as the health coach sample) */
+.av-ink { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.av-ink.thin { stroke-width: 4; }
+.av-head { fill: var(--bg); stroke: var(--text); stroke-width: 6; }
+.me-head { stroke: #5b9dff; }
+.av-accent { fill: var(--acc); }
+.av-chest { fill: color-mix(in srgb, var(--acc) 30%, transparent); stroke: var(--text); stroke-width: 5; }
+.floor { stroke: var(--border); stroke-width: 3; }
+
+/* ---------- 1 · Title ---------- */
+.hl-title, .hl-end { text-align: center; }
+.hl-title .slide-inner, .hl-end .slide-inner { display: flex; flex-direction: column; align-items: center; }
+.title-icons { display: flex; gap: 18px; font-size: clamp(2rem, 7vmin, 4.4rem); margin-top: 0.4em; }
+.title-icons span { display: inline-block; animation: hop 2.4s ease-in-out infinite; }
+.title-icons span:nth-child(2) { animation-delay: 0.25s; }
+.title-icons span:nth-child(3) { animation-delay: 0.5s; }
+.title-icons span:nth-child(4) { animation-delay: 0.75s; }
+@keyframes hop { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-14px) rotate(-6deg); } }
+
+/* ---------- 2 · Four habits ---------- */
+.habits-wrap { text-align: center; }
+.habits { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.6vw, 26px); text-align: left; margin-top: clamp(8px, 2vh, 24px); }
+.habit {
+  position: relative; display: flex; flex-direction: column; gap: 0.35em;
+  padding: clamp(18px, 2.6vmin, 32px); border-radius: 24px;
+  background: var(--bg-elev); border: 1px solid var(--border); border-top: 4px solid var(--c);
+}
+.habit .h-icon { width: clamp(48px, 8vmin, 84px); height: auto; overflow: visible; margin-bottom: 0.3em; }
+.habit .h-no { font: 700 clamp(0.8rem, 1.8vmin, 1.05rem) var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--c); }
+.habit h3 { margin: 0; font: 700 clamp(1.3rem, 3.4vmin, 2.2rem) / 1.1 var(--font-display); letter-spacing: -0.01em; }
+.habit p { margin: 0.2em 0 0; font-size: clamp(1rem, 2.4vmin, 1.45rem); line-height: 1.38; color: var(--text-muted); }
+.habit.time {
+  border: 2px solid transparent; border-top-width: 4px;
+  background: linear-gradient(var(--bg-elev), var(--bg-elev)) padding-box, var(--gradient) border-box;
+  box-shadow: 0 24px 70px -30px var(--c);
+}
+.habit.time p { color: var(--text); font-weight: 500; }
+.habit.on { animation: cardIn 0.7s cubic-bezier(.3, 1.4, .5, 1); }
+@keyframes cardIn { from { transform: translateY(30px) scale(0.92); } to { transform: none; } }
+
+/* Habit icons (they start moving once their card is revealed) */
+.i-play rect { fill: var(--c); }
+.i-play path { fill: #fff; }
+.habit.on .i-play { animation: playPulse 1.8s ease-in-out 0.6s infinite; }
+@keyframes playPulse { 50% { transform: scale(1.1); } }
+.i-bulb .glass { fill: color-mix(in srgb, var(--c) 40%, transparent); stroke: var(--text); stroke-width: 3.5; }
+.i-bulb .base { stroke: var(--text); stroke-width: 4; stroke-linecap: round; }
+.i-bulb .rays { stroke: var(--c); stroke-width: 4; stroke-linecap: round; opacity: 0; }
+.habit.on .i-bulb .rays { animation: rays 1.6s ease-in-out 0.6s infinite; }
+@keyframes rays { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+.i-group circle, .i-group path { fill: none; stroke: var(--c); stroke-width: 4; stroke-linecap: round; }
+.habit.on .i-group .p { animation: bob 1.8s ease-in-out infinite; }
+.habit.on .i-group .p2 { animation-delay: 0.3s; }
+.habit.on .i-group .p3 { animation-delay: 0.6s; }
+@keyframes bob { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-5px); } }
+.i-clock circle { fill: none; stroke: var(--c); stroke-width: 4; }
+.i-clock .pin { fill: var(--text); stroke: none; }
+.i-clock path { stroke: var(--text); stroke-width: 4; stroke-linecap: round; transform-origin: 32px 32px; }
+.habit.on .i-clock .hand-m { animation: spin 1.6s linear infinite; }
+.habit.on .i-clock .hand-h { animation: spin 19.2s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 1100px) { .habits { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) {
+  .habits { grid-template-columns: 1fr; gap: 10px; }
+  .habit { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px; padding: 14px 16px; }
+  .habit .h-icon { grid-row: 1 / 4; width: 44px; margin: 4px 0 0; }
+}
+
+/* ---------- 3 · Playing ball ---------- */
+.ball-wrap { text-align: center; }
+.ballgame { width: 100%; max-width: 1300px; max-height: 58vh; overflow: visible; margin-top: clamp(4px, 1.5vh, 18px); }
+.ballgame .shadows ellipse { fill: var(--border); }
+.ballgame .tag { font: 600 24px var(--font-display); fill: var(--text-muted); }
+.ballgame .me-tag { fill: #5b9dff; font-size: 30px; font-weight: 700; }
+.ball-line { stroke: #12121a; stroke-width: 2.5; }
+
+/* Timeline: 5 passes × 1.5s = 7.5s loop. Order: Me → agent 4 → agent 1 → agent 5 → agent 2 → Me.
+   ball-x moves at a steady speed; ball-y rises and falls (longer passes get higher arcs). */
+.ball-x { transform: translate(631px, 255px); }
+.slide.play .ball-x { animation: ballX 7.5s linear infinite; }
+@keyframes ballX {
+  0%, 100% { transform: translate(631px, 255px); }
+  20% { transform: translate(861px, 255px); }
+  40% { transform: translate(161px, 255px); }
+  60% { transform: translate(1081px, 255px); }
+  80% { transform: translate(401px, 255px); }
+}
+.slide.play .ball-y { animation: ballY 7.5s infinite; }
+@keyframes ballY {
+  0%, 20%, 40%, 60%, 80% { transform: translateY(0); animation-timing-function: cubic-bezier(.33, .66, .66, 1); }
+  10% { transform: translateY(-120px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  30% { transform: translateY(-210px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  50% { transform: translateY(-240px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  70% { transform: translateY(-200px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  90% { transform: translateY(-120px); animation-timing-function: cubic-bezier(.33, 0, .66, .33); }
+  100% { transform: translateY(0); }
+}
+.slide.play .ball-spin { animation: spin 1.5s linear infinite; }
+/* Each player bounces as the ball lands in their hands (--catch = when the ball arrives) */
+.slide.play .player { animation: catch 7.5s ease-out var(--catch) infinite both; }
+@keyframes catch {
+  0% { transform: none; } 3% { transform: translateY(10px); } 8% { transform: translateY(-14px); } 13%, 100% { transform: none; }
+}
+
+/* ---------- 4 · The bedroom ---------- */
+.bedroom-wrap { text-align: center; }
+.bed-head { font-size: clamp(1.7rem, 5vmin, 3.8rem) !important; max-width: 24ch; margin-inline: auto !important; }
+.bedroom { width: 100%; max-width: 1300px; max-height: 60vh; overflow: visible; }
+.bedroom [data-step] { transform: none; }
+.headboard { fill: color-mix(in srgb, var(--text) 8%, var(--bg)); stroke: var(--text); stroke-width: 5; }
+.pillow { fill: var(--bg); stroke: var(--text); stroke-width: 4; }
+.sleeper { fill: var(--bg); stroke: var(--text); stroke-width: 5; }
+.wife-head { stroke: #ff4fd8; }
+.me-sleeper { stroke: #5b9dff; }
+.hair { fill: none; stroke: var(--text); stroke-width: 9; stroke-linecap: round; }
+.eyes { fill: none; stroke: var(--text); stroke-width: 3.5; stroke-linecap: round; }
+.blanket { fill: color-mix(in srgb, #00b8e6 26%, var(--bg)); stroke: var(--text); stroke-width: 5; stroke-linejoin: round; }
+.wife-blanket { fill: color-mix(in srgb, #ff4fd8 24%, var(--bg)); }
+.fold { stroke: color-mix(in srgb, var(--text) 35%, transparent); stroke-width: 3; }
+.bed-front { fill: color-mix(in srgb, var(--text) 14%, var(--bg)); stroke: var(--text); stroke-width: 5; }
+.robot-head { fill: var(--bg); stroke: var(--text); stroke-width: 5; }
+.robot-acc { fill: #2de2b5; }
+.window { fill: #1b2550; stroke: var(--text); stroke-width: 5; }
+.window-bars { stroke: var(--text); stroke-width: 4; }
+.moon { fill: #ffe58a; filter: drop-shadow(0 0 10px rgba(255, 229, 138, 0.8)); }
+.stand { fill: color-mix(in srgb, var(--text) 14%, var(--bg)); stroke: var(--text); stroke-width: 5; }
+.stand-line { stroke: var(--text); stroke-width: 3; }
+.lamp-base { stroke: var(--text); stroke-width: 5; stroke-linecap: round; fill: none; }
+.lamp-shade { fill: #ffd84d; stroke: var(--text); stroke-width: 4; stroke-linejoin: round; transition: fill 0.3s ease 2.2s; }
+.lamp-glow { transition: opacity 0.3s ease 2.2s; }
+.bubble-text { font: 700 31px var(--font-display); fill: #fff; letter-spacing: 0.01em; }
+
+/* Step 1: the beds slide in from both sides, the AI agent pops up, then the labels */
+.bed, .robot-pop, .bubble { transform-box: fill-box; }
+.beds.on .bed-l { animation: fromLeft 1s cubic-bezier(.3, 1.15, .5, 1) both; }
+.beds.on .bed-r { animation: fromRight 1s cubic-bezier(.3, 1.15, .5, 1) both; }
+@keyframes fromLeft { from { opacity: 0; transform: translateX(-420px); } to { opacity: 1; transform: none; } }
+@keyframes fromRight { from { opacity: 0; transform: translateX(420px); } to { opacity: 1; transform: none; } }
+.robot-pop { opacity: 0; }
+.beds.on .robot-pop { animation: popUp 0.8s cubic-bezier(.3, 1.6, .5, 1) 1.2s both; }
+@keyframes popUp { from { opacity: 0; transform: translateY(56px); } to { opacity: 1; transform: none; } }
+.bubble { opacity: 0; transform-origin: 50% 100%; }
+.beds.on .pop-1 { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 1.9s both; }
+.beds.on .pop-2 { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 2.6s both; }
+@keyframes pop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
+
+/* Step 2: "Good night, Vince", then the lamp clicks off and the room goes dark */
+.speech { opacity: 0; transform-box: fill-box; transform-origin: 82% 100%; }
+.speech path { fill: var(--bg-elev); stroke: #7c5cff; stroke-width: 4; stroke-linejoin: round; }
+.speech text { font: 700 32px var(--font-display); fill: var(--text); }
+.night.on .speech { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 0.2s both; }
+/* Lights out: dim the furniture and beds (the moon, speech bubble and robot eyes stay bright) */
+.room, .bed > :not(.bubble) { transition: filter 1.2s ease; }
+.bedroom-slide[data-at="2"] .room, .bedroom-slide[data-at="2"] .bed > :not(.bubble) { filter: brightness(0.42) saturate(0.7); transition-delay: 2.2s; }
+.bedroom-slide[data-at="2"] .lamp-glow { opacity: 0; }
+.bedroom-slide[data-at="2"] .lamp-shade { fill: color-mix(in srgb, var(--text) 25%, var(--bg)); }
+.robot-eyes circle { fill: #2de2b5; filter: drop-shadow(0 0 6px #2de2b5); opacity: 0; }
+.night.on .robot-eyes circle { animation: eyesOn 0.5s ease 2.9s both, glowPulse 2.4s ease-in-out 3.4s infinite; }
+@keyframes eyesOn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes glowPulse { 50% { opacity: 0.55; } }
+.zz { font: 700 34px var(--font-display); fill: #7d9bff; opacity: 0; }
+.night.on .zz { animation: snore 3s ease-out infinite; }
+.night.on .z1, .night.on .z3 { animation-delay: 3.4s; }
+.night.on .z2, .night.on .z4 { animation-delay: 4.1s; }
+@keyframes snore { 0% { opacity: 0; transform: translate(0, 0); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -34px); } }
+
+/* ---------- 5 · Your turn ---------- */
+.hl-end .pro-tip { text-align: left; max-width: 900px; margin: 0.4em auto 0; font-size: clamp(1rem, 2.5vmin, 1.4rem); }
+.hl-end .end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 1.6em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.play .ball-x, .slide.play .ball-y, .slide.play .ball-spin, .slide.play .player,
+  .habit.on .h-icon, .habit.on .h-icon * { animation: none !important; }
+}
