@@ -382,9 +382,7 @@
   .ticker { bottom: 64px; }
 }
 
-/* ---------- 3 · What you'll get: the Pro Tip under the pitch ---------- */
-.pitch-tip { text-align: left; max-width: 1100px; margin: clamp(16px, 3vh, 32px) auto 0; }
-.pitch-tip p { font-size: clamp(0.95rem, 2.1vmin, 1.25rem); }
+/* ---------- 3 · What you'll get: the upcoming-drops chips ---------- */
 .pitch-card .queue { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.8em; }
 .pitch-card .queue .chip { font-size: clamp(0.75rem, 1.6vmin, 0.95rem); }
 @media (max-width: 900px) { .pitch-card .queue { grid-column: 1 / -1; } }   /* phones: chips span the full card, under the icon + text */
@@ -420,4 +418,80 @@
 @media (prefers-reduced-motion: reduce) {
   .fresh-title.play .vince-pick { animation: none; opacity: 1; }
   .fresh-title.play .seal-spin { animation: none; }
+}
+
+/* ---------- 2 · Pop-ups: "a little deeper" on each drop, plus the Pro Tip ----------
+   Fixed to the screen and centered with inset:0 + margin:auto; fresh.js grows each one out of its card. */
+.feat.on { cursor: pointer; }
+.drop-scrim {
+  position: fixed; inset: 0; z-index: 5;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity 0.35s ease, visibility 0s 0.35s;
+}
+.drops.open .drop-scrim { opacity: 1; visibility: visible; transition: opacity 0.35s ease, visibility 0s; }
+.drop {
+  --accent: var(--accent-1);
+  position: fixed; inset: 0; z-index: 6; margin: auto;
+  width: min(1180px, 90vw); height: fit-content; max-height: 84vh; overflow-y: auto;
+  padding: clamp(22px, 3.4vmin, 44px);
+  border-radius: calc(var(--radius) + 6px);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 12%, var(--bg-elev)), var(--bg-elev) 55%);
+  border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: 0 40px 120px -30px color-mix(in srgb, var(--accent) 60%, transparent), 0 20px 50px -20px rgba(0, 0, 0, 0.45);
+  opacity: 0; visibility: hidden;
+}
+.drop.open { opacity: 1; visibility: visible; }
+.drop-x {
+  position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-muted);
+  font-size: 1rem; cursor: pointer;
+}
+.drop-x:hover, .drop-x:focus-visible { color: var(--text); border-color: var(--accent); }
+.drop-head { display: flex; align-items: center; gap: clamp(14px, 2.4vmin, 28px); margin-bottom: clamp(16px, 3vmin, 34px); padding-right: 40px; }
+.drop-icon {
+  flex: none; display: grid; place-items: center;
+  width: clamp(64px, 11vmin, 120px); aspect-ratio: 1; border-radius: 24px;
+  font-size: clamp(2rem, 6vmin, 3.8rem);
+  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+.drop.open .drop-icon { animation: dropPop 0.6s cubic-bezier(.3, 1.6, .5, 1) 0.15s both; }
+@keyframes dropPop { from { transform: scale(0.4) rotate(-12deg); opacity: 0; } }
+.drop h3 { margin: 0.15em 0 0.05em; font: 700 clamp(2rem, 6.4vmin, 4.4rem) / 1 var(--font-display); letter-spacing: -0.03em; color: var(--ink, var(--accent)); }
+.drop-hook { margin: 0; font: 600 clamp(1.1rem, 3vmin, 2rem) / 1.25 var(--font-display); color: var(--text); }
+:root[data-theme="light"] .drop { --ink: color-mix(in srgb, var(--accent) 62%, #000); }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .drop { --ink: color-mix(in srgb, var(--accent) 62%, #000); } }
+.drop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vmin, 22px); }
+.drop-grid section {
+  padding: clamp(14px, 2.2vmin, 24px); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 80%, transparent); border: 1px solid var(--border);
+}
+.drop.open .drop-grid section { animation: enterUp 0.6s cubic-bezier(.2, .7, .2, 1) both; }
+.drop.open .drop-grid section:nth-child(1) { animation-delay: 0.2s; }
+.drop.open .drop-grid section:nth-child(2) { animation-delay: 0.32s; }
+.drop.open .drop-grid section:nth-child(3) { animation-delay: 0.44s; }
+.drop-grid h4 {
+  display: flex; align-items: center; gap: 0.45em; margin: 0 0 0.5em;
+  font: 700 clamp(0.8rem, 1.8vmin, 1.05rem) var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink, var(--accent));
+}
+.drop-grid p { margin: 0; font-size: clamp(1rem, 2.35vmin, 1.45rem); line-height: 1.45; color: var(--text); }
+.drop-foot {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: clamp(14px, 2.6vmin, 28px);
+  font: 500 clamp(0.85rem, 1.9vmin, 1.15rem) / 1.4 "JetBrains Mono", monospace; color: var(--text-muted);
+}
+.drop-foot .df-label {
+  padding: 0.3em 0.75em; border-radius: 999px; font-weight: 700; color: var(--ink, var(--accent));
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+/* The Pro Tip pop-up keeps the shared Pro Tip look, just bigger */
+.drop-tip { --accent: #ffc53d; width: min(1000px, 90vw); text-align: left; }
+.drop-tip p { margin: 0.8em 0 0; font-size: clamp(1.15rem, 3vmin, 1.9rem); line-height: 1.45; }
+@media (max-width: 900px) {
+  .drop { inset: 64px 0 88px; width: calc(100vw - 24px); max-height: calc(100dvh - 160px); }
+  .drop-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drop.open .drop-icon, .drop.open .drop-grid section { animation: none; }
 }

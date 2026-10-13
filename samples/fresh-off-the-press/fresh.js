@@ -1,7 +1,7 @@
 // Fresh Off the Press · "What's New?" sneak peek.
 // Scene 1: the headline "decodes" from random characters, then a boot line types out.
 // Scene 2: the four feature cards load on entry, one after another (shimmer → decoded name →
-//          words stream in); clicks 1–4 spotlight one card each, click 5 shows all four. The Intelligent UI card holds a working bill splitter.
+//          words stream in); clicks 1–4 open a "little deeper" pop-up per drop, click 5 the Pro Tip. The Intelligent UI card holds a working bill splitter.
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*+<>/=?";
@@ -87,13 +87,41 @@
       // A click before they've all loaded: finish loading them now.
       cards.forEach((card) => { clearTimeout(card._t); reveal(card); });
     }
-    // Clicks 1–4 spotlight one card each; click 5 shows them all side by side again.
+    // Clicks 1–4 open a pop-up on one drop each (its card glows behind it); click 5 opens the Pro Tip.
     cards.forEach((card, i) => card.classList.toggle("focus", at === i + 1));
     grid.classList.toggle("has-focus", at >= 1 && at <= cards.length);
-    // On phones the cards stack, so bring the spotlighted one into view.
-    const focused = cards[at - 1];
-    if (focused && innerWidth <= 760) focused.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    openDrop(at, e.detail.entering);
   });
+
+  // ---------- Pop-ups ----------
+  const drops = slide.querySelector(".drops");
+  const openDrop = (at, entering) => {
+    drops.querySelectorAll(".drop").forEach((d) => {
+      const show = Number(d.dataset.for) === at;
+      if (show && !d.classList.contains("open")) {
+        d.classList.add("open");
+        d.scrollTop = 0;
+        // Grow out of its card (the Pro Tip just rises into place).
+        const card = cards[at - 1];
+        if (!reduce && !entering) {
+          const from = card?.getBoundingClientRect(), to = d.getBoundingClientRect();
+          const move = from
+            ? `translate(${from.left + from.width / 2 - (to.left + to.width / 2)}px, ${from.top + from.height / 2 - (to.top + to.height / 2)}px) scale(${Math.min(0.6, from.width / to.width)})`
+            : "translateY(40px) scale(0.92)";
+          d.animate([{ transform: move, opacity: 0 }, { transform: "none", opacity: 1 }],
+            { duration: 480, easing: "cubic-bezier(.2, .8, .2, 1)" });
+        }
+      } else if (!show) d.classList.remove("open");
+    });
+    drops.classList.toggle("open", at >= 1);
+  };
+  // Clicking a card opens its pop-up directly; ✕ closes back to all four cards.
+  cards.forEach((card, i) => card.addEventListener("click", (e) => {
+    if (e.target.closest("button") || !window.slideDeck) return;
+    e.stopPropagation();
+    window.slideDeck.setStep(i + 1);
+  }));
+  drops.querySelectorAll(".drop-x").forEach((x) => x.addEventListener("click", () => window.slideDeck?.setStep(0)));
 
   // ---------- Intelligent UI: a real (tiny) bill splitter ----------
   const widget = slide.querySelector(".demo-iui");

@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="fresh.css?v=5">
+  <link rel="stylesheet" href="fresh.css?v=6">
 </head>
 <body class="deck-body">
 
@@ -78,7 +78,8 @@
       </div>
     </section>
 
-    <!-- ========== 2 · The four drops (one card per click; click 5 shows all four) ========== -->
+    <!-- ========== 2 · The four drops: cards load on entry; clicks 1–4 open a "go a bit deeper" pop-up
+         for each drop (clicking a card opens its pop-up too); click 5 opens the Pro Tip ========== -->
     <section class="slide feats-slide" data-title="Four fresh drops" data-steps="5">
       <div class="slide-inner">
         <div class="feats-head">
@@ -176,6 +177,71 @@
           </article>
 
         </div>
+
+        <!-- Pop-ups: a little deeper than the card, never a tutorial. One per click (data-for = click number). -->
+        <div class="drops">
+          <div class="drop-scrim" aria-hidden="true"></div>
+
+          <article class="drop" data-for="1" style="--accent:#10c98f" role="dialog" aria-label="Dots, a closer look">
+            <button type="button" class="drop-x" aria-label="Close">✕</button>
+            <header class="drop-head"><span class="drop-icon" aria-hidden="true">🟢</span>
+              <div><span class="lab openai">OpenAI</span><h3>Dots</h3><p class="drop-hook">Give it a goal, not a prompt.</p></div></header>
+            <div class="drop-grid">
+              <section><h4><span aria-hidden="true">⚙️</span>How it works</h4><p>Each Dot has its own cloud computer and browser, connects to 4,000+ apps, and keeps working toward your goal after you close the chat.</p></section>
+              <section><h4><span aria-hidden="true">💼</span>Use it for</h4><p>Sorting customer feedback. Building a proof of concept. Finding clips and drafting social posts. It hands the work back for your OK.</p></section>
+              <section><h4><span aria-hidden="true">👀</span>Good to know</h4><p>You set the rules: what it does alone, what needs your approval, what's off-limits. Chat with it in ChatGPT, Slack, or <b>Microsoft Teams</b>.</p></section>
+            </div>
+            <div class="drop-foot"><span class="df-label">🎟️ Who gets it</span><span>Pro &amp; Business Premium (first Dot included) · Enterprise beta, if your admin turns it on</span></div>
+          </article>
+
+          <article class="drop" data-for="2" style="--accent:#3d9bff" role="dialog" aria-label="Intelligent UI, a closer look">
+            <button type="button" class="drop-x" aria-label="Close">✕</button>
+            <header class="drop-head"><span class="drop-icon" aria-hidden="true">🧩</span>
+              <div><span class="lab openai">OpenAI</span><h3>Intelligent UI</h3><p class="drop-hook">ChatGPT picks the best shape for each answer.</p></div></header>
+            <div class="drop-grid">
+              <section><h4><span aria-hidden="true">⚙️</span>How it works</h4><p>GPT-6 mixes text with charts, checklists, maps, buttons and forms, and can build a small tool on the spot. Plain text when that's clearest.</p></section>
+              <section><h4><span aria-hidden="true">💼</span>Use it for</h4><p>A recipe that rescales when you change the guest count. A bill splitter. Follow-up questions you answer with a tap.</p></section>
+              <section><h4><span aria-hidden="true">👀</span>Good to know</h4><p>Answers start appearing while it's still thinking, so they feel faster. Too busy? On the web, turn off <b>Settings → Layout and visuals</b>.</p></section>
+            </div>
+            <div class="drop-foot"><span class="df-label">🎟️ Who gets it</span><span>Every plan · Paid from Oct 7, Free &amp; Go from Oct 8 · in the Chat tab</span></div>
+          </article>
+
+          <article class="drop" data-for="3" style="--accent:#ff7a59" role="dialog" aria-label="Claude Motion, a closer look">
+            <button type="button" class="drop-x" aria-label="Close">✕</button>
+            <header class="drop-head"><span class="drop-icon" aria-hidden="true">🎬</span>
+              <div><span class="lab claude">Claude</span><h3>Claude Motion</h3><p class="drop-hook">Your report, as a 30-second animated explainer.</p></div></header>
+            <div class="drop-grid">
+              <section><h4><span aria-hidden="true">⚙️</span>How it works</h4><p>Claude has no video model. It writes animation code around your own text, charts and images, so every word, number and timing stays editable.</p></section>
+              <section><h4><span aria-hidden="true">💼</span>Use it for</h4><p>A quarterly report turned into an all-hands explainer. A chart that moves in a board deck. A walkthrough for new customers.</p></section>
+              <section><h4><span aria-hidden="true">👀</span>Good to know</h4><p>Tweak it in the editor or just ask Claude, then download an MP4. Anthropic's pitch: it's “built for explaining your own work.”</p></section>
+            </div>
+            <div class="drop-foot"><span class="df-label">🎟️ Who gets it</span><span>Beta · Team &amp; Enterprise (Enterprise admins switch it on under Organization settings → Artifacts)</span></div>
+          </article>
+
+          <article class="drop" data-for="4" style="--accent:#f5b53d" role="dialog" aria-label="Chat plus Cowork, a closer look">
+            <button type="button" class="drop-x" aria-label="Close">✕</button>
+            <header class="drop-head"><span class="drop-icon" aria-hidden="true">🤝</span>
+              <div><span class="lab claude">Claude</span><h3>Chat + Cowork</h3><p class="drop-hook">One box for a quick question or a whole project.</p></div></header>
+            <div class="drop-grid">
+              <section><h4><span aria-hidden="true">⚙️</span>How it works</h4><p>Before, you picked Chat for quick questions or Cowork for bigger jobs. Now you just ask, and Claude handles either in the same conversation.</p></section>
+              <section><h4><span aria-hidden="true">💼</span>Use it for</h4><p>Ask a quick question, then hand off the report, spreadsheet or deck it leads to, without starting over somewhere else.</p></section>
+              <section><h4><span aria-hidden="true">👀</span>Good to know</h4><p>Your chats, Cowork tasks, projects, connectors and skills all carry over. Same day: designs, decks and docs in any conversation, on every plan.</p></section>
+            </div>
+            <div class="drop-foot"><span class="df-label">🎟️ Who gets it</span><span>Rolling out gradually · Pro &amp; Max · web, desktop and mobile</span></div>
+          </article>
+
+          <aside class="drop drop-tip pro-tip" data-for="5" role="dialog" aria-label="Pro Tip">
+            <button type="button" class="drop-x" aria-label="Close">✕</button>
+            <span class="pro-tip-badge">Pro Tip</span>
+            <p><b>Let AI watch the news for you.</b> ChatGPT and Claude can both run <b>scheduled tasks</b>. Set one for Monday mornings: <i>“Find this week's biggest AI releases from OpenAI, Anthropic and Google. Give me 5 bullets in plain English, with links to the official announcements.”</i> The latest drops come to you.</p>
+          </aside>
+          <!-- Pro Tip sources (checked Oct 13, 2026): ChatGPT scheduled tasks https://help.openai.com/articles/10291617
+               (all plans; Free = once a day max) · Claude scheduled tasks in Cowork (paid plans)
+               https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork
+               Pop-up facts: openai.com/index/introducing-dots/ · openai.com/index/gpt-6-for-everyone/ and
+               help.openai.com/en/articles/20001598-intelligent-ui-in-chatgpt · claude.com/resources/articles/dashboards-and-motion ·
+               support.claude.com/en/articles/12138966-release-notes (Sep 16) -->
+        </div>
       </div>
     </section>
 
@@ -204,13 +270,6 @@
             <a class="btn btn-ghost" href="../../">Home</a>
           </div>
         </div>
-        <aside class="pro-tip pitch-tip" data-step="3">
-          <span class="pro-tip-badge">Pro Tip</span>
-          <p><b>Let AI watch the news for you.</b> ChatGPT and Claude can both run <b>scheduled tasks</b>. Set one for Monday mornings: <i>“Find this week's biggest AI releases from OpenAI, Anthropic and Google. Give me 5 bullets in plain English, with links to the official announcements.”</i> The latest drops come to you.</p>
-        </aside>
-        <!-- Pro Tip sources (checked Oct 13, 2026): ChatGPT scheduled tasks https://help.openai.com/articles/10291617
-             (all plans; Free = once a day max) · Claude scheduled tasks in Cowork (paid plans)
-             https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork -->
         <!-- Sources (kept here for fact-checking, not shown on the slide):
              https://openai.com/index/introducing-dots/
              https://openai.com/index/gpt-6-for-everyone/
@@ -228,7 +287,7 @@
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="fresh.js?v=2"></script>
+  <script src="fresh.js?v=3"></script>
   <script src="../../assets/js/slides.js?v=4"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
