@@ -115,12 +115,19 @@
     });
     drops.classList.toggle("open", at >= 1);
   };
-  // Clicking a card opens its pop-up directly; ✕ closes back to all four cards.
-  cards.forEach((card, i) => card.addEventListener("click", (e) => {
-    if (e.target.closest("button") || !window.slideDeck) return;
-    e.stopPropagation();
-    window.slideDeck.setStep(i + 1);
-  }));
+  // Clicking a card (or its "Go deeper" button) opens its pop-up directly; ✕ closes back to all four cards.
+  cards.forEach((card, i) => {
+    const more = document.createElement("button");
+    more.type = "button"; more.className = "feat-more";
+    more.innerHTML = "Go deeper <b>↗</b>";
+    more.setAttribute("aria-label", `Go deeper: ${card.querySelector("h3 .vh").textContent}`);
+    card.querySelector(".meta").append(more);
+    card.addEventListener("click", (e) => {
+      if ((e.target.closest("button") && e.target !== more && !more.contains(e.target)) || !window.slideDeck) return;
+      e.stopPropagation();
+      window.slideDeck.setStep(i + 1);
+    });
+  });
   drops.querySelectorAll(".drop-x").forEach((x) => x.addEventListener("click", () => window.slideDeck?.setStep(0)));
 
   // ---------- Intelligent UI: a real (tiny) bill splitter ----------
