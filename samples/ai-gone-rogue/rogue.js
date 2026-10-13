@@ -54,9 +54,9 @@ const SCRIPTS = {
   ],
 };
 
-// Typing speed (milliseconds per character). The presenter controls the pace:
-// the first line types when the scene opens, then each click types the next line.
-const PACE = { perChar: 45 };
+// Typing speed (milliseconds per character). Kept very fast because the presenter controls
+// the pace: the first line types when the scene opens, then each click types the next line.
+const PACE = { perChar: 9 };
 
 // Group a script into "beats", one per click. A { dim } step joins the line after it,
 // { war } joins the line before it (the stamp lands right after the last line),
