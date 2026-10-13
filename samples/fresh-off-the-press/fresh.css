@@ -387,3 +387,4 @@
 .pitch-tip p { font-size: clamp(0.95rem, 2.1vmin, 1.25rem); }
 .pitch-card .queue { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.8em; }
 .pitch-card .queue .chip { font-size: clamp(0.75rem, 1.6vmin, 0.95rem); }
+@media (max-width: 900px) { .pitch-card .queue { grid-column: 1 / -1; } }   /* phones: chips span the full card, under the icon + text */
