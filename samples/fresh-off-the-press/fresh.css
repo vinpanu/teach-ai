@@ -502,14 +502,6 @@
   color: var(--ink, var(--accent));
 }
 .drop-grid p { margin: 0; font-size: clamp(1rem, 2.35vmin, 1.45rem); line-height: 1.45; color: var(--text); }
-.drop-foot {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: clamp(14px, 2.6vmin, 28px);
-  font: 500 clamp(0.85rem, 1.9vmin, 1.15rem) / 1.4 "JetBrains Mono", monospace; color: var(--text-muted);
-}
-.drop-foot .df-label {
-  padding: 0.3em 0.75em; border-radius: 999px; font-weight: 700; color: var(--ink, var(--accent));
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); background: color-mix(in srgb, var(--accent) 10%, transparent);
-}
 /* The Pro Tip pop-up keeps the shared Pro Tip look, just bigger */
 .drop-tip { --accent: #ffc53d; width: min(1000px, 90vw); text-align: left; }
 .drop-tip p { margin: 0.8em 0 0; font-size: clamp(1.15rem, 3vmin, 1.9rem); line-height: 1.45; }
