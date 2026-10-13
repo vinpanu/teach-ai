@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="learned.css?v=2">
+  <link rel="stylesheet" href="learned.css?v=3">
 </head>
 <body class="deck-body">
 
@@ -62,30 +62,30 @@
       <div class="deck-hint">Press <kbd>→</kbd> or click to begin</div>
     </section>
 
-    <!-- ========== 2 · Four habits (one per click) ========== -->
+    <!-- ========== 2 · Four habits (the first shows on entry, then one per click) ========== -->
     <section class="slide" data-title="Four habits">
       <div class="slide-inner habits-wrap">
         <h2 class="enter">Four ways I <span class="gradient-text">learned.</span></h2>
         <div class="habits">
-          <div class="habit" data-step="1" style="--c:#ff3b5c">
+          <div class="habit" data-step="0" style="--c:#ff3b5c">
             <svg class="h-icon i-play" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="14" width="52" height="36" rx="10"/><path d="M28 24 L42 32 L28 40 Z"/></svg>
             <span class="h-no">01</span>
             <h3>YouTube tutorials</h3>
             <p>Watching how-to videos to see how the tools really work.</p>
           </div>
-          <div class="habit" data-step="2" style="--c:#ffc83d">
+          <div class="habit" data-step="1" style="--c:#ffc83d">
             <svg class="h-icon i-bulb" viewBox="0 0 64 64" aria-hidden="true"><g class="rays"><path d="M32 2 V9 M9 13 L14 18 M55 13 L50 18 M2 34 H9 M62 34 H55"/></g><path class="glass" d="M32 14 a17 17 0 0 0 -10 31 v5 a3 3 0 0 0 3 3 h14 a3 3 0 0 0 3 -3 v-5 A17 17 0 0 0 32 14 z"/><path class="base" d="M25 58 H39"/></svg>
             <span class="h-no">02</span>
             <h3>Following the experts</h3>
             <p>Their lessons learned and advice, so I can skip their mistakes.</p>
           </div>
-          <div class="habit" data-step="3" style="--c:#12c97f">
+          <div class="habit" data-step="2" style="--c:#12c97f">
             <svg class="h-icon i-group" viewBox="0 0 64 64" aria-hidden="true"><g class="p p1"><circle cx="14" cy="26" r="7"/><path d="M3 50 Q14 34 25 50"/></g><g class="p p2"><circle cx="32" cy="20" r="8"/><path d="M19 48 Q32 30 45 48"/></g><g class="p p3"><circle cx="50" cy="26" r="7"/><path d="M39 50 Q50 34 61 50"/></g></svg>
             <span class="h-no">03</span>
             <h3>User groups &amp; communities</h3>
             <p>Learning side by side with other AI practitioners.</p>
           </div>
-          <div class="habit time" data-step="4" style="--c:#7c5cff">
+          <div class="habit time" data-step="3" style="--c:#7c5cff">
             <svg class="h-icon i-clock" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26"/><path class="hand-h" d="M32 32 V18"/><path class="hand-m" d="M32 32 V11"/><circle class="pin" cx="32" cy="32" r="3"/></svg>
             <span class="h-no">04 · Lastly</span>
             <h3>Time. Lots of it.</h3>
@@ -124,7 +124,7 @@
     </section>
 
     <!-- ========== 4 · My wife's suggestion ========== -->
-    <!-- Step 1: twin beds slide in, the AI agent pops up in my bed, then the "My wife", "Me" and AI labels. Step 2: lights out. -->
+    <!-- One click: twin beds slide in, the AI agent pops up in my bed, the "My wife", "Me" and AI labels pop with the Zzz, then lights out. -->
     <section class="slide bedroom-slide" data-title="My wife's suggestion">
       <div class="slide-inner bedroom-wrap">
         <p class="family-line enter"><span aria-hidden="true">❤️</span> Family support is critical to your learning success.</p>
@@ -187,7 +187,7 @@
             </g>
           </g>
 
-          <g data-step="2" class="night">
+          <g data-step="1" class="night">
             <!-- Lights out: the room dims; the moon and the robot's eyes keep glowing -->
             <g class="robot-eyes"><circle cx="960" cy="313" r="6"/><circle cx="984" cy="313" r="6"/></g>
             <g class="zzz-group"><text class="zz z1" x="236" y="306">z</text><text class="zz z2" x="214" y="280">Z</text><text class="zz z3" x="796" y="306">z</text><text class="zz z4" x="774" y="280">Z</text></g>
@@ -223,7 +223,7 @@
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="../assets/js/slides.js?v=3"></script>
+  <script src="../assets/js/slides.js?v=4"></script>
   <script src="../assets/js/site.js?v=3"></script>
 </body>
 </html>

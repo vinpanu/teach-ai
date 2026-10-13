@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="coach.css?v=4">
+  <link rel="stylesheet" href="coach.css?v=5">
 </head>
 <body class="deck-body">
 
@@ -21,7 +21,7 @@
   <a class="deck-brand" href="../../"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
   <a class="deck-back" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
 
-  <main class="deck" data-deck-title="My AI Health Coach">
+  <main class="deck" data-deck-title="My AI Health Coach" data-next="../../sessions/01-kickoff/#5">
     <div class="deck-bg" aria-hidden="true">
       <canvas id="network"></canvas>
       <div class="glow g1"></div>
@@ -32,7 +32,7 @@
     <!-- ========== 1 · Title ========== -->
     <section class="slide coach-title" data-title="Meet the POA Team">
       <div class="slide-inner">
-        <span class="eyebrow enter"><span class="pulse"></span>Lane 2 · My AI Health Coach · Sample</span>
+        <span class="eyebrow enter"><span class="pulse"></span>Lane 1 · My AI Health Coach · Sample</span>
         <div class="title-icons enter" style="--d:.1s" aria-hidden="true"><span>🧪</span><span>🏋️</span><span>🤖</span></div>
         <h1 class="enter" style="--d:.2s">Meet the <span class="gradient-text">POA Team</span></h1>
         <p class="lead enter" style="--d:.35s"><b>POA</b> = Physique Optimization Agent.<br>Where coaching experience meets science and AI.</p>
@@ -54,52 +54,47 @@
         <div class="flash" aria-hidden="true"></div>
         <h2 class="enter">Say “<span class="gradient-text">cheese</span> (non-fat)!” 📸</h2>
         <div class="team-photo"></div>
-        <aside class="pro-tip" data-step="1">
+        <aside class="pro-tip" data-step="0">
           <span class="pro-tip-badge">Pro Tip</span>
           <p>Notice the <b>Testing Grader</b> is separate from the <b>Builder</b>. Just like a human team, an AI team works better when nobody grades their own work.</p>
         </aside>
       </div>
     </section>
 
-    <!-- ========== 4 · Fun break ========== -->
-    <section class="slide" data-title="Fun break">
-      <div class="slide-inner break-wrap">
-        <div class="kicker enter">Fun break</div>
-        <h2 class="enter" style="--d:.1s">Even AI agents <span class="gradient-text">skip leg day.</span></h2>
-        <div class="gym" aria-label="Coach Vince leads the robot agents through a lifting workout. One robot wobbles under its barbell."></div>
-        <div class="rep-counter" aria-hidden="true"><span>Rep</span><b class="reps"></b></div>
-      </div>
-    </section>
-
-    <!-- ========== 5 · Story time (live story) ========== -->
-    <section class="slide story-time" data-title="Story time">
+    <!-- ========== 4 · Fun break (top) + Story time (bottom), all on one screen ========== -->
+    <section class="slide story-time combo-slide" data-title="Fun break + story time">
       <div class="spotlight" aria-hidden="true"></div>
       <div class="slide-inner">
-        <div class="mic enter" aria-hidden="true">🎤</div>
-        <div class="neon enter" style="--d:.2s">Story Time</div>
-        <p class="neon-sub enter" style="--d:.5s">A real story. No slides, no script.</p>
-        <h2 class="enter" style="--d:.7s">The fun side of building <span class="gradient-text">my health coach.</span></h2>
+        <div class="combo-top">
+          <h2 class="enter break-head"><span class="kicker-inline">Fun break ·</span> Even AI agents <span class="gradient-text">skip leg day.</span></h2>
+          <div class="gym enter" aria-label="Coach Vince leads the robot agents through a lifting workout. One robot wobbles under its barbell."></div>
+        </div>
+        <div class="combo-bottom">
+          <div class="st-row enter"><div class="mic" aria-hidden="true">🎤</div><div class="neon">Story Time</div></div>
+          <p class="neon-sub enter">A real story. No slides, no script.</p>
+          <h2 class="enter st-teaser">The fun side of building <span class="gradient-text">my health coach.</span></h2>
+        </div>
       </div>
     </section>
 
-    <!-- ========== 6 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <!-- ========== 5 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
     <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#ff8a3d">
       <div class="lane-glow" aria-hidden="true"></div>
       <div class="slide-inner">
         <span class="pitch-badge enter"><span aria-hidden="true">🩺</span>If you pick this lane</span>
         <h2 class="enter" style="--d:.1s">Here's what <span class="gradient-text">you'll get.</span></h2>
         <div class="pitch-cards">
-          <div class="pitch-card" data-step="1"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">😂</span>
+          <div class="pitch-card" data-step="0"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">😂</span>
             <h3>Real (funny) stories</h3>
             <p>True moments from me working with my AI team, the good, the bad and the hilarious.</p></div>
-          <div class="pitch-card" data-step="2"><span class="pc-no">02</span><span class="pc-icon" aria-hidden="true">📋</span>
+          <div class="pitch-card" data-step="1"><span class="pc-no">02</span><span class="pc-icon" aria-hidden="true">📋</span>
             <h3>Performance reviews… for AI</h3>
             <p>How I give my AI agents a <b>monthly performance review</b>. Yes, really.</p></div>
-          <div class="pitch-card" data-step="3"><span class="pc-no">03</span><span class="pc-icon" aria-hidden="true">🚨</span>
+          <div class="pitch-card" data-step="2"><span class="pc-no">03</span><span class="pc-icon" aria-hidden="true">🚨</span>
             <h3>The app nobody approved</h3>
             <p>The time my team started building an app <b>without my permission, or my knowledge.</b></p></div>
         </div>
-        <div class="pitch-foot" data-step="3">
+        <div class="pitch-foot" data-step="2">
           <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>My AI Health Coach</b></span>
           <div class="end-row">
             <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
@@ -114,12 +109,12 @@
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 6</span>
+    <span class="deck-counter" aria-live="polite">1 / 5</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
   <script src="coach.js?v=4"></script>
-  <script src="../../assets/js/slides.js?v=3"></script>
+  <script src="../../assets/js/slides.js?v=4"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
 </html>

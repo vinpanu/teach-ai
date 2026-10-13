@@ -4,9 +4,8 @@
 .title-slide { text-align: center; }
 .title-slide .slide-inner { display: flex; flex-direction: column; align-items: center; }
 .title-slide .eyebrow { font-size: clamp(0.9rem, 2vmin, 1.15rem); }
-.title-slide[data-at="1"] .deck-hint { display: none; }
 
-/* "Why it's different" (first click): the Fun car and the Productivity car crash head-on.
+/* "Why it's different" (plays when the scene opens): the Fun car and the Productivity car crash head-on.
    Timeline (s): drive in 0–1.46 · impact 1.46 (flash, BAM!, sparks, shake) · bounce back · smoke 1.7+ · tagline 2.9 · short-bursts pill 4.4 */
 .why { width: 100%; margin-top: clamp(16px, 3.5vh, 40px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 22px); }
 .crash { width: 100%; max-width: 1100px; max-height: 33vh; overflow: visible; }
@@ -166,7 +165,7 @@
 @keyframes hide { to { opacity: 0; } }
 @keyframes show { to { opacity: 1; } }
 
-.play .t-arm { animation: writing 4.5s ease-in-out 4.95s both; }
+.play .t-arm { animation: writing 3.6s ease-in-out 4.95s both; }
 @keyframes writing {
   0% { transform: rotate(0); }
   10% { transform: rotate(128deg); }
@@ -177,19 +176,19 @@
   100% { transform: rotate(0); }
 }
 .chalk { clip-path: inset(0 100% 0 0); }
-.play .chalk.l1 { animation: chalkIn 1.2375s linear 5.2875s forwards; }
-.play .chalk.l2 { animation: chalkIn 1.35s linear 6.6375s forwards; }
-.play .chalk.l3 { animation: chalkIn 1.35s linear 8.1s forwards; }
+.play .chalk.l1 { animation: chalkIn 0.9s linear 5.2875s forwards; }
+.play .chalk.l2 { animation: chalkIn 0.95s linear 6.3s forwards; }
+.play .chalk.l3 { animation: chalkIn 0.95s linear 7.4s forwards; }
 @keyframes chalkIn { to { clip-path: inset(0 0 0 0); } }
 
-.play .upper { animation: headDown 1.0125s cubic-bezier(.5, 0, .6, 1) 9.9s both; }
+.play .upper { animation: headDown 1.0125s cubic-bezier(.5, 0, .6, 1) 9s both; }
 @keyframes headDown { to { transform: rotate(62deg); } }
 
 .zzz { font: 700 40px var(--font-display); fill: var(--accent-2); opacity: 0; }
 .play .zzz { animation: snore 2.925s ease-out infinite; }
-.play .z1 { animation-delay: 10.8s; }
-.play .z2 { animation-delay: 11.7s; font-size: 50px; }
-.play .z3 { animation-delay: 12.6s; font-size: 62px; }
+.play .z1 { animation-delay: 9.9s; }
+.play .z2 { animation-delay: 10.8s; font-size: 50px; }
+.play .z3 { animation-delay: 11.7s; font-size: 62px; }
 @keyframes snore {
   0% { opacity: 0; transform: translate(0, 0); }
   25% { opacity: 1; }
@@ -197,13 +196,13 @@
 }
 
 .you-bubble { transform-box: fill-box; transform-origin: 70% 100%; opacity: 0; }
-.play .you-bubble { animation: pop 0.7875s cubic-bezier(.3, 1.6, .5, 1) 11.7s forwards, bob 3.15s ease-in-out 12.6s infinite; }
+.play .you-bubble { animation: pop 0.7875s cubic-bezier(.3, 1.6, .5, 1) 10.8s forwards, bob 3.15s ease-in-out 11.7s infinite; }
 @keyframes pop { 0% { opacity: 0; transform: scale(0.2); } 100% { opacity: 1; transform: scale(1); } }
 @keyframes bob { 0%, 100% { opacity: 1; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-8px); } }
 .you-text { font: 700 54px var(--font-display); fill: #fff; letter-spacing: 0.04em; }
 
 .me-bubble { transform-box: fill-box; transform-origin: 50% 100%; opacity: 0; }
-.play .me-bubble { animation: pop 0.7875s cubic-bezier(.3, 1.6, .5, 1) 12.4875s forwards, bob 3.15s ease-in-out 13.5s infinite; }
+.play .me-bubble { animation: pop 0.7875s cubic-bezier(.3, 1.6, .5, 1) 11.6s forwards, bob 3.15s ease-in-out 12.6s infinite; }
 
 /* ---------- Scene 3: expect / don't expect ---------- */
 .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 48px); margin-top: 0.6em; }
@@ -234,6 +233,7 @@
 .levels { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(24px, 5vw, 80px); align-items: center; }
 .levels .lead { max-width: 24ch; }
 .levels .lead .pro-tip-badge { font-size: 0.75em; }
+.levels .pro-intro.on { transition-delay: 2.8s; }   /* appears together with the Pro Tip bulb */
 .meters { display: flex; justify-content: center; align-items: flex-end; gap: clamp(28px, 6vw, 90px); }
 .meter { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .meter-bar { display: flex; flex-direction: column-reverse; gap: 6px; }

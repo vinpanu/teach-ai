@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="rogue.css?v=4">
+  <link rel="stylesheet" href="rogue.css?v=5">
 </head>
 <body class="deck-body">
 
@@ -21,7 +21,7 @@
   <a class="deck-brand" href="../../"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
   <a class="deck-back" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
 
-  <main class="deck" data-deck-title="AI Gone Rogue">
+  <main class="deck" data-deck-title="AI Gone Rogue" data-next="../../sessions/01-kickoff/#5">
     <div class="deck-bg" aria-hidden="true">
       <canvas id="network"></canvas>
       <div class="glow g1"></div>
@@ -32,7 +32,7 @@
     <!-- ========== 1 · Title ========== -->
     <section class="slide rogue-title" data-title="The AI Turf War">
       <div class="slide-inner">
-        <span class="eyebrow enter"><span class="siren"></span>Lane 3 · AI Gone Rogue · Sample</span>
+        <span class="eyebrow enter"><span class="siren"></span>Lane 2 · AI Gone Rogue · Sample</span>
         <h1 class="enter glitch" style="--d:.15s" data-text="The AI Turf War">The AI Turf War</h1>
         <p class="lead enter" style="--d:.35s">Anthropic gave its own AI agents the same project and <strong>conflicting orders</strong>.<br>Nobody told them about each other.</p>
         <p class="source-chip enter" style="--d:.55s">Based on Anthropic research · August 2026</p>
@@ -55,9 +55,9 @@
           </svg>
           <div class="server enter" style="--d:.8s"><span class="server-icon">📦</span><span><b>backend/</b><small>one shared Python app</small></span></div>
           <div class="facts">
-            <span class="fact" data-step="1">🙈 None of them knew the others existed</span>
-            <span class="fact" data-step="2">⏱️ Each run lasted 4 hours</span>
-            <span class="fact" data-step="3">🔁 120 runs per AI model</span>
+            <span class="fact enter" style="--d:1s">🙈 None of them knew the others existed</span>
+            <span class="fact enter" style="--d:1.15s">⏱️ Each run lasted 4 hours</span>
+            <span class="fact enter" style="--d:1.3s">🔁 120 runs per AI model</span>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
           <div class="lesson enter" style="--d:.4s"><span class="big emoji">🥊</span><p>Older models (Sonnet 4.6, Opus 4.6) mostly <b>fought it out</b>, or never settled at all.</p></div>
           <div class="lesson enter" style="--d:.55s"><span class="big emoji">🧠</span><p>Being more capable didn't automatically make an agent <b>cooperative</b>.</p></div>
         </div>
-        <aside class="pro-tip" data-step="1">
+        <aside class="pro-tip enter" style="--d:.75s">
           <span class="pro-tip-badge">Pro Tip</span>
           <p>Two habits predicted a peaceful ending: the agent <b>thinking about what the other agent wanted</b>, and <b>knowing when to stop and ask a human</b>. Build both into any setup where agents share work.</p>
         </aside>
@@ -128,23 +128,23 @@
         <h2 class="enter" style="--d:.1s">Liked this story?<br>You'll <span class="gradient-text">love the next one.</span></h2>
         <p class="lead enter" style="--d:.25s">I saved the best one for the deep dive.</p>
         <div class="teaser">
-          <figure class="review" data-step="1">
+          <figure class="review" data-step="0">
             <figcaption class="rv-top">🎬 If it were a sci-fi movie…</figcaption>
             <blockquote>“Unrealistic. That could <b>never</b> happen. Not in a hundred years.”</blockquote>
             <div class="rv-stars" role="img" aria-label="1 out of 5 stars">★<span>★★★★</span></div>
             <div class="rv-who">You, walking out of the theater</div>
           </figure>
-          <div class="case-file" data-step="2">
+          <div class="case-file" data-step="1">
             <div class="cf-tab">Case file #2</div>
             <div class="cf-body">
               <p class="cf-label">Deep dive · Classified until the vote</p>
               <i class="redact" style="--w:92%"></i><i class="redact" style="--w:74%"></i><i class="redact" style="--w:84%"></i>
               <p class="cf-line">Documented by the <b>companies themselves.</b></p>
             </div>
-            <div class="stamp" aria-label="Stamped: it happened">It happened</div>
+            <div class="cf-stamp" aria-label="Stamped: it happened">It happened</div>
           </div>
         </div>
-        <div class="pitch-foot" data-step="3">
+        <div class="pitch-foot" data-step="1">
           <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>AI Gone Rogue</b></span>
           <div class="end-row">
             <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
@@ -163,8 +163,8 @@
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="rogue.js?v=3"></script>
-  <script src="../../assets/js/slides.js?v=3"></script>
+  <script src="rogue.js?v=4"></script>
+  <script src="../../assets/js/slides.js?v=4"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
 </html>

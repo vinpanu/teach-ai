@@ -168,17 +168,18 @@ kbd {
        <span class="pitch-badge enter"><span aria-hidden="true">🗞️</span>If you pick this lane</span>
        <h2 class="enter" style="--d:.1s">Here's what <span class="gradient-text">you'll get.</span></h2>
        <div class="pitch-cards">
-         <div class="pitch-card" data-step="1"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🗓️</span>
+         <div class="pitch-card" data-step="0"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🗓️</span>
            <h3>Short title</h3><p>One line on what they get.</p></div>
-         … cards 2 and 3 (data-step="2", "3") …
+         … cards 2 and 3 (data-step="1", "2") …
        </div>
-       <div class="pitch-foot" data-step="3">
+       <div class="pitch-foot" data-step="2">
          <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>Lane name</b></span>
          <div class="end-row">…buttons…</div>
        </div>
      </div>
    </section>
-   --lane sets the accent (use the lane's color from the home page cards). */
+   --lane sets the accent (use the lane's color from the home page cards). The first card shows on entry.
+   Put data-next="../../sessions/01-kickoff/#5" on the deck's <main> so Next returns to the lanes. */
 .lane-pitch { --lane: var(--accent-2); }
 .lane-pitch .slide-inner { text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 1400px; }
 .lane-pitch .lane-glow {

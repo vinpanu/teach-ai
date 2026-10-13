@@ -134,8 +134,8 @@
 .stand { fill: color-mix(in srgb, var(--text) 14%, var(--bg)); stroke: var(--text); stroke-width: 5; }
 .stand-line { stroke: var(--text); stroke-width: 3; }
 .lamp-base { stroke: var(--text); stroke-width: 5; stroke-linecap: round; fill: none; }
-.lamp-shade { fill: #ffd84d; stroke: var(--text); stroke-width: 4; stroke-linejoin: round; transition: fill 0.3s ease 0.6s; }
-.lamp-glow { transition: opacity 0.3s ease 0.6s; }
+.lamp-shade { fill: #ffd84d; stroke: var(--text); stroke-width: 4; stroke-linejoin: round; transition: fill 0.3s ease 3.6s; }
+.lamp-glow { transition: opacity 0.3s ease 3.6s; }
 .bubble-text { font: 700 31px var(--font-display); fill: #fff; letter-spacing: 0.01em; }
 
 /* Step 1: the beds slide in from both sides, the AI agent pops up, then the labels */
@@ -153,20 +153,20 @@
 .beds.on .pop-2 { animation: pop 0.7s cubic-bezier(.3, 1.6, .5, 1) 2.7s both; }
 @keyframes pop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
 
-/* Step 2: the lamp clicks off and the room goes dark
+/* Same click: the Zzz start as the bubbles pop, then the lamp clicks off and the room goes dark
    (the moon, the name bubbles and the robot's eyes stay bright) */
 .room, .bed > :not(.bubble) { transition: filter 1.2s ease; }
-.bedroom-slide[data-at="2"] .room, .bedroom-slide[data-at="2"] .bed > :not(.bubble) { filter: brightness(0.42) saturate(0.7); transition-delay: 0.6s; }
-.bedroom-slide[data-at="2"] .lamp-glow { opacity: 0; }
-.bedroom-slide[data-at="2"] .lamp-shade { fill: color-mix(in srgb, var(--text) 25%, var(--bg)); }
+.bedroom-slide[data-at="1"] .room, .bedroom-slide[data-at="1"] .bed > :not(.bubble) { filter: brightness(0.42) saturate(0.7); transition-delay: 3.6s; }
+.bedroom-slide[data-at="1"] .lamp-glow { opacity: 0; }
+.bedroom-slide[data-at="1"] .lamp-shade { fill: color-mix(in srgb, var(--text) 25%, var(--bg)); }
 .robot-eyes circle { fill: #2de2b5; filter: drop-shadow(0 0 6px #2de2b5); opacity: 0; }
-.night.on .robot-eyes circle { animation: eyesOn 0.5s ease 1.3s both, glowPulse 2.4s ease-in-out 1.8s infinite; }
+.night.on .robot-eyes circle { animation: eyesOn 0.5s ease 4.2s both, glowPulse 2.4s ease-in-out 4.7s infinite; }
 @keyframes eyesOn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes glowPulse { 50% { opacity: 0.55; } }
 .zz { font: 700 34px var(--font-display); fill: #7d9bff; opacity: 0; }
 .night.on .zz { animation: snore 3s ease-out infinite; }
-.night.on .z1, .night.on .z3 { animation-delay: 1.8s; }
-.night.on .z2, .night.on .z4 { animation-delay: 2.5s; }
+.night.on .z1, .night.on .z3 { animation-delay: 2s; }
+.night.on .z2, .night.on .z4 { animation-delay: 2.7s; }
 @keyframes snore { 0% { opacity: 0; transform: translate(0, 0); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -34px); } }
 
 /* ---------- 5 · Your turn ---------- */

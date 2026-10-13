@@ -1,7 +1,9 @@
 // AI in Practice — slide engine (shared by every session page).
 // Next: → Space PageDown Enter click/tap · Back: ← PageUp · F fullscreen · R replay scene.
 // Each slide can reveal items one click at a time with data-step="1", "2", …
+// data-step="0" shows an item as soon as the scene opens (and replays its .on animations).
 // (or declare data-steps="n" and react to the "slidestep" event for custom scenes).
+// <main class="deck" data-next="url">: pressing Next on the very last step goes to that page.
 (() => {
   const deck = document.querySelector(".deck");
   if (!deck) return;
@@ -24,8 +26,9 @@
       if (i !== index) other.classList.remove("play");
     });
     if (entering) {
-      // Restart this scene's animations from the beginning.
+      // Restart this scene's animations from the beginning (including data-step="0" items).
       s.classList.remove("play");
+      s.querySelectorAll("[data-step]").forEach((el) => el.classList.remove("on"));
       void s.offsetWidth;
       s.classList.add("play");
     }
@@ -48,6 +51,7 @@
   };
   const next = () => {
     if (at < stepsIn(slides[index])) { at++; render(false); }
+    else if (index === slides.length - 1 && deck.dataset.next) location.href = deck.dataset.next;
     else go(index + 1);
   };
   const prev = () => {

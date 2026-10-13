@@ -388,3 +388,35 @@
 .pitch-card .queue { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.8em; }
 .pitch-card .queue .chip { font-size: clamp(0.75rem, 1.6vmin, 0.95rem); }
 @media (max-width: 900px) { .pitch-card .queue { grid-column: 1 / -1; } }   /* phones: chips span the full card, under the icon + text */
+
+/* ---------- 1 · "Vince's pick" award seal on the headline ---------- */
+.title-wrap { position: relative; display: inline-block; }
+.vince-pick {
+  position: absolute; right: -0.9em; top: -0.55em; width: clamp(96px, 17vmin, 200px); aspect-ratio: 1;
+  font-size: clamp(3.4rem, 15vmin, 11rem);   /* same em as the h1, so the offsets track the headline */
+  transform: rotate(14deg); opacity: 0; pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(255, 170, 40, 0.45));
+}
+.vince-pick svg { width: 100%; height: 100%; overflow: visible; }
+.fresh-title.play .vince-pick { animation: sealSlam 0.6s cubic-bezier(.5, 0, .6, 1.4) 1.5s both, sealGlow 2.8s ease-in-out 2.4s infinite; }
+@keyframes sealSlam {
+  0% { opacity: 0; transform: rotate(-30deg) scale(2.6); }
+  70% { opacity: 1; transform: rotate(18deg) scale(0.92); }
+  100% { opacity: 1; transform: rotate(14deg) scale(1); }
+}
+@keyframes sealGlow { 50% { filter: drop-shadow(0 10px 34px rgba(255, 190, 60, 0.85)); } }
+.seal-edge { fill: url(#goldGrad); stroke: #b86b00; stroke-width: 2; }
+.seal-ring { fill: none; stroke: #7a4300; stroke-width: 2; stroke-dasharray: 3 4; opacity: 0.6; }
+.seal-core { fill: #1a1030; stroke: #ffd36b; stroke-width: 3; }
+.seal-arc { font: 700 15px var(--font-display); letter-spacing: 0.12em; fill: #5a3200; }
+.seal-spin { transform-box: view-box; transform-origin: 100px 100px; }
+.fresh-title.play .seal-spin { animation: sealSpin 22s linear infinite; }
+@keyframes sealSpin { to { transform: rotate(360deg); } }
+.seal-small { font: 700 17px var(--font-display); letter-spacing: 0.14em; fill: #ffd36b; }
+.seal-big { font: 800 40px var(--font-display); letter-spacing: 0.04em; fill: #fff; }
+.t-pick { color: #ffc53d !important; }
+@media (max-width: 760px) { .vince-pick { width: 78px; right: -0.12em; top: -1.15em; } }
+@media (prefers-reduced-motion: reduce) {
+  .fresh-title.play .vince-pick { animation: none; opacity: 1; }
+  .fresh-title.play .seal-spin { animation: none; }
+}

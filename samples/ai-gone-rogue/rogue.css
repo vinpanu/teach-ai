@@ -193,14 +193,14 @@
 .case-file.on .redact:nth-of-type(3) { animation-delay: 0.3s; }
 @keyframes redact { to { width: var(--w); } }
 .cf-line { margin: 0.2em 0 0; font: 700 clamp(1.1rem, 2.9vmin, 1.75rem) / 1.25 var(--font-display); }
-.stamp {
+.cf-stamp {
   position: absolute; right: 7%; top: 27%; padding: 0.15em 0.5em;
   font: 800 clamp(1.3rem, 4vmin, 2.5rem) var(--font-display); text-transform: uppercase; letter-spacing: 0.06em;
   color: #d4142f; border: 0.12em solid #d4142f; border-radius: 0.2em;
   background: color-mix(in srgb, #f0d391 70%, transparent);
   transform: rotate(-12deg); opacity: 0; mix-blend-mode: multiply;
 }
-.case-file.on .stamp { animation: stampSlam 0.45s cubic-bezier(.5, 0, .6, 1.4) 0.9s forwards; }
+.case-file.on .cf-stamp { animation: stampSlam 0.45s cubic-bezier(.5, 0, .6, 1.4) 0.9s forwards; }
 @keyframes stampSlam {
   0% { opacity: 0; transform: rotate(-12deg) scale(2.6); }
   70% { opacity: 1; transform: rotate(-12deg) scale(0.94); }
@@ -211,6 +211,7 @@
 @media (max-width: 900px) { .teaser { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) {
   .case-file.on .redact { animation: none; width: var(--w); }
-  .case-file.on .stamp { animation: none; opacity: 1; }
+  .case-file.on .cf-stamp { animation: none; opacity: 1; }
   .case-file.on { animation: none; }
 }
+.rogue-pitch .pitch-foot.on { transition-delay: 1.6s; }   /* after the stamp lands */

@@ -97,6 +97,7 @@
 .slide.play .tp-member { animation: lineUp 0.6s cubic-bezier(.3, 1.4, .5, 1) calc(0.15s + var(--k) * 0.12s) both; }
 @keyframes lineUp { from { opacity: 0; transform: translateY(40px) scale(0.8); } to { opacity: 1; transform: none; } }
 .tp-wrap .pro-tip { text-align: left; max-width: 980px; margin: 0 auto; font-size: clamp(0.95rem, 2.4vmin, 1.35rem); }
+.tp-wrap .pro-tip.on { transition-delay: 2.2s; }   /* shows on its own, right after the camera flash */
 @media (max-width: 760px) { .team-photo { flex-direction: column; align-items: center; } .tp-row { flex-wrap: wrap; justify-content: center; } }
 
 /* ---------- 4 · Fun break: team workout ---------- */
@@ -130,3 +131,18 @@
 .reps::after { content: "1"; color: var(--text); margin-left: 0.3em; animation: reps 4.8s steps(1) infinite; }
 @keyframes reps { 0% { content: "1"; } 33.3% { content: "2"; } 66.6% { content: "3 💪"; } }
 @media (max-width: 760px) { .gym .lifter:nth-child(n + 5) { display: none; } .gym .avatar { height: 90px; } }
+
+/* ---------- 4 · Fun break (top half) + Story Time (bottom half) on one screen ---------- */
+.combo-slide .slide-inner { gap: clamp(8px, 2vh, 22px); }
+.combo-top { width: 100%; padding-bottom: clamp(6px, 1.4vh, 16px); }
+.combo-slide .break-head { font-size: clamp(1.5rem, 4.6vmin, 3.2rem); margin: 0 0 clamp(26px, 4vh, 44px); }
+.kicker-inline { color: var(--accent-2); }
+.combo-slide .gym { margin-top: 0; }
+.combo-slide .gym .avatar { height: clamp(80px, 18vh, 190px); }
+.combo-bottom { display: flex; flex-direction: column; align-items: center; }
+.st-row { display: flex; align-items: center; gap: clamp(10px, 2vw, 26px); }
+.combo-slide .mic { font-size: clamp(2rem, 7vmin, 4.4rem); }
+.combo-slide .neon { font-size: clamp(2rem, 7.5vmin, 5rem); margin: 0; }
+.combo-slide .neon-sub { margin: 0.5em 0 0.1em; }
+.combo-slide .st-teaser { font-size: clamp(1.4rem, 4.4vmin, 3.1rem); margin: 0.2em 0 0; }
+@media (max-width: 760px) { .whistle-bubble { left: -6px; transform: none; animation: none; } }   /* keep the bubble on screen on phones */

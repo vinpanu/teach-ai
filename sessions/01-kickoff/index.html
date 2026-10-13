@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="session.css?v=4">
+  <link rel="stylesheet" href="session.css?v=5">
 </head>
 <body class="deck-body">
 
@@ -35,8 +35,8 @@
         <h1 class="enter" style="--d:.15s">AI in <span class="gradient-text">Practice</span></h1>
         <p class="lead enter" style="--d:.35s">A different kind of AI training.</p>
 
-        <!-- "Why it's different": plays on the first click. The Fun car and the Productivity car crash head-on. -->
-        <div class="why" data-step="1">
+        <!-- "Why it's different": plays as soon as the scene opens. The Fun car and the Productivity car crash head-on. -->
+        <div class="why" data-step="0">
           <svg class="crash" viewBox="0 0 1000 250" role="img" aria-label="Two cartoon cars, one with a Fun sign on its roof and one with a Productivity sign, speed toward each other and crash head-on.">
             <defs>
               <linearGradient id="funGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff4fd8"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient>
@@ -219,18 +219,18 @@
           <div class="expect-col yes enter" style="--d:.15s">
             <h3><span class="mark">✓</span>Expect</h3>
             <ul>
-              <li data-step="1">Things you can use immediately</li>
-              <li data-step="2">Stories from real projects</li>
-              <li data-step="3">You help steer the topics</li>
-              <li data-step="4">Something for every level, from beginners to experts</li>
+              <li data-step="0">Things you can use immediately</li>
+              <li data-step="1">Stories from real projects</li>
+              <li data-step="2">You help steer the topics</li>
+              <li data-step="3">Something for every level, from beginners to experts</li>
             </ul>
           </div>
           <div class="expect-col no enter" style="--d:.3s">
             <h3><span class="mark">✕</span>Don't expect</h3>
             <ul>
-              <li data-step="5">Lectures and formulas</li>
-              <li data-step="6">Step-by-step tutorials</li>
-              <li data-step="7">Hype or doom</li>
+              <li data-step="4">Lectures and formulas</li>
+              <li data-step="5">Step-by-step tutorials</li>
+              <li data-step="6">Hype or doom</li>
             </ul>
           </div>
         </div>
@@ -243,7 +243,7 @@
         <div>
           <div class="kicker enter">Beginner or expert?</div>
           <h2 class="enter" style="--d:.1s">Built for <span class="gradient-text">every level.</span></h2>
-          <p class="lead" data-step="1">See this badge? <span class="pro-tip-badge">Pro Tip</span><br>It's a bonus for the advanced crowd, and it can show up anywhere, even in the basics.</p>
+          <p class="lead pro-intro" data-step="0">See this badge? <span class="pro-tip-badge">Pro Tip</span><br>It's a bonus for the advanced crowd, and it can show up anywhere, even in the basics.</p>
         </div>
         <div class="meters" aria-label="Two skill scales: the left one rises to Beginner, the right one rises all the way to Expert, topped by a Pro Tip lightbulb.">
           <div class="meter beginner">
@@ -315,7 +315,7 @@
   </div>
 
   <script src="session.js?v=6"></script>
-  <script src="../../assets/js/slides.js?v=3"></script>
+  <script src="../../assets/js/slides.js?v=4"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
 </html>
