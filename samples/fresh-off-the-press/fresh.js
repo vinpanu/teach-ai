@@ -1,7 +1,7 @@
 // Fresh Off the Press · "What's New?" sneak peek.
 // Scene 1: the headline "decodes" from random characters, then a boot line types out.
-// Scene 2: each click reveals one feature card (shimmer → decoded name → words stream in);
-//          click 5 shows all four. The Intelligent UI card holds a working bill splitter.
+// Scene 2: the four feature cards load on entry, one after another (shimmer → decoded name →
+//          words stream in); clicks 1–4 spotlight one card each, click 5 shows all four. The Intelligent UI card holds a working bill splitter.
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*+<>/=?";
@@ -66,17 +66,31 @@
       .map((w, i) => `<span class="w" style="--i:${i}">${w}</span>`).join(" ");
   });
 
+  // Turn a card on (once) and decode its name.
+  const reveal = (card) => {
+    if (card.classList.contains("on")) return;
+    card.classList.add("on");
+    decode(card.querySelector("[data-decode]"), 700);
+    slide.dispatchEvent(new CustomEvent("cardon"));
+  };
+
   slide.addEventListener("slidestep", (e) => {
     const at = e.detail.at;
-    cards.forEach((card, i) => {
-      const wasOn = card.classList.contains("on");
-      const on = at >= i + 1;
-      card.classList.toggle("on", on);
-      card.classList.toggle("focus", at === i + 1);
-      if (on && (!wasOn || e.detail.entering)) decode(card.querySelector("[data-decode]"), 700);
-    });
+    if (e.detail.entering) {
+      // All four cards load by themselves, one after another, so nothing sits there looking empty.
+      cards.forEach((card) => { clearTimeout(card._t); card.classList.remove("on"); });
+      cards.forEach((card, i) => {
+        if (at > 0 || reduce) reveal(card);
+        else card._t = setTimeout(() => reveal(card), 300 + i * 450);
+      });
+    } else {
+      // A click before they've all loaded: finish loading them now.
+      cards.forEach((card) => { clearTimeout(card._t); reveal(card); });
+    }
+    // Clicks 1–4 spotlight one card each; click 5 shows them all side by side again.
+    cards.forEach((card, i) => card.classList.toggle("focus", at === i + 1));
     grid.classList.toggle("has-focus", at >= 1 && at <= cards.length);
-    // On phones the cards stack, so bring the newly revealed one into view.
+    // On phones the cards stack, so bring the spotlighted one into view.
     const focused = cards[at - 1];
     if (focused && innerWidth <= 760) focused.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
   });
@@ -101,12 +115,16 @@
   const iuiCard = widget.closest(".feat");
   const SEQ = [5, 6, 2, 3, 4];
   let k = 0;
-  slide.addEventListener("slidestep", (e) => {
-    if (e.detail.entering) { clearInterval(auto); auto = null; n = 4; k = 0; show(); }
+  const startAuto = () => {
     if (iuiCard.classList.contains("on") && auto === null && !reduce && !widget._touched) {
       auto = setInterval(() => { n = SEQ[k++ % SEQ.length]; show(); }, 1800);
     }
+  };
+  slide.addEventListener("slidestep", (e) => {
+    if (e.detail.entering) { clearInterval(auto); auto = null; n = 4; k = 0; show(); }
+    startAuto();
   });
+  slide.addEventListener("cardon", startAuto);
   widget.addEventListener("pointerdown", () => { widget._touched = true; }, { once: true });
   show();
 })();

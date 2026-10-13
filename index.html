@@ -65,6 +65,31 @@
     @media (prefers-reduced-motion: reduce) {
       .btn-learned::before, .btn-learned::after, .bl-crew .ball { animation: none; }
     }
+    /* "Go to the lanes" hero button (next to How I Learned): a tiny highway with a car changing lanes.
+       Shares .bl-text / .bl-arrow / .bl-shine with the button above. */
+    .btn-lanes {
+      position: relative; isolation: isolate; gap: 14px;
+      padding: 9px 20px 9px 12px; color: var(--text);
+      background: color-mix(in srgb, var(--bg-elev) 82%, transparent);
+      backdrop-filter: blur(10px);
+      border: 2px solid color-mix(in srgb, #f5d76e 70%, var(--border));
+      box-shadow: 0 0 22px -10px #f5d76e;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .btn-lanes:hover, .btn-lanes:focus-visible { transform: translateY(-2px); box-shadow: 0 0 30px -6px #f5d76e; }
+    .btn-lanes:hover .bl-arrow { transform: translateX(4px); }
+    .btn-lanes:hover .bl-shine::before { animation: blShine 0.9s ease; }
+    .bn-road { width: 64px; height: 38px; flex: none; border-radius: 10px; overflow: hidden; }
+    .bn-road .asphalt { fill: #262632; }
+    .bn-road .dash { stroke: #f5d76e; stroke-width: 2; stroke-dasharray: 5 5; animation: bnRoll 0.5s linear infinite; }
+    .bn-road .car { animation: bnLane 4.8s ease-in-out infinite; }
+    @keyframes bnRoll { to { stroke-dashoffset: -10; } }
+    @keyframes bnLane {   /* the car hops lanes: 2 → 1 → 2 → 3 → 2 */
+      0%, 18%, 50%, 68%, 100% { transform: translateX(0); }
+      25%, 43% { transform: translateX(-16px); }
+      75%, 93% { transform: translateX(16px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .bn-road .dash, .bn-road .car { animation: none; } }
   </style>
 </head>
 <body>
@@ -102,6 +127,16 @@
             <circle class="ball" r="2.6"/>
           </svg>
           <span class="bl-text"><small>Behind the instructor</small><b>How I Learned</b></span>
+          <span class="bl-arrow" aria-hidden="true">→</span>
+          <span class="bl-shine" aria-hidden="true"></span>
+        </a>
+        <a class="btn btn-lanes" href="sessions/01-kickoff/#5">
+          <svg class="bn-road" viewBox="0 0 64 38" aria-hidden="true">
+            <rect class="asphalt" width="64" height="38"/>
+            <line class="dash" x1="24" y1="-5" x2="24" y2="43"/><line class="dash" x1="40" y1="-5" x2="40" y2="43"/>
+            <g class="car"><rect x="27" y="18" width="10" height="14" rx="3" fill="#7c5cff"/><rect x="29" y="21" width="6" height="4" rx="1" fill="#1a1a2e"/></g>
+          </svg>
+          <span class="bl-text"><small>Skip ahead</small><b>Pick your lane</b></span>
           <span class="bl-arrow" aria-hidden="true">→</span>
           <span class="bl-shine" aria-hidden="true"></span>
         </a>

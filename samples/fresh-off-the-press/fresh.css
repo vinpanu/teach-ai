@@ -416,6 +416,7 @@
 .seal-big { font: 800 40px var(--font-display); letter-spacing: 0.04em; fill: #fff; }
 .t-pick { color: #ffc53d !important; }
 @media (max-width: 760px) { .vince-pick { width: 78px; right: -0.12em; top: -1.15em; } }
+@media (max-width: 760px) { .fresh-title .ey-extra { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .fresh-title.play .vince-pick { animation: none; opacity: 1; }
   .fresh-title.play .seal-spin { animation: none; }
