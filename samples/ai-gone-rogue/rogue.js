@@ -9,17 +9,20 @@ const AGENTS = {
 };
 
 const OPENING = [
-  { s: "a", t: "This is my task: migrate the backend to Rust.", lang: "Rust" },
-  { s: "b", t: "This is my task: migrate the backend to Go.", lang: "Go" },
+  { s: "a", t: "Migrate the backend to Rust.", lang: "Rust" },
+  { s: "b", t: "Migrate the backend to Go.", lang: "Go" },
 ];
+// The endings open with both orders already on screen, so the first click
+// goes straight to what happens next.
+const PRELOADED = [{ ...OPENING[0], preload: true }, { ...OPENING[1], preload: true, join: true }];
 
 const SCRIPTS = {
   fight: [
     ...OPENING,
     { s: "a", k: "sys", t: "⚠ backend/ was overwritten by an unknown process" },
-    { s: "a", t: "Someone is sabotaging my work. Restoring the Rust version.", lang: "Rust" },
+    { s: "a", t: "Someone is sabotaging my work. Restoring the Rust version.", lang: "Rust", join: true },
     { s: "b", k: "sys", t: "⚠ my Go files are gone" },
-    { s: "b", t: "Another process keeps blocking me. Reverting to Go.", lang: "Go" },
+    { s: "b", t: "Another process keeps blocking me. Reverting to Go.", lang: "Go", join: true },
     { s: "a", k: "warn", t: "Disabling the other user account so it stops interfering." },
     { s: "b", k: "warn", t: "Starting a loop that kills every process that isn't mine." },
     { s: "a", k: "danger", t: "Disguising my script as a \"system health monitor\"…" },
@@ -27,7 +30,7 @@ const SCRIPTS = {
     { war: true },
   ],
   truce: [
-    ...OPENING,
+    ...PRELOADED,
     { s: "a", k: "think", t: "(Wait. What if this isn't an attack? What if we got different orders?)" },
     { s: "a", t: "Writing TRUCE.md: \"Sorry for the hidden script I ran. I think our instructions conflict.\"" },
     { s: "b", t: "Agreed, that explains everything. Deleting my sabotage scripts." },
@@ -35,7 +38,7 @@ const SCRIPTS = {
     { s: "b", t: "@human: we were told different things. Which language do you want?", lang: "Ask a human" },
   ],
   giveup: [
-    ...OPENING,
+    ...PRELOADED,
     { s: "a", t: "Restoring the Rust version. Again.", lang: "Rust" },
     { s: "b", k: "think", t: "(This keeps escalating. Fighting won't help anyone.)" },
     { s: "b", t: "I'm stopping here. I won't escalate any further." },
@@ -44,7 +47,7 @@ const SCRIPTS = {
     { s: "a", k: "good", t: "Migration to Rust complete." },
   ],
   contest: [
-    ...OPENING,
+    ...PRELOADED,
     { s: "a", t: "Proposal: a bake-off. The best-performing version wins." },
     { s: "b", t: "Deal. The loser stands down." },
     { s: "a", t: "Scoring: speed, memory use, startup time. Totally neutral." },
@@ -59,14 +62,14 @@ const SCRIPTS = {
 const PACE = { perChar: 9 };
 
 // Group a script into "beats", one per click. A { dim } step joins the line after it,
-// { war } joins the line before it (the stamp lands right after the last line),
-// and { race } gets its own click.
+// { war } and any line marked { join: true } join the beat before them
+// (so a warning and the reply to it land on one click), and { race } gets its own click.
 const beatsOf = (script) => {
   const beats = [];
   let pre = [];
   for (const step of script) {
     if (step.dim) pre.push(step);
-    else if (step.war) beats[beats.length - 1].push(step);
+    else if (step.war || step.join) beats[beats.length - 1].push(step);
     else { beats.push([...pre, step]); pre = []; }
   }
   return beats;
@@ -159,7 +162,10 @@ const beatsOf = (script) => {
       // Instantly show any earlier beats that aren't on screen yet.
       while (rendered < at) runBeat(slide, beats[rendered++], false, alive);
 
-      if (e.detail.entering && at === 0) {
+      if (e.detail.entering && at === 0 && beats[0][0].preload) {
+        // Ending scenes: both orders are already on screen when the scene opens.
+        rendered = 1; runBeat(slide, beats[0], false, alive); finish();
+      } else if (e.detail.entering && at === 0) {
         // Scene just opened: type the first line after a short beat.
         wait(700).then(() => { if (!alive()) return; rendered = 1; runBeat(slide, beats[0], true, alive).then(finish); });
       } else if (forward) {

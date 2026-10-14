@@ -3,8 +3,6 @@
 const TEAM = [
   { role: "Project Sponsor", who: "Vince", kind: "human", icon: "🎯", it: "Executive sponsor",
     says: "I set the vision, the objectives and the priorities, and I give final approval on scope changes. Every IT project needs someone who owns the “why.”" },
-  { role: "Coaching Advisor", who: "Vince", kind: "human", icon: "🏋️", it: "Subject-matter expert",
-    says: "I bring 20 years of physique coaching. I check that the agent's coaching principles actually work in real life, not just on paper." },
   { role: "Project Director", who: "Astra Max", kind: "agent", level: "max", icon: "🧭", it: "Project manager",
     says: "I lead delivery. I coordinate the other agents, juggle priorities and dependencies, and spot risks before they bite. Most importantly, I keep Vince sane." },
   { role: "Business Analyst", who: "Astra Extra High", kind: "agent", level: "xhigh", icon: "🔎", it: "Business analyst (BA)",
@@ -61,7 +59,7 @@ const avatar = (m, opts = {}) => {
       const my = ++token;
       minis.forEach((el, i) => { el.classList.toggle("met", i < at); el.classList.toggle("now", i === at - 1); });
       if (at === 0) {
-        stage.innerHTML = `<div class="rc-intro"><span class="big">9</span> roles · <span class="big">1</span> human · <span class="big">7</span> AI agent roles<p>Click to meet them, one at a time →</p></div>`;
+        stage.innerHTML = `<div class="rc-intro"><span class="big">8</span> roles · <span class="big">1</span> human · <span class="big">7</span> AI agents<p>Click to meet them, one at a time →</p></div>`;
         return;
       }
       const m = TEAM[at - 1];
@@ -104,7 +102,7 @@ const avatar = (m, opts = {}) => {
   if (gym) {
     const lifters = TEAM.filter((m) => m.kind === "agent").slice(0, 5);
     gym.innerHTML = `
-      <div class="coach">${avatar(TEAM[1], { noProp: true })}<span class="whistle-bubble">One more rep!</span><span class="coach-name">Coach Vince</span></div>
+      <div class="coach">${avatar(TEAM.find((m) => m.kind === "human"), { noProp: true })}<span class="whistle-bubble">One more rep!</span><span class="coach-name">Vince</span></div>
       ${lifters.map((m, i) => `
         <div class="lifter ${i === 3 ? "wobbly" : ""}" style="--d:${i * 0.08}s">
           <div class="barbell"><i></i><b></b><i></i></div>
