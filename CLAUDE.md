@@ -44,7 +44,7 @@ The visual impact of the website matters **as much as the material itself**. Eve
 
 ## 🎟️ Lane Pitch: "If you pick this lane, here's what you'll get"
 - Every sample deck ends with a **Lane Pitch** slide: what the team gets if they vote for that lane, a "Vote in Teams" ticket, and the back buttons. It sells the lane; the sample itself is only a taste.
-- Shared component: `<section class="slide lane-pitch" style="--lane:#color">` (markup template is in the comment above `.lane-pitch` in `assets/css/slides.css`). Three `pitch-card`s revealed one per click, then the `pitch-foot`. Use the lane's color from its home page card.
+- Shared component: `<section class="slide lane-pitch" style="--lane:#color">` (markup template is in the comment above `.lane-pitch` in `assets/css/slides.css`). Three `pitch-card`s revealed one per click, then the `pitch-foot`. The ticket's "🙋 Vote in Teams →" stub is a link to the vote scene (`sessions/01-kickoff/#6`), on every sample and on the lanes scene. Use the lane's color from its home page card.
 - The first card shows on entry (`data-step="0"`), then one card per click.
 - AI Gone Rogue uses a custom teaser instead of cards (a 1-star "movie review" + a redacted case file stamped "IT HAPPENED"), styled in `rogue.css`.
 

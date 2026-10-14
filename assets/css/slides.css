@@ -173,7 +173,7 @@ kbd {
          … cards 2 and 3 (data-step="1", "2") …
        </div>
        <div class="pitch-foot" data-step="2">
-         <span class="vote-ticket"><span class="vt-stub">🙋 Vote in Teams</span><b>Lane name</b></span>
+         <span class="vote-ticket"><a class="vt-stub" href="../../sessions/01-kickoff/#6">🙋 Vote in Teams <span class="vt-go" aria-hidden="true">→</span></a><b>Lane name</b></span>
          <div class="end-row">…buttons…</div>
        </div>
      </div>
@@ -237,6 +237,11 @@ kbd {
   padding: 0.55em 0.9em; font-weight: 600; color: #fff; background: var(--lane);
   border-right: 2px dashed color-mix(in srgb, var(--bg) 70%, transparent);
 }
+/* The stub is a link to the big vote scene (kickoff #6) */
+a.vt-stub { text-decoration: none; transition: filter 0.2s ease, box-shadow 0.2s ease; }
+a.vt-stub:hover, a.vt-stub:focus-visible { filter: brightness(1.18); box-shadow: inset 0 0 0 2px color-mix(in srgb, #fff 55%, transparent); }
+.vt-go { display: inline-block; margin-left: 0.2em; transition: transform 0.2s ease; }
+a.vt-stub:hover .vt-go, a.vt-stub:focus-visible .vt-go { transform: translateX(4px); }
 .vote-ticket b { padding: 0.55em 1em; font-family: var(--font-display); background: color-mix(in srgb, var(--lane) 10%, var(--bg-elev)); }
 .pitch-foot.on .vote-ticket { animation: ticketPulse 2.6s ease-in-out 1s infinite; }
 @keyframes ticketPulse { 50% { box-shadow: 0 0 44px -4px var(--lane); } }
