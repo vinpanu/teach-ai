@@ -1,14 +1,14 @@
 /* Session 01 — Kickoff: scene-specific styles. */
 
 /* ---------- Scene 1: title ---------- */
-.title-slide { text-align: center; }
+.title-slide { text-align: center; padding-bottom: clamp(56px, 8vh, 96px); }   /* room for the home-page buttons */
 .title-slide .slide-inner { display: flex; flex-direction: column; align-items: center; }
 .title-slide .eyebrow { font-size: clamp(0.9rem, 2vmin, 1.15rem); }
 
 /* "Why it's different" (plays when the scene opens): the Fun car and the Productivity car crash head-on.
    Timeline (s): drive in 0–1.46 · impact 1.46 (flash, BAM!, sparks, shake) · bounce back · smoke 1.7+ · tagline 2.9 · short-bursts pill 4.4 */
 .why { width: 100%; margin-top: clamp(16px, 3.5vh, 40px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 22px); }
-.crash { width: 100%; max-width: 1100px; max-height: 33vh; overflow: visible; }
+.crash { width: 100%; max-width: 1100px; max-height: 25vh; overflow: visible; }
 .crash .floor { stroke: var(--border); stroke-width: 3; }
 .crash .ink { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
 .crash .thin { stroke-width: 4; }
@@ -108,6 +108,9 @@
 /* "Short bursts" pill + How I Learned button: land together after the tagline has had time to be read */
 .bursts-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(10px, 1.6vw, 18px); opacity: 0; }
 .why.on .bursts-row { animation: enterUp 1s cubic-bezier(.2, .7, .2, 1) 4.4s both; }
+/* The home-page buttons follow right after */
+.title-buttons { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(10px, 1.4vw, 16px); opacity: 0; }
+.why.on .title-buttons { animation: enterUp 1s cubic-bezier(.2, .7, .2, 1) 4.9s both; }
 .bursts {
   display: inline-flex; align-items: center; gap: 0.55em; margin: 0;
   padding: 0.5em 1.1em; border-radius: 999px;

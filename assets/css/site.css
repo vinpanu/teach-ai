@@ -535,3 +535,30 @@ footer .container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: 
 @media (prefers-reduced-motion: reduce) {
   .btn-learned::before, .btn-learned::after, .bl-crew .ball { animation: none; }
 }
+
+/* ---------- 🛣️ Pick your lane button (shared) ---------- */
+/* "Pick your lane" button: a tiny highway with a car changing lanes.
+   Shares .bl-text / .bl-arrow / .bl-shine with the button above. */
+.btn-lanes {
+  position: relative; isolation: isolate; gap: 14px;
+  padding: 9px 20px 9px 12px; color: var(--text);
+  background: color-mix(in srgb, var(--bg-elev) 82%, transparent);
+  backdrop-filter: blur(10px);
+  border: 2px solid color-mix(in srgb, #f5d76e 70%, var(--border));
+  box-shadow: 0 0 22px -10px #f5d76e;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+.btn-lanes:hover, .btn-lanes:focus-visible { transform: translateY(-2px); box-shadow: 0 0 30px -6px #f5d76e; }
+.btn-lanes:hover .bl-arrow { transform: translateX(4px); }
+.btn-lanes:hover .bl-shine::before { animation: blShine 0.9s ease; }
+.bn-road { width: 64px; height: 38px; flex: none; border-radius: 10px; overflow: hidden; }
+.bn-road .asphalt { fill: #262632; }
+.bn-road .dash { stroke: #f5d76e; stroke-width: 2; stroke-dasharray: 5 5; animation: bnRoll 0.5s linear infinite; }
+.bn-road .car { animation: bnLane 4.8s ease-in-out infinite; }
+@keyframes bnRoll { to { stroke-dashoffset: -10; } }
+@keyframes bnLane {   /* the car hops lanes: 2 → 1 → 2 → 3 → 2 */
+  0%, 18%, 50%, 68%, 100% { transform: translateX(0); }
+  25%, 43% { transform: translateX(-16px); }
+  75%, 93% { transform: translateX(16px); }
+}
+@media (prefers-reduced-motion: reduce) { .bn-road .dash, .bn-road .car { animation: none; } }
