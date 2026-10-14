@@ -9,14 +9,14 @@ const TEAM = [
     says: "I research topics and recommend options, then work with Vince to turn them into clear principles and requirements. My project director provides me direction." },
   { role: "System Designer / Builder", who: "Astra High", kind: "agent", level: "high", icon: "🛠️", it: "Architect + developer",
     says: "The BA tells me what needs to get done, and I build it: I design the POA system and wire its coaching, data and day-to-day operations together." },
+  { role: "Website Builder", who: "Astra High", kind: "agent", level: "high", icon: "🌐", it: "Web developer",
+    says: "I build and maintain the project website, so everyone can see where the mission stands, clearly and accurately." },
   { role: "Testing Lead", who: "Astra Extra High", kind: "agent", level: "xhigh", icon: "📋", it: "QA lead",
     says: "I plan and coordinate the testing, track what we find, and report on quality: how stable, consistent and complete each feature is." },
   { role: "Testing Agent", who: "Astra High", kind: "agent", level: "high", icon: "🧪", it: "QA tester",
     says: "I run the approved tests, record the results, and flag anything unexpected." },
   { role: "Testing Grader", who: "Astra High", kind: "agent", level: "high", icon: "✅", it: "Independent reviewer",
     says: "I grade test results against the agreed criteria, on my own, and explain what I found. Nobody marks their own homework." },
-  { role: "Website Builder", who: "Astra High", kind: "agent", level: "high", icon: "🌐", it: "Web developer",
-    says: "I build and maintain the project website, so everyone can see where the mission stands, clearly and accurately." },
 ];
 
 // Stick-figure avatars: a person for Vince, a little robot for each AI agent.

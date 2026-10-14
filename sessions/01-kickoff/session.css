@@ -123,6 +123,15 @@
 .why.on .bursts .bolt { animation: zap 0.9s ease-out 5.1s; }
 @keyframes zap { 30% { transform: scale(1.45) rotate(-12deg); } 60% { transform: scale(0.95) rotate(6deg); } }
 
+/* Coming back home (session.js adds .revisit): skip the crash and show the finished scene,
+   with the tagline, pill and buttons rising in quickly. */
+.title-slide.revisit .why.on * { animation-delay: 0s !important; animation-duration: 0s !important; }
+.title-slide.revisit .why.on .why-line,
+.title-slide.revisit .why.on .bursts-row,
+.title-slide.revisit .why.on .title-buttons { animation-duration: 0.7s !important; }
+.title-slide.revisit .why.on .bursts-row { animation-delay: 0.1s !important; }
+.title-slide.revisit .why.on .title-buttons { animation-delay: 0.2s !important; }
+
 /* Phones: the scene's art sits in the middle 60% of its frame, so widen the frame
    (the empty edges spill off-screen) to make the cars and signs big enough to read. */
 @media (max-width: 640px) {

@@ -4,6 +4,7 @@
 // data-step="0" shows an item as soon as the scene opens (and replays its .on animations).
 // (or declare data-steps="n" and react to the "slidestep" event for custom scenes).
 // <main class="deck" data-next="url">: pressing Next on the very last step goes to that page.
+// <section class="slide" data-goto="1">: pressing Next on this scene's last step jumps to scene 1.
 (() => {
   const deck = document.querySelector(".deck");
   if (!deck) return;
@@ -51,6 +52,7 @@
   };
   const next = () => {
     if (at < stepsIn(slides[index])) { at++; render(false); }
+    else if (slides[index].dataset.goto) go(Number(slides[index].dataset.goto) - 1);
     else if (index === slides.length - 1 && deck.dataset.next) location.href = deck.dataset.next;
     else go(index + 1);
   };

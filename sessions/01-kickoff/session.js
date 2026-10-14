@@ -14,6 +14,21 @@ const LANES = [
     href: "../../samples/productivity-ideas/" },
 ];
 
+// ---------- Home (scene 1): the crash plays on the first visit. Coming back home
+// (from scene 4, or from How I Learned / a sample) skips straight to the buttons. R replays the crash. ----------
+(() => {
+  const home = document.querySelector(".title-slide");
+  if (!home) return;
+  let seen = document.referrer.startsWith(location.origin) && /\/(how-i-learned|samples)\//.test(document.referrer);
+  let replay = false;
+  document.addEventListener("keydown", (e) => { if (e.key === "r" || e.key === "R") replay = home.classList.contains("active"); });
+  home.addEventListener("slidestep", (e) => {
+    if (!e.detail.entering) return;
+    home.classList.toggle("revisit", seen && !replay);
+    seen = true; replay = false;
+  });
+})();
+
 (() => {
   const slide = document.querySelector(".highway-slide");
   const N = LANES.length;
