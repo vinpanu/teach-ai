@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/site.css?v=4">
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="prod.css?v=4">
+  <link rel="stylesheet" href="prod.css?v=5">
 </head>
 <body class="deck-body">
 
@@ -63,7 +63,7 @@
       <div class="slide-inner">
         <div class="kicker enter">An everyday analogy</div>
         <h2 class="enter analogy-head" style="--d:.1s">Picture <span class="gradient-text">this…</span></h2>
-        <svg class="office" viewBox="0 0 1200 540" role="img" aria-label="My boss Saad tells me: I'm bringing in an expert to help you. A consultant walks in. I hand him step-by-step orders: open my spreadsheet, use my formulas in my order, click exactly where I click, never try anything new. The consultant thinks: So, why did you hire me?">
+        <svg class="office" viewBox="0 0 1200 540" role="img" aria-label="Vince says: Help! His boss Saad answers: I'll get you a consultant expert, Vince. A consultant walks in. I hand him step-by-step orders: open my spreadsheet, use my formulas in my order, click exactly where I click, never try anything new. The consultant thinks: So, why did you hire me?">
           <defs>
             <linearGradient id="meGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b9dff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
             <linearGradient id="bossGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb02e"/><stop offset="1" stop-color="#ff6a3d"/></linearGradient>
@@ -79,20 +79,24 @@
             <g class="tag pop-a"><path d="M128 206 H212 Q228 206 228 222 V238 Q228 254 212 254 H180 L170 268 L160 254 H128 Q112 254 112 238 V222 Q112 206 128 206 Z" fill="url(#bossGrad)"/><text x="170" y="240">Saad</text></g>
           </g>
 
-          <!-- Me -->
+          <!-- Vince -->
           <g class="fig enter" style="--d:.35s">
             <circle class="av-head me-head" cx="520" cy="300" r="26"/>
             <path class="av-ink" d="M520 326 V420 M520 350 L490 402 M520 420 L495 515 M520 420 L545 515"/>
             <path class="av-ink me-point" d="M520 350 L580 322"/>
-            <g class="tag pop-b"><path d="M490 206 H550 Q566 206 566 222 V238 Q566 254 550 254 H530 L520 268 L510 254 H490 Q474 254 474 238 V222 Q474 206 490 206 Z" fill="url(#meGrad)"/><text x="520" y="240">Me</text></g>
+            <g class="tag pop-b"><path d="M468 206 H572 Q588 206 588 222 V238 Q588 254 572 254 H530 L520 268 L510 254 H468 Q452 254 452 238 V222 Q452 206 468 206 Z" fill="url(#meGrad)"/><text x="520" y="240">Vince</text></g>
           </g>
 
-          <!-- Saad: "I'm bringing in an expert…" (shown until the consultant arrives) -->
+          <!-- Vince: "Help!", then Saad answers (both shown until the consultant arrives) -->
           <g class="saad-say-wrap">
+            <g class="say help-say">
+              <path d="M638 120 H778 Q798 120 798 140 V186 Q798 206 778 206 H632 L572 262 L610 206 Q618 206 618 186 V140 Q618 120 638 120 Z"/>
+              <text x="708" y="176">Help!</text>
+            </g>
             <g class="say saad-say">
               <path d="M60 40 H580 Q600 40 600 60 V150 Q600 170 580 170 H230 L186 200 L196 170 H60 Q40 170 40 150 V60 Q40 40 60 40 Z"/>
-              <text x="320" y="96">I'm bringing in an expert</text>
-              <text x="320" y="140">to help you.</text>
+              <text x="320" y="96">I'll get you a consultant</text>
+              <text x="320" y="140">expert, Vince.</text>
             </g>
           </g>
 

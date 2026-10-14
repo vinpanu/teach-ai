@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/site.css?v=4">
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=6">
-  <link rel="stylesheet" href="session.css?v=6">
+  <link rel="stylesheet" href="session.css?v=7">
 </head>
 <body class="deck-body">
 
@@ -118,7 +118,21 @@
             </g>
           </svg>
           <p class="why-line">Stay for the fun. <span class="gradient-text">Leave more productive.</span></p>
-          <p class="bursts"><span class="bolt" aria-hidden="true">⚡</span><span>In short bursts</span><span class="bursts-time">10–15 minutes each</span></p>
+          <div class="bursts-row">
+            <p class="bursts"><span class="bolt" aria-hidden="true">⚡</span><span>In short bursts</span><span class="bursts-time">10–15 minutes each</span></p>
+            <a class="btn btn-learned" href="../../how-i-learned/">
+              <svg class="bl-crew" viewBox="0 0 64 38" aria-hidden="true">
+                <!-- ChatGPT bot (left), Vince (middle), Claude bot (right) -->
+                <rect class="ink" x="7" y="15" width="10" height="9" rx="2.5" style="stroke:#10a37f"/><path class="ink" d="M12 24 V32 M8 33 H16"/>
+                <circle class="ink" cx="32" cy="20" r="4.5" style="stroke:#5b9dff"/><path class="ink" d="M32 24.5 V32 M28 33 L32 30 L36 33"/>
+                <rect class="ink" x="47" y="15" width="10" height="9" rx="2.5" style="stroke:#e07a52"/><path class="ink" d="M52 24 V32 M48 33 H56"/>
+                <circle class="ball" r="2.6"/>
+              </svg>
+              <span class="bl-text"><small>Behind the instructor</small><b>How I Learned</b></span>
+              <span class="bl-arrow" aria-hidden="true">→</span>
+              <span class="bl-shine" aria-hidden="true"></span>
+            </a>
+          </div>
         </div>
       </div>
       <div class="deck-hint">Press <kbd>→</kbd> or click to begin</div>
@@ -130,7 +144,7 @@
         <h2 class="lecture-head enter">What you will <span class="gradient-text">not</span> get is another boring lecture or tutorial.</h2>
         <p class="lead lecture-sub enter" style="--d:.2s">There are hundreds of them on YouTube if that's what interests you, and our company also offers training.</p>
         <svg class="classroom" viewBox="0 0 1200 560" role="img"
-             aria-label="A stick figure walks into a classroom and sits down. The teacher writes a complicated formula on the board, and the student falls asleep on the desk. A bubble above the sleeping student says YOU, and a bubble above the teacher says ME.">
+             aria-label="A stick figure walks into a classroom and sits down. The teacher writes a complicated formula on the board, and the student falls asleep on the desk. A bubble above the sleeping student says YOU, and a bubble above the teacher says Vince.">
           <defs>
             <linearGradient id="youGrad" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#7c5cff"/><stop offset="0.55" stop-color="#00b8e6"/><stop offset="1" stop-color="#ff4fd8"/>
@@ -202,10 +216,10 @@
             <text class="you-text" x="250" y="266" text-anchor="middle">YOU</text>
           </g>
 
-          <!-- "ME" bubble over the teacher -->
+          <!-- "Vince" bubble over the teacher -->
           <g class="me-bubble">
-            <path d="M1112 168 H1186 Q1208 168 1208 190 V232 Q1208 254 1186 254 H1166 L1150 284 L1136 254 H1112 Q1090 254 1090 232 V190 Q1090 168 1112 168 Z" fill="url(#youGrad)"/>
-            <text class="you-text" x="1149" y="230" text-anchor="middle">ME</text>
+            <path d="M1094 168 H1206 Q1228 168 1228 190 V232 Q1228 254 1206 254 H1166 L1150 284 L1136 254 H1094 Q1072 254 1072 232 V190 Q1072 168 1094 168 Z" fill="url(#youGrad)"/>
+            <text class="you-text" x="1150" y="227" text-anchor="middle" style="font-size:44px">Vince</text>
           </g>
         </svg>
       </div>

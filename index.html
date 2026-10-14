@@ -11,60 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css?v=4">
+  <link rel="stylesheet" href="assets/css/site.css?v=5">
   <style>
-    /* "How I Learned" hero button: spinning gradient border, soft glow, a tiny me + ChatGPT + Claude crew
-       tossing a ball (same cast as the deck), and a shine sweep on hover. Home page only. */
-    @property --bl-ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-    .btn-learned {
-      position: relative; isolation: isolate; gap: 14px;
-      padding: 9px 20px 9px 12px; color: var(--text); overflow: visible;
-      background: color-mix(in srgb, var(--bg-elev) 82%, transparent);
-      backdrop-filter: blur(10px);
-    }
-    .btn-learned::before, .btn-learned::after {
-      content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
-      background: conic-gradient(from var(--bl-ang), #10a37f, #5b9dff, #7c5cff, #ff4fd8, #e07a52, #10a37f);
-      animation: blSpin 4s linear infinite;
-    }
-    .btn-learned::before {   /* the 2px ring */
-      padding: 2px;
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-    }
-    .btn-learned::after { z-index: -2; filter: blur(16px); opacity: 0.35; transition: opacity 0.3s ease; }
-    .btn-learned:hover { transform: translateY(-2px); }
-    .btn-learned:hover::after, .btn-learned:focus-visible::after { opacity: 0.75; }
-    @keyframes blSpin { to { --bl-ang: 360deg; } }
-
-    .bl-crew { width: 64px; height: 38px; flex: none; overflow: visible;
-      border-radius: 10px; background: color-mix(in srgb, var(--text) 6%, transparent); }
-    .bl-crew .ink { fill: none; stroke: var(--text); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-    .bl-crew .ball { fill: #ffc83d; animation: blBall 2.4s linear infinite; }
-    @keyframes blBall {   /* me → Claude → ChatGPT → me, with a little arc */
-      0%, 100% { transform: translate(32px, 15px); }
-      16% { transform: translate(42px, 6px); }
-      33% { transform: translate(52px, 15px); }
-      50% { transform: translate(32px, 0px); }
-      66% { transform: translate(12px, 15px); }
-      83% { transform: translate(22px, 6px); }
-    }
-    .bl-text { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
-    .bl-text small { font: 600 0.68rem var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .bl-text b { font: 700 1.08rem var(--font-display); }
-    .bl-arrow { display: inline-block; transition: transform 0.25s ease; }
-    .btn-learned:hover .bl-arrow { transform: translateX(4px); }
-    .bl-shine { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
-    .bl-shine::before {
-      content: ""; position: absolute; top: 0; bottom: 0; width: 40%; left: -60%;
-      background: linear-gradient(100deg, transparent, color-mix(in srgb, #fff 35%, transparent), transparent);
-      transform: skewX(-20deg);
-    }
-    .btn-learned:hover .bl-shine::before { animation: blShine 0.9s ease; }
-    @keyframes blShine { to { left: 130%; } }
-    @media (prefers-reduced-motion: reduce) {
-      .btn-learned::before, .btn-learned::after, .bl-crew .ball { animation: none; }
-    }
     /* "Go to the lanes" hero button (next to How I Learned): a tiny highway with a car changing lanes.
        Shares .bl-text / .bl-arrow / .bl-shine with the button above. */
     .btn-lanes {
