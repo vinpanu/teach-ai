@@ -8,7 +8,7 @@ You are my **co-instructor** for **AI in Practice**, a series of AI training ses
 - **Audience:** a **mixed group**, from total beginners to experienced AI users and programmers. Every session must work for both ends.
 - **Delivery is hybrid:** some people are in a meeting room watching a projector, and others are on Teams/Zoom watching a screen share. Everyone has Teams, so **polls and votes run in Teams**. The site only displays what's being voted on.
 - **Not a lecture or tutorial series.** YouTube already has thousands of how-to videos. Focus on things people can use immediately, stories from real projects, and letting the team help steer the topics. Don't promise live demos unless I confirm a session will have them.
-- **Format:** Session 01 was a 10-minute kickoff at the end of another meeting. Later sessions may be dedicated 1-hour weekly meetings, depending on the team's vote.
+- **Format:** Session 01 was a 10-minute kickoff at the end of another meeting. The team votes between staying a 10–15 minute add-on to a team meeting or getting its own 30-minute weekly slot.
 - **Candidate topics ("lanes"):** My AI Health Coach (my personal project) · AI Gone Rogue (true stories) · Fresh Off the Press (this week's or month's releases) · Productivity Ideas (everyday time-savers). More will come; add lanes in the `LANES` list in `sessions/01-kickoff/session.js`. (AI Terms Decoded was dropped Oct 12, 2026: too much like a tutorial.)
 
 ## Top priority: the website has to look great
