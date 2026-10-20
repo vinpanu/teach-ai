@@ -513,6 +513,25 @@
   .drop.open .drop-icon, .drop.open .drop-grid section { animation: none; }
 }
 
+/* "If you pick this lane →" button in the cards header: jumps straight to the Lane Pitch (scene 4) */
+.btn-pitch {
+  --lane: #3d9bff;
+  display: inline-flex; align-items: center; gap: 0.5em; padding: 0.55em 1.15em; border-radius: 999px;
+  font: 700 clamp(0.95rem, 2.2vmin, 1.35rem) var(--font-display); text-decoration: none; color: var(--text);
+  background: color-mix(in srgb, var(--lane) 16%, var(--bg-elev));
+  border: 1.5px solid color-mix(in srgb, var(--lane) 70%, var(--border));
+  box-shadow: 0 10px 30px -14px var(--lane);
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.btn-pitch b { display: inline-block; transition: transform 0.25s ease; }
+.btn-pitch:hover, .btn-pitch:focus-visible { transform: translateY(-2px); background: var(--lane); color: #fff; }
+.btn-pitch:hover b { transform: translateX(3px); }
+.feats-slide.play .btn-pitch { animation: enterUp 0.8s cubic-bezier(.2, .7, .2, 1) var(--d, 0s) both, pitchPulse 2.4s ease-in-out 3s 2; }
+@keyframes pitchPulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--lane) 28%, transparent); } }
+.feats-head { align-items: center; }
+.feats-head .kicker { margin-left: auto; }
+@media (max-width: 700px) { .feats-head .kicker { margin-left: 0; } }
+
 /* "Imagine this" link at the bottom of the Dots pop-up: opens the side-trip scenario (scene 3) */
 .drop-cta {
   display: flex; align-items: center; gap: clamp(12px, 2vmin, 22px);

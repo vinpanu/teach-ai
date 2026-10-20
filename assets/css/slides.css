@@ -35,6 +35,8 @@ body.deck-body { overflow: hidden; height: 100vh; }
   transform: none;
   transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s;
 }
+/* Scenes that aren't showing never catch clicks, even pop-ups or overlays left open inside them */
+.slide:not(.active), .slide:not(.active) * { pointer-events: none !important; }
 .slide-inner { width: 100%; max-width: 1500px; }
 
 .slide h1 {
