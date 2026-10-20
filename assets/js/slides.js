@@ -8,6 +8,11 @@
 // <section class="slide" data-detour>: a side trip reached only by a link (e.g. href="#3"). Next and Back skip it,
 //   and inside it, Next on the last step (or Back on the first) returns to the exact scene and step you left
 //   (opened straight from a URL, it falls back to its data-goto scene).
+// <section class="slide" data-hub>: a landing page of "chapters" (several scenes each, opened from its cards).
+//   A chapter's first scene has data-chapter; its last scene has data-goto back to the hub. Next on the hub opens
+//   the first chapter not yet visited, then the scene marked data-hub-exit (e.g. the Lane Pitch). Back on a
+//   chapter's first scene, or on the exit scene, returns to the hub.
+// Links can name a scene by its id: href="#skills" opens <section class="slide" id="skills">.
 (() => {
   const deck = document.querySelector(".deck");
   if (!deck) return;
@@ -18,6 +23,8 @@
   let back = null;   // where a side trip (data-detour scene) returns to
 
   const isDetour = (i) => slides[i]?.dataset.detour !== undefined;
+  const hub = slides.findIndex((s) => s.dataset.hub !== undefined);
+  const visited = new Set();   // chapters already opened (data-chapter scenes)
   // The next (dir 1) or previous (dir -1) scene in the normal flow, skipping side trips.
   const after = (i, dir) => { do i += dir; while (isDetour(i)); return i; };
 
@@ -56,6 +63,7 @@
   const go = (i, step = 0, remember = true) => {
     if (i < 0 || i >= slides.length) return;
     if (remember && isDetour(i) && !isDetour(index)) back = { index, at };
+    if (slides[i].dataset.chapter !== undefined) visited.add(i);
     index = i; at = step;
     render(true);
   };
@@ -69,12 +77,18 @@
     if (at < stepsIn(s)) { at++; render(false); }
     else if (isDetour(index)) leave();
     else if (s.dataset.goto) go(Number(s.dataset.goto) - 1);
+    else if (index === hub) {
+      const fresh = slides.findIndex((x, i) => x.dataset.chapter !== undefined && !visited.has(i));
+      const exit = slides.findIndex((x) => x.dataset.hubExit !== undefined);
+      go(fresh >= 0 ? fresh : exit >= 0 ? exit : after(index, 1));
+    }
     else if (after(index, 1) >= slides.length && deck.dataset.next) location.href = deck.dataset.next;
     else go(after(index, 1));
   };
   const prev = () => {
     if (at > 0) { at--; render(false); }
     else if (isDetour(index)) leave();
+    else if (hub >= 0 && (slides[index].dataset.chapter !== undefined || slides[index].dataset.hubExit !== undefined)) go(hub);
     else if (after(index, -1) >= 0) go(after(index, -1), stepsIn(slides[after(index, -1)]));
   };
   // Lets interactive scenes jump to a step, e.g. clicking a road sign picks that lane.
@@ -133,10 +147,12 @@
   });
 
   // ---------- Start (supports links like #3) ----------
+  // "#3" opens scene 3; "#skills" opens the scene with id="skills". Anything else: -1.
   const fromHash = () => {
-    const n = parseInt(location.hash.slice(1), 10);
-    return Number.isFinite(n) ? Math.min(Math.max(n, 1), slides.length) - 1 : 0;
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (/^\d+$/.test(h)) return Math.min(Math.max(Number(h), 1), slides.length) - 1;
+    return h ? slides.findIndex((s) => s.id === h) : -1;
   };
-  window.addEventListener("hashchange", () => { if (fromHash() !== index) go(fromHash()); });
-  go(fromHash(), 0, false);
+  window.addEventListener("hashchange", () => { const i = fromHash(); if (i >= 0 && i !== index) go(i); });
+  go(Math.max(0, fromHash()), 0, false);
 })();

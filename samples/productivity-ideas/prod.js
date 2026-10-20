@@ -76,7 +76,16 @@ What "done" looks like: How you'll judge if it's great.`;
     for (let i = 1; i <= steps; i++) { el.textContent = Math.round((target * i) / steps); await wait(ms / steps); }
   };
 
-  // ---------- Scene 2: the old prompt scrolls past ----------
+  // ---------- Landing page: cards open ideas in any order; a ✓ marks the ones already seen ----------
+  // Mouse clicks on its background do nothing (the clicker / → keys still open the next idea).
+  document.querySelector(".prod-hub")?.addEventListener("click", (e) => {
+    if (!e.target.closest("a, button")) e.stopPropagation();
+  });
+  document.querySelectorAll(".slide[data-chapter]").forEach((chapter) => chapter.addEventListener("slidestep", (e) => {
+    if (e.detail.entering) document.querySelector(`.idea[href="#${chapter.id}"]`)?.classList.add("seen");
+  }));
+
+  // ---------- Scene 3: the old prompt scrolls past ----------
   const oldSlide = document.querySelector(".old-slide");
   const oldBody = oldSlide.querySelector(".doc-body");
   oldBody.innerHTML = esc(OLD_PROMPT).replace(SHOUTY, (m) => `<mark class="shout">${m}</mark>`);

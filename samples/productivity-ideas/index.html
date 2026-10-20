@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Stop Micromanaging Your AI · AI in Practice</title>
-  <meta name="description" content="Productivity Ideas sample: why long, step-by-step prompts hold today's AI back, and the short brief that works better.">
-  <meta property="og:title" content="Stop Micromanaging Your AI · AI in Practice">
-  <meta property="og:description" content="Old prompts gave AI turn-by-turn directions. Today's AI does better with a destination.">
+  <title>Productivity Ideas · AI in Practice</title>
+  <meta name="description" content="Productivity Ideas sample: everyday ways to get more done with AI. Stop micromanaging your prompts, and teach ChatGPT or Claude a skill once.">
+  <meta property="og:title" content="Productivity Ideas · AI in Practice">
+  <meta property="og:description" content="Everyday ideas you can use right away: better prompts, and skills that teach your AI once."> 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=6">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=8">
-  <link rel="stylesheet" href="prod.css?v=5">
+  <link rel="stylesheet" href="prod.css?v=6">
 </head>
 <body class="deck-body">
 
@@ -29,16 +29,72 @@
       <div class="glow g3"></div>
     </div>
 
-    <!-- ========== 1 · Title ========== -->
-    <section class="slide prod-title" data-title="Stop Micromanaging Your AI">
+    <!-- ========== 1 · Landing page (hub): one card per productivity idea, opened in any order ==========
+         Each idea is a "chapter" (see slides.js): its first scene has an id + data-chapter, its last scene
+         has data-goto="1" so it comes back here. To add an idea: add its scenes before the Lane Pitch,
+         then add a card here that links to "#its-id". Next on this page opens the first idea not yet seen,
+         then the Lane Pitch. Mouse clicks on the background do nothing (prod.js). -->
+    <section class="slide prod-hub" data-hub data-title="Pick an idea">
       <div class="slide-inner">
-        <span class="eyebrow enter"><span class="pulse"></span>Lane 4 · Productivity Ideas · Sample</span>
+        <div class="hub-head">
+          <div>
+            <span class="eyebrow enter"><span class="pulse"></span>Lane 4 · Productivity Ideas · Sample</span>
+            <h2 class="enter" style="--d:.1s">Get more done <span class="gradient-text">with AI.</span></h2>
+          </div>
+          <a class="btn-pitch enter" style="--d:.3s" href="#pitch"><span aria-hidden="true">🎟️</span>If you pick this lane <b aria-hidden="true">→</b></a>
+        </div>
+        <p class="hub-lead enter" style="--d:.2s">Everyday ideas you can use right away. Pick one, in any order.</p>
+        <div class="ideas">
+          <a class="idea" href="#prompting" style="--accent:#2fd69b; --d:.35s">
+            <div class="idea-art art-prompt" aria-hidden="true">
+              <span class="ap-doc ap-long"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="ap-arrow">→</span>
+              <span class="ap-doc ap-short"><i></i><i></i><i></i></span>
+            </div>
+            <div class="idea-body">
+              <span class="idea-no">Idea 01 · Prompting</span>
+              <h3>Stop Micromanaging Your AI</h3>
+              <p>Give it the destination, not turn-by-turn directions.</p>
+              <span class="idea-go">Open <b aria-hidden="true">▶</b></span>
+            </div>
+            <span class="idea-seen">✓ Seen</span>
+          </a>
+          <a class="idea" href="#skills" style="--accent:#a77bff; --d:.5s">
+            <div class="idea-art art-skill" aria-hidden="true">
+              <span class="as-app as-gpt">ChatGPT</span><span class="as-wire l"></span>
+              <span class="as-file">📄 SKILL.md</span>
+              <span class="as-wire r"></span><span class="as-app as-claude">Claude</span>
+            </div>
+            <div class="idea-body">
+              <span class="idea-no">Idea 02 · Skills</span>
+              <h3>Skills: Teach It Once</h3>
+              <p>Save your best workflow once. ChatGPT and Claude reuse it every time.</p>
+              <span class="idea-go">Open <b aria-hidden="true">▶</b></span>
+            </div>
+            <span class="idea-seen">✓ Seen</span>
+          </a>
+          <div class="idea idea-next" style="--d:.65s">
+            <div class="idea-art" aria-hidden="true"><span>💡</span></div>
+            <div class="idea-body">
+              <span class="idea-no">Idea 03</span>
+              <h3>Your idea next</h3>
+              <p>Got a time-saver you'd love to see? Suggest it in Teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Idea 01 · Stop Micromanaging Your AI (chapter: scenes 2–5) ========== -->
+    <section class="slide prod-title" id="prompting" data-chapter data-title="Stop Micromanaging Your AI">
+      <div class="slide-inner">
+        <span class="eyebrow enter"><span class="pulse"></span>Idea 01 · Productivity Ideas</span>
         <h1 class="enter" style="--d:.15s">Stop <span class="strike">micromanaging</span><br><span class="gradient-text">your AI.</span></h1>
         <p class="lead enter" style="--d:.35s">Old prompts gave AI turn-by-turn directions.<br>Today's AI does better when you give it the <b>destination</b>.</p>
       </div>
     </section>
 
-    <!-- ========== 2 · The old way ========== -->
+    <!-- ========== 3 · The old way ========== -->
     <section class="slide old-slide" data-title="The old way">
       <div class="slide-inner split">
         <div class="split-text">
@@ -58,7 +114,7 @@
       </div>
     </section>
 
-    <!-- ========== 3 · The analogy: hire an expert, then script them ========== -->
+    <!-- ========== 4 · The analogy: hire an expert, then script them ========== -->
     <section class="slide analogy-slide" data-title="Hire an expert… then script them?">
       <div class="slide-inner">
         <div class="kicker enter">An everyday analogy</div>
@@ -134,8 +190,8 @@
       </div>
     </section>
 
-    <!-- ========== 4 · The new way ========== -->
-    <section class="slide new-slide" data-title="The new way">
+    <!-- ========== 5 · The new way (last scene of Idea 01: Next returns to the landing page) ========== -->
+    <section class="slide new-slide" data-goto="1" data-title="The new way">
       <div class="slide-inner split">
         <div class="split-text">
           <div class="kicker enter new-kicker">The new way</div>
@@ -154,8 +210,156 @@
       </div>
     </section>
 
-    <!-- ========== 5 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
-    <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#12c97f">
+    <!-- ========== Idea 02 · Skills: Teach It Once (chapter: scenes 6–9) ==========
+         Facts checked Oct 20, 2026 (primary sources):
+         · Format + open standard ("originally developed by Anthropic, released as an open standard"; adopters incl.
+           Claude, Claude Code, ChatGPT & Codex, GitHub Copilot, Cursor, Gemini CLI): https://agentskills.io/home ,
+           spec (name: lowercase letters/numbers/hyphens, max 64; description: what + when, max 1024; only name +
+           description load up front): https://agentskills.io/specification
+         · Claude: Free, Pro, Max, Team, Enterprise with code execution on; Customize > Skills (upload a ZIP or create one);
+           Team/Enterprise owners can share: https://support.claude.com/en/articles/12512176-what-are-skills ,
+           https://support.claude.com/en/articles/12512180-using-skills-in-claude
+         · ChatGPT: "Build me a skill…" → review → Install; @-mention it or ChatGPT picks it; workspace owners turn
+           skills on (beta, off by default) and control sharing; business examples (finance close narrative, legal
+           contract review, IT incident postmortem, marketing campaign brief):
+           https://academy.openai.com/public/clubs/work-users-ynjqu/resources/skills ,
+           "build on the open agent skills standard": https://learn.chatgpt.com/docs/build-skills
+         The weekly status report is an illustrative example. Pro Tip idea from Vince (Oct 20, 2026). -->
+
+    <!-- 6 · Teach it once: the same instructions typed week after week collapse into one skill (click 1) -->
+    <section class="slide skills-intro" id="skills" data-chapter data-title="Skills: teach it once">
+      <div class="slide-inner split">
+        <div class="split-text">
+          <div class="kicker enter skill-kicker">Idea 02 · Skills</div>
+          <h2 class="enter" style="--d:.1s">Stop re&#8209;explaining.<br><span class="skill-grad">Teach it once.</span></h2>
+          <p class="lead enter" style="--d:.2s">A <b>skill</b> is a saved playbook. Your AI pulls it out whenever the task comes up.</p>
+        </div>
+        <div class="si-stage">
+          <div class="si-chat">
+            <div class="rb" style="--k:0"><span class="rb-day">Week 1</span>Status report, please. Use our format: Done, Next, Risks. One page. Flag anything late.</div>
+            <div class="rb" style="--k:1"><span class="rb-day">Week 2</span>Status report again. Remember: Done, Next, Risks. One page. Flag anything late.</div>
+            <div class="rb" style="--k:2"><span class="rb-day">Week 3 😩</span>Same as last week! Done, Next, Risks. ONE page. Flag anything late!</div>
+          </div>
+          <div class="si-result">
+          <div class="si-file" data-step="1"><span class="sf-icon" aria-hidden="true">📄</span><b>SKILL.md</b><span>weekly-status-report</span></div>
+          <div class="si-after" data-step="1">
+            <div class="sa-you">Status report, please. Notes attached.</div>
+            <div class="sa-ai"><span aria-hidden="true">✓</span> Done, in your team's format.</div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · What's inside: a real SKILL.md. Clicks 1–3 spotlight the YAML header, the description, the playbook -->
+    <section class="slide skills-anatomy" data-title="What's inside a skill">
+      <div class="slide-inner">
+        <div class="kicker enter skill-kicker">What's inside a skill</div>
+        <h2 class="enter" style="--d:.1s">A folder and <span class="skill-grad">one text file.</span></h2>
+        <div class="anat">
+          <div class="sk-file enter" style="--d:.2s">
+            <div class="doc-bar"><i></i><i></i><i></i><span>weekly-status-report / SKILL.md</span></div>
+            <div class="sk-code">
+              <div class="sk-yaml">
+                <div class="c-dash">---</div>
+                <div><span class="c-key">name:</span> <span class="c-val">weekly-status-report</span></div>
+                <div class="sk-desc"><span class="c-key">description:</span> <span class="c-val">Turns rough project notes into our team's weekly status report. Use when someone asks for a status report, weekly update or project summary.</span></div>
+                <div class="c-dash">---</div>
+              </div>
+              <div class="sk-body">
+                <div class="c-h"># Weekly status report</div>
+                <div>1. Group the notes by project.</div>
+                <div>2. For each project: ✅ Done · 🔜 Next · ⚠️ Risks.</div>
+                <div>3. Mark anything late or over budget as ⚠️ At risk.</div>
+                <div>4. One page max. Plain language, no jargon.</div>
+                <div>5. End with “Decisions needed” for leadership.</div>
+              </div>
+            </div>
+          </div>
+          <ol class="anat-notes">
+            <li class="an-tree" data-step="0">
+              <div>📁 weekly-status-report/</div>
+              <div class="t2">📄 SKILL.md <em class="req">required</em></div>
+              <div class="t2">📁 templates/ <em class="opt">optional</em></div>
+            </li>
+            <li class="an" data-step="1"><b>① The YAML header</b>Between the <code>---</code> lines: a <code>name</code> and a <code>description</code>. That's all it needs.</li>
+            <li class="an" data-step="2"><b>② The description is the trigger</b>The AI reads only this until a task matches. Then it opens the rest.</li>
+            <li class="an" data-step="3"><b>③ The playbook</b>Your steps, format and rules, in plain English. No code needed.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · One skill, ChatGPT and Claude (same open standard) -->
+    <section class="slide skills-both" data-title="One skill, two apps">
+      <div class="slide-inner">
+        <div class="kicker enter skill-kicker">Works in both</div>
+        <h2 class="enter" style="--d:.1s">One skill. <span class="skill-grad">ChatGPT and Claude.</span></h2>
+        <div class="both">
+          <article class="app-card gpt enter" style="--d:.3s">
+            <span class="lab openai">ChatGPT</span>
+            <dl>
+              <dt>Make one</dt><dd>Start a chat with “Build me a skill that…”, check it, then click <b>Install</b>.</dd>
+              <dt>Use it</dt><dd>Type <b>@</b> and pick it, or let ChatGPT choose it when the task matches.</dd>
+            </dl>
+          </article>
+          <div class="both-mid enter" style="--d:.2s" aria-hidden="true">
+            <span class="sk-flow fl-l"></span><span class="sk-chip">📄 SKILL.md</span><span class="sk-flow fl-r"></span>
+          </div>
+          <article class="app-card claude enter" style="--d:.45s">
+            <span class="lab claude">Claude</span>
+            <dl>
+              <dt>Make one</dt><dd>Ask Claude to build it, or upload one in <b>Customize → Skills</b>.</dd>
+              <dt>Use it</dt><dd>Claude loads it on its own when the task matches, or ask for it by name.</dd>
+            </dl>
+          </article>
+        </div>
+        <p class="std-strip enter" style="--d:.8s"><b>Why both?</b> Skills follow an <b>open standard</b>, Agent Skills. Anthropic created it, and OpenAI, GitHub Copilot, Cursor and Gemini CLI use it too.</p>
+        <p class="fine enter" style="--d:1s">On work accounts, an admin may need to switch skills on first.</p>
+      </div>
+    </section>
+
+    <!-- 9 · Why it matters at work (last scene of Idea 02: Next returns to the landing page).
+         Click 1: other skills teams build · click 2: Pro Tip -->
+    <section class="slide skills-work" data-goto="1" data-title="Skills at work">
+      <div class="slide-inner">
+        <div class="kicker enter skill-kicker">Why it matters at work</div>
+        <h2 class="enter" style="--d:.1s">One team. <span class="skill-grad">One way of working.</span></h2>
+        <div class="team">
+          <div class="team-col before enter" style="--d:.25s">
+            <h3>Without a skill</h3>
+            <div class="reports" aria-hidden="true">
+              <span class="rep r1"><i class="t"></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="rep r2"><i class="t"></i><i class="pie"></i><i></i></span>
+              <span class="rep r3"><i class="t"></i><i></i><i></i></span>
+              <span class="rep r4"><i class="t"></i><i class="tbl"></i><i></i><i></i></span>
+            </div>
+            <p>Every manager's Friday report looks different.</p>
+          </div>
+          <div class="team-mid enter" style="--d:.4s"><span class="sk-chip">📄 SKILL.md</span><span class="tm-note">shared with the team</span><b class="arrow" aria-hidden="true">→</b></div>
+          <div class="team-col after enter" style="--d:.55s">
+            <h3>With a shared skill</h3>
+            <div class="reports" aria-hidden="true">
+              <span class="rep"><i class="t"></i><i class="g"></i><i class="b"></i><i class="a"></i><i></i></span>
+              <span class="rep"><i class="t"></i><i class="g"></i><i class="b"></i><i class="a"></i><i></i></span>
+              <span class="rep"><i class="t"></i><i class="g"></i><i class="b"></i><i class="a"></i><i></i></span>
+              <span class="rep"><i class="t"></i><i class="g"></i><i class="b"></i><i class="a"></i><i></i></span>
+            </div>
+            <p>Same format every time, even on a new hire's first day.</p>
+          </div>
+        </div>
+        <div class="more-skills" data-step="1"><span class="ms-label">Other skills teams build</span>
+          <span class="ms">💰 Finance: month-end close summary</span>
+          <span class="ms">⚖️ Legal: contract review notes</span>
+          <span class="ms">🛠️ IT: incident write-up</span>
+          <span class="ms">📣 Marketing: campaign brief</span>
+        </div>
+        <aside class="pro-tip sk-tip" data-step="2"><span class="pro-tip-badge">Pro Tip</span><p><b>Test it out of the box first.</b> Before you build a skill, ask the AI to do the task without one. Today's models already handle much of what older skills had to spell out. Only package what it still gets wrong: your format, your rules, your company's know-how.</p></aside>
+      </div>
+    </section>
+
+    <!-- ========== 10 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <section class="slide lane-pitch" id="pitch" data-hub-exit data-title="What you'll get" style="--lane:#12c97f">
       <div class="lane-glow" aria-hidden="true"></div>
       <div class="slide-inner">
         <span class="pitch-badge enter"><span aria-hidden="true">⚡</span>If you pick this lane</span>
@@ -163,7 +367,8 @@
         <div class="pitch-cards">
           <div class="pitch-card" data-step="0"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🏠</span>
             <h3>At work <i>and</i> at home</h3>
-            <p>Tips and tricks to get more done at your desk, and around the house.</p></div>
+            <p>Tips and tricks to get more done at your desk, and around the house.</p>
+            <div class="queue"><span class="chip">Better prompts</span><span class="chip">Skills</span><span class="chip">+ your ideas</span></div></div>
           <div class="pitch-card" data-step="1"><span class="pc-no">02</span><span class="pc-icon" aria-hidden="true">💰</span>
             <h3>Save money</h3>
             <p>Smart, everyday ways AI can help you <b>spend less</b>.</p></div>
@@ -174,6 +379,7 @@
         <div class="pitch-foot" data-step="2">
           <span class="vote-ticket"><a class="vt-stub" href="../../sessions/01-kickoff/#6">🙋 Vote in Teams <span class="vt-go" aria-hidden="true">→</span></a><b>Productivity Ideas</b></span>
           <div class="end-row">
+            <a class="btn btn-ghost" href="#1">← All ideas</a>
             <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
             <a class="btn btn-ghost" href="../../sessions/01-kickoff/">Home</a>
           </div>
@@ -287,12 +493,12 @@
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 5</span>
+    <span class="deck-counter" aria-live="polite">1 / 10</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="prod.js?v=5"></script>
-  <script src="../../assets/js/slides.js?v=6"></script>
+  <script src="prod.js?v=6"></script>
+  <script src="../../assets/js/slides.js?v=7"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
 </html>
