@@ -162,4 +162,17 @@
   slide.addEventListener("cardon", startAuto);
   widget.addEventListener("pointerdown", () => { widget._touched = true; }, { once: true });
   show();
+
+  // ---------- 3 · Side trip: "A Dot that never forgets" ----------
+  // The glowing Dot rides the rail to the current station (CSS reads --pos); stations behind it get a ✓.
+  const story = document.querySelector(".dot-story");
+  const stops = [...(story?.querySelectorAll(".ds-stop") || [])];
+  story?.addEventListener("slidestep", (e) => {
+    const at = e.detail.at;
+    story.style.setProperty("--pos", at);
+    stops.forEach((s, i) => { s.classList.toggle("done", i < at); s.classList.toggle("now", i === at); });
+    // On phones the stations stack, so keep the current one on screen.
+    if (!e.detail.entering) stops[at]?.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+  });
+  story?.querySelector(".ds-return").addEventListener("click", () => window.slideDeck?.leave());
 })();

@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=6">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=7">
-  <link rel="stylesheet" href="fresh.css?v=8">
+  <link rel="stylesheet" href="fresh.css?v=9">
 </head>
 <body class="deck-body">
 
@@ -191,6 +191,10 @@
               <section><h4><span aria-hidden="true">💼</span>Use it for</h4><p>Sorting customer feedback. Building a proof of concept. Finding clips and drafting social posts. It hands the work back for your OK.</p></section>
               <section><h4><span aria-hidden="true">👀</span>Good to know</h4><p>You set the rules: what it does alone, what needs your approval, what's off-limits. Chat with it in ChatGPT, Slack, or <b>Microsoft Teams</b>.</p></section>
             </div>
+            <!-- Opens the side-trip scene 3 (an imagined scenario); Next at its end comes back to this pop-up -->
+            <a class="drop-cta" href="#3"><span class="cta-icon" aria-hidden="true">🎂</span>
+              <span><b>Imagine this:</b> a Dot that never forgets a birthday</span>
+              <span class="cta-go">See it <span aria-hidden="true">▶</span></span></a>
           </article>
 
           <article class="drop" data-for="2" style="--accent:#3d9bff" role="dialog" aria-label="Intelligent UI, a closer look">
@@ -241,7 +245,75 @@
       </div>
     </section>
 
-    <!-- ========== 3 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <!-- ========== 3 · Side trip: "A Dot that never forgets", an imagined always-on Dot scenario ==========
+         Reached only from the "Imagine this" link in the Dots pop-up (data-detour): the normal flow skips it,
+         and Next on its last step returns to the Dots pop-up. Entry: station 1; clicks 1–3: stations 2–4;
+         click 4: station 5 + the morning briefing on Dad's laptop (with the Pro Tip).
+         Hypothetical scenario from Vince (Oct 20, 2026), not an OpenAI example; names and amounts are made up.
+         The Dots facts it leans on (own cloud computer + browser, keeps working after the chat closes, you set
+         what it does alone vs. with your OK): https://openai.com/index/introducing-dots/ -->
+    <section class="slide dot-story" data-title="A Dot that never forgets" data-detour data-goto="2">
+      <div class="slide-inner">
+        <header class="ds-head">
+          <div class="ds-tags enter"><span class="ds-imagined">💭 Imagined scenario</span><span class="lab openai">OpenAI Dots</span></div>
+          <h2 class="enter" style="--d:.1s">A Dot that <span class="ds-green">never forgets.</span></h2>
+          <p class="ds-sub enter" style="--d:.2s">Lily's birthday is Friday. <b>Last year, her dad forgot.</b></p>
+        </header>
+
+        <div class="ds-bands enter" style="--d:.3s" aria-hidden="true">
+          <span class="ds-band ds-night">🌙 Overnight, while Dad sleeps</span>
+          <span class="ds-band ds-morning">☀️ Morning</span>
+        </div>
+
+        <ol class="ds-track" aria-label="What the Dot does, step by step">
+          <li class="ds-rail" aria-hidden="true"><i class="ds-fill"></i><span class="ds-runner"></span></li>
+          <li class="ds-stop" data-step="0"><span class="ds-node" aria-hidden="true"></span>
+            <div class="ds-card"><span class="ds-time">1:02 AM</span><span class="ds-icon" aria-hidden="true">🔔</span>
+              <h3>Spots the date</h3><p>Sees Lily's birthday on the family calendar.</p>
+              <span class="ds-chip">🧠 Knows he forgot last year</span></div></li>
+          <li class="ds-stop" data-step="1"><span class="ds-node" aria-hidden="true"></span>
+            <div class="ds-card"><span class="ds-time">1:04 AM</span><span class="ds-icon" aria-hidden="true">🎁</span>
+              <h3>Buys the gift</h3><p>The art set on her wish list: $64.</p>
+              <span class="ds-chip ds-guard">🔒 Prepaid card, $100 limit</span></div></li>
+          <li class="ds-stop" data-step="2"><span class="ds-node" aria-hidden="true"></span>
+            <div class="ds-card"><span class="ds-time">1:07 AM</span><span class="ds-icon" aria-hidden="true">📅</span>
+              <h3>Clears Friday afternoon</h3><p>Moves 3 late meetings to Monday, so Dad can leave early.</p>
+              <span class="ds-chip ds-guard">🔒 His rule: it may reschedule</span></div></li>
+          <li class="ds-stop" data-step="3"><span class="ds-node" aria-hidden="true"></span>
+            <div class="ds-card"><span class="ds-time">1:09 AM</span><span class="ds-icon" aria-hidden="true">🍽️</span>
+              <h3>Books dinner</h3><p>Her favorite restaurant, Friday at 6:30.</p>
+              <span class="ds-chip">👨‍👩‍👧 Table for 3: Dad, Mom, Lily</span></div></li>
+          <li class="ds-stop" data-step="4"><span class="ds-node" aria-hidden="true"></span>
+            <div class="ds-card"><span class="ds-time">8:00 AM</span><span class="ds-icon" aria-hidden="true">💻</span>
+              <h3>Tells Dad</h3><p>The moment he logs in.</p>
+              <span class="ds-chip">💬 “Want to change anything?”</span></div></li>
+        </ol>
+
+        <div class="ds-foot enter" style="--d:.5s"><button type="button" class="btn btn-ghost ds-return">← Back to the drops</button></div>
+      </div>
+
+      <!-- Click 4: the morning briefing on Dad's laptop -->
+      <div class="ds-scrim" data-step="4" aria-hidden="true"></div>
+      <div class="ds-brief" data-step="4" role="group" aria-label="The Dot's morning briefing">
+        <div class="lap-screen">
+          <div class="lap-bar"><span class="lap-dot" aria-hidden="true"></span><b>Your Dot</b><span class="lap-time">8:00 AM</span></div>
+          <div class="lap-msg">
+            <p class="lap-hi">Good morning! Lily's birthday is Friday. 🎂 Here's what I did:</p>
+            <ul>
+              <li><span aria-hidden="true">🎁</span><span>Ordered the art set from her wish list. Arrives Thursday. <em>$64 of $100</em></span></li>
+              <li><span aria-hidden="true">📅</span><span>Moved your 3 meetings after 3 PM Friday to Monday. Everyone's been notified.</span></li>
+              <li><span aria-hidden="true">🍽️</span><span>Booked her favorite restaurant: Friday, 6:30 PM, table for 3.</span></li>
+            </ul>
+            <p class="lap-ask">Want me to change anything? <span class="lap-btn">👍 Perfect</span><span class="lap-btn">✏️ Change</span></p>
+          </div>
+        </div>
+        <div class="lap-base" aria-hidden="true"></div>
+        <aside class="pro-tip ds-tip"><span class="pro-tip-badge">Pro Tip</span>
+          <p><b>Set the rules before you hand over the keys.</b> Decide what it can do alone, what needs your OK, and what's off-limits. Start strict and loosen up as it earns your trust. A prepaid card with a limit caps any mistake.</p></aside>
+      </div>
+    </section>
+
+    <!-- ========== 4 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
     <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#3d9bff">
       <div class="lane-glow" aria-hidden="true"></div>
       <div class="slide-inner">
@@ -283,8 +355,8 @@
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="fresh.js?v=4"></script>
-  <script src="../../assets/js/slides.js?v=5"></script>
+  <script src="fresh.js?v=5"></script>
+  <script src="../../assets/js/slides.js?v=6"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
 </html>

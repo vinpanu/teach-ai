@@ -5,6 +5,9 @@
 // (or declare data-steps="n" and react to the "slidestep" event for custom scenes).
 // <main class="deck" data-next="url">: pressing Next on the very last step goes to that page.
 // <section class="slide" data-goto="1">: pressing Next on this scene's last step jumps to scene 1.
+// <section class="slide" data-detour>: a side trip reached only by a link (e.g. href="#3"). Next and Back skip it,
+//   and inside it, Next on the last step (or Back on the first) returns to the exact scene and step you left
+//   (opened straight from a URL, it falls back to its data-goto scene).
 (() => {
   const deck = document.querySelector(".deck");
   if (!deck) return;
@@ -12,6 +15,11 @@
   const bar = document.querySelector(".deck-progress span");
   const counter = document.querySelector(".deck-counter");
   let index = 0, at = 0;
+  let back = null;   // where a side trip (data-detour scene) returns to
+
+  const isDetour = (i) => slides[i]?.dataset.detour !== undefined;
+  // The next (dir 1) or previous (dir -1) scene in the normal flow, skipping side trips.
+  const after = (i, dir) => { do i += dir; while (isDetour(i)); return i; };
 
   const stepsIn = (s) => Math.max(
     0,
@@ -45,24 +53,33 @@
     history.replaceState(null, "", `#${index + 1}`);
   };
 
-  const go = (i, step = 0) => {
+  const go = (i, step = 0, remember = true) => {
     if (i < 0 || i >= slides.length) return;
+    if (remember && isDetour(i) && !isDetour(index)) back = { index, at };
     index = i; at = step;
     render(true);
   };
-  const next = () => {
-    if (at < stepsIn(slides[index])) { at++; render(false); }
+  // Leave a side trip: back to where it was opened from, else to its data-goto scene.
+  const leave = () => {
+    if (back) { const b = back; back = null; go(b.index, b.at); }
     else if (slides[index].dataset.goto) go(Number(slides[index].dataset.goto) - 1);
-    else if (index === slides.length - 1 && deck.dataset.next) location.href = deck.dataset.next;
-    else go(index + 1);
+  };
+  const next = () => {
+    const s = slides[index];
+    if (at < stepsIn(s)) { at++; render(false); }
+    else if (isDetour(index)) leave();
+    else if (s.dataset.goto) go(Number(s.dataset.goto) - 1);
+    else if (after(index, 1) >= slides.length && deck.dataset.next) location.href = deck.dataset.next;
+    else go(after(index, 1));
   };
   const prev = () => {
     if (at > 0) { at--; render(false); }
-    else if (index > 0) go(index - 1, stepsIn(slides[index - 1]));
+    else if (isDetour(index)) leave();
+    else if (after(index, -1) >= 0) go(after(index, -1), stepsIn(slides[after(index, -1)]));
   };
   // Lets interactive scenes jump to a step, e.g. clicking a road sign picks that lane.
   window.slideDeck = {
-    next, prev, go,
+    next, prev, go, leave,
     setStep(step) { at = Math.max(0, Math.min(step, stepsIn(slides[index]))); render(false); },
   };
 
@@ -121,5 +138,5 @@
     return Number.isFinite(n) ? Math.min(Math.max(n, 1), slides.length) - 1 : 0;
   };
   window.addEventListener("hashchange", () => { if (fromHash() !== index) go(fromHash()); });
-  go(fromHash());
+  go(fromHash(), 0, false);
 })();
