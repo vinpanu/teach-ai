@@ -129,6 +129,17 @@
     });
   });
   drops.querySelectorAll(".drop-x").forEach((x) => x.addEventListener("click", () => window.slideDeck?.setStep(0)));
+  // Mouse/tap on this scene never steps forward, so the cards can be explored in any order:
+  // clicking outside a pop-up closes it, clicks inside it do nothing (its links and buttons still work).
+  // The clicker / → keys still walk through the pop-ups in order.
+  slide.addEventListener("click", (e) => {
+    if (e.target.closest("a, button")) return;
+    e.stopPropagation();
+    if (e.target.closest(".drop-scrim")) window.slideDeck?.setStep(0);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && slide.classList.contains("active") && Number(slide.dataset.at) > 0) window.slideDeck?.setStep(0);
+  });
 
   // ---------- Intelligent UI: a real (tiny) bill splitter ----------
   const widget = slide.querySelector(".demo-iui");
