@@ -172,7 +172,7 @@
     story.style.setProperty("--pos", at);
     stops.forEach((s, i) => { s.classList.toggle("done", i < at); s.classList.toggle("now", i === at); });
     // On phones the stations stack, so keep the current one on screen.
-    if (!e.detail.entering) stops[at]?.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+    if (!e.detail.entering) stops[at]?.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
   });
   story?.querySelector(".ds-return").addEventListener("click", () => window.slideDeck?.leave());
 })();
