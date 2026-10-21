@@ -3,19 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Meet the POA Team · AI in Practice</title>
-  <meta name="description" content="My AI Health Coach sample: meet the human and AI agent team building POA, the Physique Optimization Agent.">
-  <meta property="og:title" content="Meet the POA Team · AI in Practice">
-  <meta property="og:description" content="One human, seven AI agent roles, one mission: building an AI health coach.">
+  <title>How POA Runs · AI in Practice</title>
+  <meta name="description" content="My AI Health Coach sample: how POA, a project run by one human and a team of AI agents, is governed and delivered.">
+  <meta property="og:title" content="How POA Runs · AI in Practice">
+  <meta property="og:description" content="One human sponsor, a team of AI agents, and the rulebooks, registry and dashboard that keep them on track.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=6">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=8">
-  <link rel="stylesheet" href="coach.css?v=5">
+  <link rel="stylesheet" href="coach.css?v=6">
 </head>
 <body class="deck-body">
+<!-- Sources, checked Oct 21, 2026 (all on the POA sponsor dashboard, https://poa-executive-dashboard.vince-panu.chatgpt.site/):
+     - Governance summaries (#about/governance): Mission Hierarchy v3.9 (#governance/hierarchy), Operating Framework v4.5
+       (#governance/framework), Artifact Catalog v3.16 (#governance/catalog), Artifact Management Specification v3.11
+       (#governance/ams), Delivery Lifecycle Framework (/delivery-lifecycle: the 7 stages, accountable roles and the 3 principles).
+     - Decision register (#records/decisions, 62 records): D-0065 every agent starts from three core sources (Artifact Catalog,
+       Operating Framework, Registry); D-0069 Mission 1A closure with exceptions; D-0076 sponsor reporting is a normal duty of
+       the leads; D-0080 dashboard shows each mission's position, next steps and open items; D-0083 project-wide testing framework.
+     - Overview: 25% = 3 of 12 delivery milestones; 4 active workstreams; 1 request awaiting Vince (adopt the POA Testing
+       Framework); health "Needs attention" (assessed Oct 19); scope coverage 58%; Mission 1B question coverage 38.3%.
+     - Open items (#open): 10 records = 1 request, 1 question, 3 concerns, 5 dependencies.
+     - Milestones (#records/milestones): M-0004 governance baseline and M-0011 Mission 1A completion are Complete.
+     Scene 2's "session ended" robots and scene 4's questions are illustrations, not real events. -->
 
   <div class="deck-progress" aria-hidden="true"><span></span></div>
   <a class="deck-brand" href="../../sessions/01-kickoff/"><span class="logo-mark" aria-hidden="true"></span>AI in Practice</a>
@@ -29,45 +41,286 @@
       <div class="glow g3"></div>
     </div>
 
-    <!-- ========== 1 · Title ========== -->
-    <section class="slide coach-title" data-title="Meet the POA Team">
+    <!-- ========== 1 · Title: Vince at the center, the governance pieces in orbit ========== -->
+    <section class="slide gov-title" data-title="How POA runs">
       <div class="slide-inner">
-        <span class="eyebrow enter"><span class="pulse"></span>Lane 1 · My AI Health Coach · Sample</span>
-        <div class="title-icons enter" style="--d:.1s" aria-hidden="true"><span>🧪</span><span>🏋️</span><span>🤖</span></div>
-        <h1 class="enter" style="--d:.2s">Meet the <span class="gradient-text">POA Team</span></h1>
-        <p class="lead enter" style="--d:.35s"><b>POA</b> = Physique Optimization Agent.<br>Where coaching experience meets science and AI.</p>
+        <div>
+          <span class="eyebrow enter"><span class="pulse"></span>Lane 1 · My AI Health Coach · Sample</span>
+          <h1 class="enter" style="--d:.15s">Who's <span class="gradient-text">in charge</span> here?</h1>
+          <p class="lead enter" style="--d:.3s"><b>POA</b> (Physique Optimization Agent) is my AI health coach project.<br>Here's how one human and a team of AI agents keep it on track.</p>
+        </div>
+        <div class="orbit enter" style="--d:.35s" role="img" aria-label="Vince, the sponsor, at the center. Around him: the Artifact Catalog, Operating Framework, AMS, Registry, Delivery Lifecycle and Dashboard.">
+          <div class="orbit-ring"></div>
+          <div class="orbit-core"><div data-avatar="human"></div><b>Vince</b><small>Sponsor</small></div>
+          <div class="orbit-spin">
+            <div class="sat" style="--i:0; --c:var(--c-cat)"><div class="sat-in"><span>📇</span><b>Catalog</b></div></div>
+            <div class="sat" style="--i:1; --c:var(--c-fw)"><div class="sat-in"><span>🧭</span><b>Framework</b></div></div>
+            <div class="sat" style="--i:2; --c:var(--c-ams)"><div class="sat-in"><span>🗂️</span><b>AMS</b></div></div>
+            <div class="sat" style="--i:3; --c:var(--c-reg)"><div class="sat-in"><span>📒</span><b>Registry</b></div></div>
+            <div class="sat" style="--i:4; --c:var(--c-dlc)"><div class="sat-in"><span>🛤️</span><b>Delivery</b></div></div>
+            <div class="sat" style="--i:5; --c:var(--c-dash)"><div class="sat-in"><span>📊</span><b>Dashboard</b></div></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ========== 2 · Roll call (built by coach.js) ========== -->
-    <section class="slide rollcall" data-title="The roll call">
+    <!-- ========== 2 · Every new agent starts from zero (illustration) ========== -->
+    <section class="slide gs zero" data-title="Every agent starts from zero">
       <div class="slide-inner">
-        <h2 class="enter rc-head">Who's building my <span class="gradient-text">AI health coach?</span></h2>
-        <div class="rc-stage" aria-live="polite"></div>
-        <div class="rc-lineup" aria-label="The team: click a member to jump to them"></div>
+        <h2 class="enter">Every new AI agent starts <span class="gradient-text">from zero.</span></h2>
+        <div class="zero-stage">
+          <div class="zero-desk" role="img" aria-label="A robot finishes its work and its session ends. A new robot arrives, full of questions.">
+            <div class="desk-table"></div>
+            <div class="laptop"><div class="screen"><i></i><i></i><i></i></div></div>
+            <div class="zr old" data-avatar="high"></div>
+            <div class="zr new" data-avatar="xhigh"><span class="qmark">?</span></div>
+            <div class="ended">💤 Session ended</div>
+          </div>
+          <ul class="zero-qs">
+            <li style="--c:var(--c-reg); --k:0"><span class="q">What am I working on?</span><span class="a" data-step="1">📒 Registry</span></li>
+            <li style="--c:var(--c-cat); --k:1"><span class="q">Which document has the answer?</span><span class="a" data-step="1">📇 Artifact Catalog</span></li>
+            <li style="--c:var(--c-fw); --k:2"><span class="q">What am I allowed to decide?</span><span class="a" data-step="1">🧭 Operating Framework</span></li>
+            <li style="--c:var(--c-ams); --k:3"><span class="q">How do I change a file safely?</span><span class="a" data-step="1">🗂️ AMS</span></li>
+          </ul>
+        </div>
+        <p class="zero-foot" data-step="1">Every agent reads <b>the Registry, the Catalog and the Framework</b> before it starts.</p>
       </div>
     </section>
 
-    <!-- ========== 3 · Team photo ========== -->
-    <section class="slide" data-title="Team photo">
-      <div class="slide-inner tp-wrap">
-        <div class="flash" aria-hidden="true"></div>
-        <h2 class="enter">Say “<span class="gradient-text">cheese</span> (non-fat)!” 📸</h2>
-        <div class="team-photo"></div>
-        <aside class="pro-tip" data-step="0">
+    <!-- ========== 3 · The whole system in one loop (coach.js moves the token) ========== -->
+    <section class="slide gs loop-slide" data-title="One loop">
+      <div class="slide-inner">
+        <h2 class="enter">How POA runs, <span class="gradient-text">in one loop.</span></h2>
+        <div class="loop">
+          <svg class="loop-svg" aria-hidden="true">
+            <ellipse class="track"/>
+            <line class="spoke" data-to="0"/><line class="spoke in" data-to="4"/><line class="spoke" data-to="5"/>
+          </svg>
+          <div class="loop-trail" aria-hidden="true"></div><div class="loop-trail" aria-hidden="true"></div><div class="loop-trail" aria-hidden="true"></div>
+          <div class="loop-token" aria-hidden="true"></div>
+          <div class="loop-core"><span aria-hidden="true">📒</span><b>Registry</b><small>the project's memory</small></div>
+          <ol class="loop-stations">
+            <li class="loop-st" style="--a:-90deg; --k:0; --c:var(--xhigh)"><span class="ls-ic" aria-hidden="true">🤖</span><span class="ls-tx"><b>Agent checks in</b><small>reads its startup record</small></span></li>
+            <li class="loop-st r" style="--a:-30deg; --k:1; --c:var(--c-cat)"><span class="ls-ic" aria-hidden="true">📇</span><span class="ls-tx"><b>Catalog points the way</b><small>to the right document</small></span></li>
+            <li class="loop-st r" style="--a:30deg; --k:2; --c:var(--c-fw)"><span class="ls-ic" aria-hidden="true">🧭</span><span class="ls-tx"><b>Rules apply</b><small>Operating Framework + AMS</small></span></li>
+            <li class="loop-st" style="--a:90deg; --k:3; --c:var(--c-dlc)"><span class="ls-ic" aria-hidden="true">🛤️</span><span class="ls-tx"><b>Work moves forward</b><small>stage by stage</small></span></li>
+            <li class="loop-st l" style="--a:150deg; --k:4; --c:var(--c-reg)"><span class="ls-ic" aria-hidden="true">✍️</span><span class="ls-tx"><b>Progress gets logged</b><small>back into the Registry</small></span></li>
+            <li class="loop-st l" style="--a:210deg; --k:5; --c:var(--c-dash)"><span class="ls-ic" aria-hidden="true">📊</span><span class="ls-tx"><b>Vince sees it, decides</b><small>on the dashboard</small></span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4 · The Artifact Catalog points the way (one question per click, run by coach.js) ========== -->
+    <section class="slide gs cat-slide" data-title="The Artifact Catalog">
+      <div class="slide-inner">
+        <h2 class="enter">The Artifact Catalog <span class="gradient-text">points the way.</span></h2>
+        <div class="cat-stage">
+          <div class="cat-ask">
+            <div class="cat-q" aria-live="polite"></div>
+            <div class="cat-bot" data-avatar="xhigh"></div>
+          </div>
+          <div class="cat-arrow a1" aria-hidden="true"></div>
+          <div class="cat-card">
+            <div class="cc-inner">
+              <div class="cc-front"><span class="big" aria-hidden="true">📇</span><b>Artifact Catalog</b><small>Looking it up</small></div>
+              <div class="cc-back" aria-live="polite"><small>The answer lives in</small><span class="big cc-icon" aria-hidden="true"></span><b class="cc-owner"></b><span class="cc-why"></span></div>
+            </div>
+          </div>
+          <div class="cat-arrow a2" aria-hidden="true"></div>
+          <div class="cat-shelf">
+            <div class="doc" data-doc="scope" style="--c:var(--c-scope); --k:0"><span aria-hidden="true">🎯</span><b>Product Scope Spec</b><small>what we're building</small></div>
+            <div class="doc" data-doc="mh" style="--c:var(--c-mh); --k:1"><span aria-hidden="true">🏛️</span><b>Mission Hierarchy</b><small>who owns which part</small></div>
+            <div class="doc" data-doc="fw" style="--c:var(--c-fw); --k:2"><span aria-hidden="true">🧭</span><b>Operating Framework</b><small>how we work together</small></div>
+            <div class="doc" data-doc="ams" style="--c:var(--c-ams); --k:3"><span aria-hidden="true">🗂️</span><b>AMS</b><small>how files are handled</small></div>
+            <div class="doc" data-doc="dlc" style="--c:var(--c-dlc); --k:4"><span aria-hidden="true">🛤️</span><b>Delivery Lifecycle</b><small>how work reaches release</small></div>
+            <div class="doc" data-doc="reg" style="--c:var(--c-reg); --k:5"><span aria-hidden="true">📒</span><b>Registry</b><small>where things stand now</small></div>
+          </div>
+        </div>
+        <div class="cat-foot">
+          <p class="cat-line enter" style="--d:2.4s">It doesn't hold the answers. It knows <b>which document owns each one.</b></p>
+          <aside class="pro-tip" data-step="3">
+            <span class="pro-tip-badge">Pro Tip</span>
+            <p>Your AI doesn't need to read everything. A catalog lets it open <b>only what the task needs</b>: faster, cheaper, and fewer mix-ups between old and new versions.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5 · Operating Framework: who decides what ========== -->
+    <section class="slide gs fw-slide" data-title="The Operating Framework">
+      <div class="slide-inner">
+        <p class="kicker enter">🧭 The Operating Framework</p>
+        <h2 class="enter" style="--d:.1s">Who decides <span class="gradient-text">what?</span></h2>
+        <div class="fw-stage">
+          <div class="fw-side vince enter" style="--d:.25s">
+            <div class="fw-fig" data-avatar="human"></div>
+            <h3>Vince decides</h3>
+            <ul><li>🎯 Goals and priorities</li><li>✅ The big calls and final approvals</li></ul>
+          </div>
+          <div class="fw-line" aria-hidden="true"><span>Decision line</span></div>
+          <div class="fw-side agents enter" style="--d:.4s">
+            <div class="fw-figs"><div data-avatar="max"></div><div data-avatar="xhigh"></div></div>
+            <h3>Agents deliver</h3>
+            <ul><li>🛠️ Own the work until it's verified</li><li>🙋 Ask when the call is Vince's</li></ul>
+          </div>
+          <div class="fw-lane" aria-hidden="true">
+            <div class="fw-packet"><span class="fp-box">📦 Change the scope?</span><span class="fp-hand">🙋</span><span class="fp-ok">✓ Approved</span></div>
+          </div>
+          <div class="fw-stamp" data-step="1">Silence is not a yes<small>Neither is a maybe. Approval has to be clear.</small></div>
+        </div>
+        <p class="fw-dir enter" style="--d:.6s">An AI <b>Project Director</b> keeps all the work coordinated.</p>
+      </div>
+    </section>
+
+    <!-- ========== 6 · AMS: how every document gets handled (plays once, R replays) ========== -->
+    <section class="slide gs ams-slide" data-title="AMS: the filing rules">
+      <div class="slide-inner">
+        <p class="kicker enter">🗂️ AMS · Artifact Management Specification</p>
+        <h2 class="enter" style="--d:.1s">How every document <span class="gradient-text">gets handled.</span></h2>
+        <div class="ams-stage">
+          <div class="ams-doc-wrap" role="img" aria-label="A document called Operating Framework: a stray copy is crossed out, one line is edited, the version goes from 4.4 to 4.5, and it is stamped saved and verified.">
+            <div class="ams-doc">
+              <div class="ad-top"><b>Operating Framework</b><span class="ad-ver"><span>v4.4</span><span>v4.5</span></span></div>
+              <span class="ad-owns">The one home for: roles · decisions · coordination</span>
+              <i></i><i class="edit"></i><i></i><i class="short"></i><i></i><i></i><i class="short"></i>
+              <span class="ad-pen">✎</span>
+              <span class="ad-lens">🔍</span>
+              <span class="ad-ok">✓ Saved &amp; verified</span>
+            </div>
+            <div class="ams-ghost">Roles (old copy)<i></i><i></i><i></i><span class="x">✗</span></div>
+          </div>
+          <ol class="ams-rules">
+            <li style="--t:1s"><span class="n">1</span><span><b>One home</b> for each kind of information</span></li>
+            <li style="--t:3.4s"><span class="n">2</span><span><b>Change a small piece,</b> in place</span></li>
+            <li style="--t:5.5s"><span class="n">3</span><span><b>Bump the version:</b> v4.4 → v4.5</span></li>
+            <li style="--t:7s"><span class="n">4</span><span><b>Done</b> means saved and verified</span></li>
+          </ol>
+        </div>
+        <aside class="pro-tip" data-step="1">
           <span class="pro-tip-badge">Pro Tip</span>
-          <p>Notice the <b>Testing Grader</b> is separate from the <b>Builder</b>. Just like a human team, an AI team works better when nobody grades their own work.</p>
+          <p>After your AI edits a file, ask it to <b>re-open the file and confirm the change is really there.</b> “Done” should mean saved and checked, not “I think I saved it.”</p>
         </aside>
       </div>
     </section>
 
-    <!-- ========== 4 · Fun break (top) + Story time (bottom), all on one screen ========== -->
+    <!-- ========== 7 · The Registry: the project's memory (tabs and rows built by coach.js) ========== -->
+    <section class="slide gs reg-slide" data-title="The Registry">
+      <div class="slide-inner">
+        <p class="kicker enter">📒 The Registry</p>
+        <h2 class="enter" style="--d:.1s">The project's <span class="gradient-text">memory.</span></h2>
+        <div class="reg-stage">
+          <div class="reg-side enter" style="--d:.3s"><div data-avatar="xhigh"></div><span>Agents read it at startup and <b>write to it after real progress</b></span><i class="reg-flow"></i></div>
+          <div class="sheet enter" style="--d:.2s">
+            <div class="sh-bar"><span aria-hidden="true">📒</span>POA Registry<span class="sh-note">Real entries, shortened</span></div>
+            <div class="sh-body" aria-live="polite">
+              <div class="sh-title"></div>
+              <table class="sh-grid"><thead></thead><tbody></tbody></table>
+            </div>
+            <div class="sh-tabs" role="tablist" aria-label="Registry tabs"></div>
+          </div>
+          <div class="reg-side enter" style="--d:.45s"><i class="reg-flow"></i><span class="mini" aria-hidden="true">📊</span><span>It <b>feeds the dashboard</b></span></div>
+        </div>
+        <p class="reg-cap">Agents write it · the dashboard reads it</p>
+      </div>
+    </section>
+
+    <!-- ========== 8 · The delivery model: 7 stages (coach.js moves the package) ========== -->
+    <section class="slide gs dlc-slide" data-title="The delivery model">
+      <div class="slide-inner">
+        <p class="kicker enter">🛤️ The delivery model</p>
+        <h2 class="enter" style="--d:.1s">From idea to release, <span class="gradient-text">in 7 stages.</span></h2>
+        <div class="dlc-track">
+          <div class="dlc-rail" aria-hidden="true"><i class="dlc-fill"></i></div>
+          <span class="dlc-ghost" aria-hidden="true">📦</span><span class="dlc-ghost g2" aria-hidden="true">📦</span>
+          <ol class="dlc-stations">
+            <li class="dlc-st" style="--k:0"><span class="who">Scope BA</span><span class="dot"></span><b>Scope</b><span class="vince">👑 Vince decides</span></li>
+            <li class="dlc-st" style="--k:1"><span class="who">Mission BA</span><span class="dot"></span><b>Requirements</b></li>
+            <li class="dlc-st" style="--k:2"><span class="who">Architect</span><span class="dot"></span><b>Technical design</b></li>
+            <li class="dlc-st" style="--k:3"><span class="who">Architect → Builder</span><span class="dot"></span><b>Build package</b></li>
+            <li class="dlc-st" style="--k:4"><span class="who">Builder</span><span class="dot"></span><b>Built version</b></li>
+            <li class="dlc-st" style="--k:5"><span class="who">Testing Lead + testers</span><span class="dot"></span><b>Test evidence</b></li>
+            <li class="dlc-st" style="--k:6"><span class="who">Release owner</span><span class="dot"></span><b>Release</b><span class="vince">👑 Vince approves</span></li>
+          </ol>
+          <span class="dlc-token" aria-hidden="true">📦</span>
+          <span class="dlc-boom" aria-hidden="true">🚀 Released!</span>
+        </div>
+        <div class="dlc-rules">
+          <div class="dlc-rule" data-step="1" style="--k:0"><span aria-hidden="true">🚦</span>Each feature moves at its own speed</div>
+          <div class="dlc-rule" data-step="1" style="--k:1"><span aria-hidden="true">🤝</span>The next owner checks every handoff</div>
+          <div class="dlc-rule" data-step="1" style="--k:2"><span aria-hidden="true">🧾</span>“Ready” needs evidence, not a hunch</div>
+        </div>
+        <aside class="pro-tip" data-step="2">
+          <span class="pro-tip-badge">Pro Tip</span>
+          <p>Keep testing independent. On POA, the agent that runs a test <b>never sees the answer key</b>, and a separate grader scores the results. Nobody marks their own homework.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== 9 · The Dashboard: Vince's window (snapshot of the live site, Oct 21, 2026) ========== -->
+    <section class="slide gs dash-slide" data-title="The dashboard">
+      <div class="slide-inner">
+        <p class="kicker enter">📊 The Dashboard</p>
+        <h2 class="enter" style="--d:.1s">Vince's window <span class="gradient-text">into the project.</span></h2>
+        <div class="dash-stage">
+          <div class="dash-feed enter" style="--d:.3s">
+            <span class="df-reg"><span aria-hidden="true">📒</span><b>Registry</b></span>
+            <i class="df-pipe" aria-hidden="true"><b></b><b></b><b></b></i>
+            <small>Read on open, on Refresh and every 12 hours</small>
+          </div>
+          <div class="browser">
+            <div class="br-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="br-url" aria-hidden="true">poa-executive-dashboard.vince-panu.chatgpt.site</span><span class="dash-note">Snapshot · Oct 21, 2026</span></div>
+            <div class="br-body">
+              <div class="db-head">
+                <b>POA · Sponsor dashboard</b>
+                <span class="db-chip db-sponsor"><span data-avatar="human"></span>Project Sponsor: <b>Vince</b></span>
+                <span class="db-chip db-health">Needs attention</span>
+              </div>
+              <div class="db-tiles">
+                <div class="tile" style="--k:0; --t:var(--c-dash)">
+                  <h3>🏁 Completed</h3>
+                  <div class="big"><span data-count="25">25</span><small>%</small></div>
+                  <p>3 of 12 delivery milestones</p>
+                  <ul><li>Governance baseline</li><li>Mission 1A complete</li></ul>
+                </div>
+                <div class="tile" style="--k:1; --t:var(--c-fw)">
+                  <h3>⚙️ Active work</h3>
+                  <div class="big" data-count="4">4</div>
+                  <p>workstreams in progress</p>
+                  <div class="bar" style="--v:58%; --j:0"><span>Product scope <b>58%</b></span><i></i></div>
+                  <div class="bar" style="--v:38%; --j:1"><span>Coaching <b>38%</b></span><i></i></div>
+                </div>
+                <div class="tile" style="--k:2; --t:var(--amber)">
+                  <h3>📌 Open items</h3>
+                  <div class="big" data-count="10">10</div>
+                  <div class="stack" aria-hidden="true">
+                    <i style="--n:1; --j:0; --sc:var(--human)"></i><i style="--n:1; --j:1; --sc:var(--c-cat)"></i><i style="--n:3; --j:2; --sc:var(--amber)"></i><i style="--n:5; --j:3; --sc:var(--c-fw)"></i>
+                  </div>
+                  <p class="legend"><span style="--sc:var(--human)">1 request</span><span style="--sc:var(--c-cat)">1 question</span><span style="--sc:var(--amber)">3 concerns</span><span style="--sc:var(--c-fw)">5 dependencies</span></p>
+                </div>
+                <div class="tile ask" style="--k:3; --t:var(--human)">
+                  <h3>🙋 Awaiting you</h3>
+                  <div class="big" data-count="1">1</div>
+                  <p>Approve the new POA Testing Framework?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="pro-tip" data-step="1">
+          <span class="pro-tip-badge">Pro Tip</span>
+          <p>A number is a signal, not proof. POA keeps <b>progress, health, permission and release readiness</b> as separate signals, so one good number can't hide a problem.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== 10 · Fun break (top) + Story time (bottom), all on one screen ========== -->
     <section class="slide story-time combo-slide" data-title="Fun break + story time">
       <div class="spotlight" aria-hidden="true"></div>
       <div class="slide-inner">
         <div class="combo-top">
           <h2 class="enter break-head"><span class="kicker-inline">Fun break ·</span> Even AI agents <span class="gradient-text">skip leg day.</span></h2>
-          <div class="gym enter" aria-label="Vince leads the robot agents through a lifting workout. One robot wobbles under its barbell."></div>
+          <div class="gym enter" role="img" aria-label="Vince leads the robot agents through a lifting workout. One robot wobbles under its barbell."></div>
         </div>
         <div class="combo-bottom">
           <div class="st-row enter"><div class="mic" aria-hidden="true">🎤</div><div class="neon">Story Time</div></div>
@@ -77,7 +330,7 @@
       </div>
     </section>
 
-    <!-- ========== 5 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <!-- ========== 11 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
     <section class="slide lane-pitch" data-title="What you'll get" style="--lane:#ff8a3d">
       <div class="lane-glow" aria-hidden="true"></div>
       <div class="slide-inner">
@@ -98,7 +351,7 @@
           <span class="vote-ticket"><a class="vt-stub" href="../../sessions/01-kickoff/#6">🙋 Vote in Teams <span class="vt-go" aria-hidden="true">→</span></a><b>My AI Health Coach</b></span>
           <div class="end-row">
             <a class="btn btn-primary" href="../../sessions/01-kickoff/#5">← Back to the lanes</a>
-            <a class="btn btn-ghost" href="https://poa-executive-dashboard.vince-panu.chatgpt.site/#team" target="_blank" rel="noopener">See the real POA dashboard ↗</a>
+            <a class="btn btn-ghost" href="https://poa-executive-dashboard.vince-panu.chatgpt.site/" target="_blank" rel="noopener">See the real POA dashboard ↗</a>
           </div>
         </div>
       </div>
@@ -109,11 +362,11 @@
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 5</span>
+    <span class="deck-counter" aria-live="polite">1 / 11</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="coach.js?v=6"></script>
+  <script src="coach.js?v=7"></script>
   <script src="../../assets/js/slides.js?v=7"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
