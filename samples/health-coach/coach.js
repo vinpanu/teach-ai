@@ -233,6 +233,35 @@ const OTHER_TABS = ["Ideas", "Milestones", "PMO Priorities"];   // real tabs, no
     };
     window.addEventListener("resize", () => place(at, false));
     slide.addEventListener("slidestep", (e) => { if (e.detail.entering) play(); });
+
+    // Click 2 shows the real lifecycle diagram full screen, growing out of its thumbnail.
+    // A click anywhere (the deck's own "next"), ✕ or Esc closes it and moves on to the Pro Tip.
+    const fig = slide.querySelector(".dlc-fig");
+    const pop = slide.querySelector(".dlc-pop");
+    const big = pop.querySelector(".dlc-big");
+    const BIG = 2;
+    const show = (open, entering) => {
+      if (open === pop.classList.contains("open")) return;
+      pop.classList.toggle("open", open);
+      pop.inert = !open;
+      if (open) {
+        if (!reduceMotion && !entering) {
+          const from = fig.getBoundingClientRect(), to = big.getBoundingClientRect();
+          big.animate([
+            { transform: `translate(${from.left + from.width / 2 - (to.left + to.width / 2)}px, ${from.top + from.height / 2 - (to.top + to.height / 2)}px) scale(${from.width / to.width})` },
+            { transform: "none" },
+          ], { duration: 550, easing: "cubic-bezier(.2, .8, .2, 1)" });
+        }
+        pop.querySelector(".dlc-x").focus({ preventScroll: true });
+      } else if (pop.contains(document.activeElement)) document.activeElement.blur();
+    };
+    pop.inert = true;
+    slide.addEventListener("slidestep", (e) => show(e.detail.at === BIG, e.detail.entering));
+    fig.addEventListener("click", () => window.slideDeck?.setStep(BIG));
+    pop.querySelector(".dlc-x").addEventListener("click", () => window.slideDeck?.setStep(BIG + 1));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && slide.classList.contains("active") && pop.classList.contains("open")) window.slideDeck?.setStep(BIG + 1);
+    });
   }
 
   // ---------- 9 · Dashboard: numbers count up as their tiles land ----------

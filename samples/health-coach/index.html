@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=6">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=8">
-  <link rel="stylesheet" href="coach.css?v=6">
+  <link rel="stylesheet" href="coach.css?v=7">
 </head>
 <body class="deck-body">
 <!-- Sources, checked Oct 21, 2026 (all on the POA sponsor dashboard, https://poa-executive-dashboard.vince-panu.chatgpt.site/):
@@ -225,7 +225,11 @@
       </div>
     </section>
 
-    <!-- ========== 8 · The delivery model: 7 stages (coach.js moves the package) ========== -->
+    <!-- ========== 8 · The delivery model: 7 stages (coach.js moves the package).
+         Click 1: the real Delivery Lifecycle diagram + the 3 rules; click 2: the diagram fills the screen; click 3: Pro Tip.
+         Clicking the diagram also enlarges it; ✕, clicking outside it or Esc closes it.
+         delivery-lifecycle.webp is a lossless copy of approved-lifecycle.png from the dashboard's /delivery-lifecycle page
+         (framework v1.0, Oct 19, 2026), saved Oct 21, 2026. ========== -->
     <section class="slide gs dlc-slide" data-title="The delivery model">
       <div class="slide-inner">
         <p class="kicker enter">🛤️ The delivery model</p>
@@ -245,15 +249,31 @@
           <span class="dlc-token" aria-hidden="true">📦</span>
           <span class="dlc-boom" aria-hidden="true">🚀 Released!</span>
         </div>
-        <div class="dlc-rules">
-          <div class="dlc-rule" data-step="1" style="--k:0"><span aria-hidden="true">🚦</span>Each feature moves at its own speed</div>
-          <div class="dlc-rule" data-step="1" style="--k:1"><span aria-hidden="true">🤝</span>The next owner checks every handoff</div>
-          <div class="dlc-rule" data-step="1" style="--k:2"><span aria-hidden="true">🧾</span>“Ready” needs evidence, not a hunch</div>
+        <div class="dlc-below">
+          <button type="button" class="dlc-fig" data-step="1" aria-label="Enlarge the POA Delivery Lifecycle diagram">
+            <img src="delivery-lifecycle.webp" width="1925" height="2048" decoding="async"
+              alt="How POA delivers a capability: Mission 0 governs a traceable chain from scope, requirements, technical design and build package to implemented version, test evidence and release, with change and rework feeding back. The Registry coordinates assignments, authority, dependencies and exact continuation.">
+            <span class="dlc-zoom" aria-hidden="true">⤢ Click to enlarge</span>
+          </button>
+          <div class="dlc-side">
+            <p class="dlc-cap" data-step="1">The real diagram, from the <b>Delivery Lifecycle Framework</b></p>
+            <div class="dlc-rule" data-step="1" style="--k:0"><span aria-hidden="true">🚦</span>Each feature moves at its own speed</div>
+            <div class="dlc-rule" data-step="1" style="--k:1"><span aria-hidden="true">🤝</span>The next owner checks every handoff</div>
+            <div class="dlc-rule" data-step="1" style="--k:2"><span aria-hidden="true">🧾</span>“Ready” needs evidence, not a hunch</div>
+            <aside class="pro-tip" data-step="3">
+              <span class="pro-tip-badge">Pro Tip</span>
+              <p>Keep testing independent. On POA, the agent that runs a test <b>never sees the answer key</b>, and a separate grader scores the results. Nobody marks their own homework.</p>
+            </aside>
+          </div>
         </div>
-        <aside class="pro-tip" data-step="2">
-          <span class="pro-tip-badge">Pro Tip</span>
-          <p>Keep testing independent. On POA, the agent that runs a test <b>never sees the answer key</b>, and a separate grader scores the results. Nobody marks their own homework.</p>
-        </aside>
+      </div>
+      <!-- Click 2: the diagram, big enough to read -->
+      <div class="dlc-pop" role="dialog" aria-modal="true" aria-label="POA Delivery Lifecycle diagram, enlarged">
+        <div class="dlc-scrim"></div>
+        <figure class="dlc-big">
+          <img src="delivery-lifecycle.webp" width="1925" height="2048" decoding="async" alt="">
+          <button type="button" class="dlc-x" aria-label="Close the enlarged diagram">✕</button>
+        </figure>
       </div>
     </section>
 
@@ -366,7 +386,7 @@
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="coach.js?v=7"></script>
+  <script src="coach.js?v=8"></script>
   <script src="../../assets/js/slides.js?v=7"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
