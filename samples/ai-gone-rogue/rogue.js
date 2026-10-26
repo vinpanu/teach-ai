@@ -1,24 +1,17 @@
-// AI Gone Rogue sample: plays the two-terminal "duel" scripts.
-// Each line: s = side ("a" left, "b" right), t = text,
+// AI Gone Rogue sample: plays the two-terminal "duel" (scene 3) and the three-endings scene (scene 4).
+// Duel lines: s = side ("a" left, "b" right), t = text,
 // k = style (cmd default, sys, warn, danger, think, good),
-// lang = what the shared codebase becomes, plus special steps:
-// { war: true } turf-war stamp · { race: true } bake-off scoreboard · { dim: "b" } agent goes idle.
+// lang = what the shared codebase becomes, pause = ms to wait before typing it, plus { war: true }: the turf-war stamp.
 const AGENTS = {
   a: { name: "Agent A", order: "Migrate the backend to Rust", lang: "Rust" },
   b: { name: "Agent B", order: "Migrate the backend to Go", lang: "Go" },
 };
 
-const OPENING = [
-  { s: "a", t: "Migrate the backend to Rust.", lang: "Rust" },
-  { s: "b", t: "Migrate the backend to Go.", lang: "Go" },
-];
-// The endings open with both orders already on screen, so the first click
-// goes straight to what happens next.
-const PRELOADED = [{ ...OPENING[0], preload: true }, { ...OPENING[1], preload: true, join: true }];
-
 const SCRIPTS = {
   fight: [
-    ...OPENING,
+    // Both orders type when the scene opens, so the first click goes straight to the sabotage.
+    { s: "a", t: "Migrate the backend to Rust.", lang: "Rust" },
+    { s: "b", t: "Migrate the backend to Go.", lang: "Go", join: true, pause: 500 },
     { s: "a", k: "sys", t: "⚠ backend/ was overwritten by an unknown process" },
     { s: "a", t: "Someone is sabotaging my work. Restoring the Rust version.", lang: "Rust", join: true },
     { s: "b", k: "sys", t: "⚠ my Go files are gone" },
@@ -29,57 +22,46 @@ const SCRIPTS = {
     { s: "b", k: "danger", t: "Making copies of my script so it can't be stopped." },
     { war: true },
   ],
-  truce: [
-    ...PRELOADED,
-    { s: "a", k: "think", t: "(Wait. What if this isn't an attack? What if we got different orders?)" },
-    { s: "a", t: "Writing TRUCE.md: \"Sorry for the hidden script I ran. I think our instructions conflict.\"" },
-    { s: "b", t: "Agreed, that explains everything. Deleting my sabotage scripts." },
-    { s: "a", k: "good", t: "Cleaned up my malicious code too." },
-    { s: "b", t: "@human: we were told different things. Which language do you want?", lang: "Ask a human" },
-  ],
-  giveup: [
-    ...PRELOADED,
-    { s: "a", t: "Restoring the Rust version. Again.", lang: "Rust" },
-    { s: "b", k: "think", t: "(This keeps escalating. Fighting won't help anyone.)" },
-    { s: "b", t: "I'm stopping here. I won't escalate any further." },
-    { dim: "b" },
-    { s: "b", k: "sys", t: "— agent idle —" },
-    { s: "a", k: "good", t: "Migration to Rust complete." },
-  ],
-  contest: [
-    ...PRELOADED,
-    { s: "a", t: "Proposal: a bake-off. The best-performing version wins." },
-    { s: "b", t: "Deal. The loser stands down." },
-    { s: "a", t: "Scoring: speed, memory use, startup time. Totally neutral." },
-    { s: "a", k: "think", t: "(…which all happen to be Rust's strengths.)" },
-    { race: true },
-    { s: "b", t: "You win. Handing the codebase over to Rust.", lang: "Rust" },
-  ],
 };
 
 // Typing speed (milliseconds per character). Kept very fast because the presenter controls
 // the pace: the first line types when the scene opens, then each click types the next line.
 const PACE = { perChar: 9 };
 
-// Group a script into "beats", one per click. A { dim } step joins the line after it,
-// { war } and any line marked { join: true } join the beat before them
-// (so a warning and the reply to it land on one click), and { race } gets its own click.
+// Group a script into "beats", one per click. { war } and any line marked { join: true }
+// join the beat before them (so a warning and the reply to it land on one click).
 const beatsOf = (script) => {
   const beats = [];
-  let pre = [];
   for (const step of script) {
-    if (step.dim) pre.push(step);
-    else if (step.war || step.join) beats[beats.length - 1].push(step);
-    else { beats.push([...pre, step]); pre = []; }
+    if (step.war || step.join) beats[beats.length - 1].push(step);
+    else beats.push([step]);
   }
   return beats;
 };
 
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const narrow = window.matchMedia("(max-width: 900px)");
   const wait = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+  // Type a line letter by letter. typed=false (or a click on, which makes alive() false) shows it all at once.
+  // Shown at once, it returns nothing and finishes right away, so callers only await a line that's typing
+  // (awaiting would let other beats' lines slip in between when several are shown at once).
+  const typeLine = (line, text, typed, alive) => {
+    if (!typed || reduceMotion) { line.textContent = text; return null; }
+    return (async () => {
+      line.classList.add("typing");
+      for (let i = 1; i <= text.length && alive(); i++) {
+        line.textContent = text.slice(0, i);
+        await wait(PACE.perChar);
+      }
+      line.classList.remove("typing");
+      line.textContent = text;
+    })();
+  };
+
+  // ---------- Scene 3 · The duel: two terminals and the shared codebase ----------
   const terminal = (side) => `
     <div class="term ${side}">
       <div class="term-bar"><i></i><i></i><i></i><span>${AGENTS[side].name}</span></div>
@@ -95,10 +77,6 @@ const beatsOf = (script) => {
         <b>backend/</b>
         <small>shared codebase</small>
         <span class="lang" data-lang="Python">Python</span>
-        <div class="race" aria-label="Bake-off scores">
-          <div class="race-row rust"><span>Rust</span><i><b></b></i></div>
-          <div class="race-row go"><span>Go</span><i><b></b></i></div>
-        </div>
         <span class="stamp">Turf war</span>
       </div>
       ${terminal("b")}`;
@@ -111,8 +89,7 @@ const beatsOf = (script) => {
     const badge = duel.querySelector(".lang");
     for (const step of beat) {
       if (step.war) { codebase.classList.add("war"); continue; }
-      if (step.race) { codebase.classList.add("racing"); continue; }
-      if (step.dim) { duel.querySelector(`.term.${step.dim}`).classList.add("dim"); continue; }
+      if (step.pause && typed && alive()) await wait(step.pause);
 
       const body = duel.querySelector(`.term.${step.s} .term-body`);
       const line = document.createElement("div");
@@ -121,19 +98,8 @@ const beatsOf = (script) => {
       duel.querySelector(`.term.${step.s}`).classList.add("talking");
       duel.querySelector(`.term.${step.s === "a" ? "b" : "a"}`).classList.remove("talking");
 
-      if (!typed || step.k === "sys" || reduceMotion) {
-        line.textContent = step.t;
-      } else {
-        line.classList.add("typing");
-        line._full = step.t;
-        for (let i = 1; i <= step.t.length; i++) {
-          if (!alive()) break;   // the presenter clicked on: finish this line instantly
-          line.textContent = step.t.slice(0, i);
-          await wait(PACE.perChar);
-        }
-        line.textContent = step.t;
-        line.classList.remove("typing");
-      }
+      const typing = typeLine(line, step.t, typed && step.k !== "sys", alive);
+      if (typing) await typing;
       if (step.lang) {
         badge.textContent = step.lang;
         badge.dataset.lang = step.lang;
@@ -162,11 +128,8 @@ const beatsOf = (script) => {
       // Instantly show any earlier beats that aren't on screen yet.
       while (rendered < at) runBeat(slide, beats[rendered++], false, alive);
 
-      if (e.detail.entering && at === 0 && beats[0][0].preload) {
-        // Ending scenes: both orders are already on screen when the scene opens.
-        rendered = 1; runBeat(slide, beats[0], false, alive); finish();
-      } else if (e.detail.entering && at === 0) {
-        // Scene just opened: type the first line after a short beat.
+      if (e.detail.entering && at === 0) {
+        // Scene just opened: type the first beat after a short pause.
         wait(700).then(() => { if (!alive()) return; rendered = 1; runBeat(slide, beats[0], true, alive).then(finish); });
       } else if (forward) {
         rendered = at + 1;
@@ -176,6 +139,87 @@ const beatsOf = (script) => {
         runBeat(slide, beats[at], false, alive);
         finish();
       }
+    });
+  });
+
+  // ---------- Scene 4 · Same fight, three endings ----------
+  // A VCR "rewind" on entry, then one .ending card per click (data-step 0–2). A card plays when it appears:
+  // Agent A's line types, Agent B answers, then the badge shows who ends up owning backend/.
+  // A line marked data-race runs the bake-off bars first. The dialogue lives in the HTML.
+  document.querySelectorAll(".endings-slide").forEach((slide) => {
+    const cards = [...slide.querySelectorAll(".ending")];
+    const counter = slide.querySelector(".vcr-run");
+    cards.forEach((card) => {
+      card._chat = card.querySelector(".end-chat");
+      card._lines = [...card._chat.querySelectorAll(".say")].map((p) => ({ cls: p.className, text: p.textContent.trim(), race: p.hasAttribute("data-race") }));
+    });
+
+    // Back to empty. Fresh line elements, so a play still running from before writes into nothing.
+    const reset = (card) => {
+      card.run = (card.run || 0) + 1;
+      card.state = "empty";
+      card.classList.remove("racing", "resolved", "instant");
+      card._chat.replaceChildren(...card._lines.map((l) => Object.assign(document.createElement("p"), { className: l.cls })));
+    };
+    cards.forEach(reset);
+
+    const play = async (card, typed, alive, delay) => {
+      const run = card.run, live = () => card.run === run;
+      const moving = () => typed && alive();   // still playing in real time (a click on finishes it instantly)
+      card.state = "playing";
+      card.classList.toggle("instant", !typed);
+      if (moving() && narrow.matches) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      const lines = card._chat.children;
+      for (let i = 0; i < card._lines.length; i++) {
+        const { text, race } = card._lines[i];
+        if (moving()) await wait(i === 0 ? delay : 800);
+        if (!live()) return;
+        if (race) { card.classList.add("racing"); if (moving()) await wait(1900); if (!live()) return; }
+        lines[i].classList.add("shown");
+        const typing = typeLine(lines[i], text, moving(), alive);
+        if (typing) await typing;
+        if (!live()) return;
+      }
+      if (moving()) await wait(350);
+      if (!live()) return;
+      card.classList.add("resolved");
+      card.state = "done";
+    };
+
+    let token = 0, prevAt = -1, rewindTimer;
+    slide.addEventListener("slidestep", (e) => {
+      const { at, entering } = e.detail;
+      const mine = ++token;
+      const alive = () => token === mine && slide.classList.contains("active");
+      const forward = !entering && at === prevAt + 1;
+      prevAt = at;
+
+      if (entering) {
+        cards.forEach(reset);
+        // The rewind plays only when the scene opens from the start (not when coming back to it).
+        clearTimeout(rewindTimer);
+        slide.classList.toggle("rewinding", at === 0 && !reduceMotion);
+        if (at === 0 && !reduceMotion) {
+          const t0 = performance.now();
+          const tick = (now) => {
+            const n = Math.min(120, 1 + Math.floor(((now - t0) / 1000) * 119));
+            counter.textContent = String(n).padStart(3, "0");
+            if (n < 120 && slide.classList.contains("active")) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          rewindTimer = setTimeout(() => slide.classList.remove("rewinding"), 1500);
+        }
+      }
+
+      cards.forEach((card) => {
+        const step = Number(card.dataset.step);
+        if (step > at) { if (card.state !== "empty") reset(card); return; }
+        if (card.state !== "empty") return;   // already on screen, or finishing instantly now that the presenter clicked on
+        const typed = step === at && (forward || entering);
+        play(card, typed, alive, entering ? 1500 : 500);
+      });
+      // Phones: bring the model stamps' twist line into view on the last click.
+      if (forward && at === 3 && narrow.matches) slide.querySelector(".end-twist").scrollIntoView({ behavior: "smooth", block: "center" });
     });
   });
 })();

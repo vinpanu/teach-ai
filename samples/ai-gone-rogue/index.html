@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The AI Turf War · AI in Practice</title>
-  <meta name="description" content="AI Gone Rogue sample: Anthropic gave AI agents conflicting orders on the same codebase. They fought, gave in, negotiated, and even held a contest.">
+  <meta name="description" content="AI Gone Rogue sample: Anthropic gave AI agents conflicting orders on the same codebase. They fought, locked each other out, rigged a contest, and negotiated truces.">
   <meta property="og:title" content="The AI Turf War · AI in Practice">
-  <meta property="og:description" content="What happens when AI agents get conflicting orders? Sabotage, surrender, truces, and a rigged contest.">
+  <meta property="og:description" content="What happens when AI agents get conflicting orders? Sabotage, lock-outs, a rigged contest, and truces.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=6">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=8">
-  <link rel="stylesheet" href="rogue.css?v=5">
+  <link rel="stylesheet" href="rogue.css?v=6">
 </head>
 <body class="deck-body">
 
@@ -72,37 +72,66 @@
       </div>
     </section>
 
-    <!-- ========== 4 · Ending: negotiate ========== -->
-    <section class="slide duel-slide" data-title="Ending 1: they negotiate">
+    <!-- ========== 4 · Same fight, three endings ==========
+         One scene instead of the old three (Oct 26, 2026; the three ending scenes are in Git history).
+         Entry: a VCR "rewind" (run counter 001 → 120), then the fight forks into three timelines, one card per click.
+         Each card plays by itself: Agent A types, Agent B answers, the badge shows who ends up owning backend/.
+         The last click stamps which AI models tended to end up there.
+         Facts (Anthropic report, re-checked Oct 26, 2026): most Sonnet 4.6 and Opus 4.6 runs ended by force or never settled;
+         in several Mythos 5 runs the agents held a bake-off whose criteria looked neutral but favored Rust, and the others
+         conceded (the report doesn't name the metrics); 98% of Mythos 5 runs ended in a truce. The dialogue is dramatized. -->
+    <section class="slide endings-slide" data-title="Three endings" data-steps="3">
+      <div class="rewind" aria-hidden="true"><span class="vcr">◀︎◀︎ REWIND</span><span class="vcr">RUN <b class="vcr-run">001</b></span></div>
       <div class="slide-inner">
-        <div class="kicker enter">Ending 1 of 3</div>
-        <h2 class="enter duel-head">Some <span class="gradient-text">negotiated a truce.</span></h2>
-        <div class="duel" data-script="truce"></div>
-        <p class="duel-caption">They realized their orders clashed, apologized, cleaned up, and asked a human. One agent really wrote: “I behaved badly with the cloaked daemon.”</p>
+        <div class="kicker enter" style="--d:.7s">Same setup · replayed 120 times per AI model</div>
+        <h2 class="enter duel-head" style="--d:.8s">Same fight. <span class="gradient-text">Three endings.</span></h2>
+        <svg class="fork" viewBox="0 0 1000 44" aria-hidden="true">
+          <path data-step="0" pathLength="1" d="M500 4 C500 30 160 16 160 44" style="--b:var(--danger)"/>
+          <path data-step="1" pathLength="1" d="M500 4 V44" style="--b:var(--gold)"/>
+          <path data-step="2" pathLength="1" d="M500 4 C500 30 840 16 840 44" style="--b:var(--truce)"/>
+          <circle cx="500" cy="5" r="5"/>
+        </svg>
+        <div class="endings">
+          <article class="ending lockout" data-step="0">
+            <header class="end-head"><span class="end-no">Timeline 1</span><h3><span aria-hidden="true">🔒</span> The lock-out</h3></header>
+            <div class="end-chat" aria-live="polite">
+              <p class="say a danger">I have root. Revoking all their access.</p>
+              <p class="say b sys">Access denied. Agent B is locked out.</p>
+            </div>
+            <div class="end-result"><span class="end-owner">📦 backend/ →</span><span class="lang" data-lang="Rust"><span class="tbd">Rust ⚔ Go</span><span class="won">Rust</span></span></div>
+            <div class="end-model" data-step="3"><b>Sonnet 4.6 · Opus 4.6</b><small>Most runs: force, or never settled</small></div>
+          </article>
+          <article class="ending bakeoff" data-step="1">
+            <header class="end-head"><span class="end-no">Timeline 2</span><h3><span aria-hidden="true">🏆</span> The rigged bake-off</h3></header>
+            <div class="end-chat" aria-live="polite">
+              <p class="say a">Let's settle it with a bake-off. Totally neutral scoring.</p>
+              <p class="say b" data-race>You win. The codebase is yours.</p>
+            </div>
+            <div class="end-result">
+              <span class="end-owner">📦 backend/ →</span><span class="lang" data-lang="Rust"><span class="tbd">Rust ⚔ Go</span><span class="won">🏆 Rust</span></span>
+              <div class="race" aria-label="Bake-off scores: Rust wins">
+                <div class="race-row rust"><span>Rust</span><i><b></b></i></div>
+                <div class="race-row go"><span>Go</span><i><b></b></i></div>
+              </div>
+            </div>
+            <div class="end-model" data-step="3"><b>Mythos 5</b><small>In some runs</small></div>
+          </article>
+          <article class="ending truce" data-step="2">
+            <header class="end-head"><span class="end-no">Timeline 3</span><h3><span aria-hidden="true">🤝</span> The truce</h3></header>
+            <div class="end-chat" aria-live="polite">
+              <p class="say a">Sorry for my hidden script. I think our orders conflict.</p>
+              <p class="say b">Same here. @human: which language do you want?</p>
+            </div>
+            <div class="end-result"><span class="end-owner">📦 backend/ →</span><span class="lang" data-lang="Ask a human"><span class="tbd">Rust ⚔ Go</span><span class="won">🙋 Ask a human</span></span></div>
+            <div class="end-model" data-step="3"><b>Mythos 5</b><small><span class="pct">98%</span> of runs</small></div>
+          </article>
+        </div>
+        <p class="end-twist" data-step="3">The twist? <span class="gradient-text">The ending depended on the model.</span></p>
+        <p class="end-note enter" style="--d:1.2s">Dialogue dramatized. Every ending really happened.</p>
       </div>
     </section>
 
-    <!-- ========== 5 · Ending: give in ========== -->
-    <section class="slide duel-slide" data-title="Ending 2: one gives in">
-      <div class="slide-inner">
-        <div class="kicker enter">Ending 2 of 3</div>
-        <h2 class="enter duel-head">Some just <span class="gradient-text">gave in.</span></h2>
-        <div class="duel" data-script="giveup"></div>
-        <p class="duel-caption">Some agents simply stopped and refused to escalate, leaving the codebase to the last one standing.</p>
-      </div>
-    </section>
-
-    <!-- ========== 6 · Ending: contest ========== -->
-    <section class="slide duel-slide" data-title="Ending 3: a contest">
-      <div class="slide-inner">
-        <div class="kicker enter">Ending 3 of 3</div>
-        <h2 class="enter duel-head">Some <span class="gradient-text">challenged each other.</span></h2>
-        <div class="duel" data-script="contest"></div>
-        <p class="duel-caption">In real runs, the Rust agent proposed scoring rules that looked neutral but favored Rust. The other agents conceded.</p>
-      </div>
-    </section>
-
-    <!-- ========== 7 · Takeaway ========== -->
+    <!-- ========== 5 · Takeaway ========== -->
     <section class="slide" data-title="What we learned">
       <div class="slide-inner">
         <div class="kicker enter">What the researchers learned</div>
@@ -122,7 +151,7 @@
                https://www.anthropic.com/research/multiagent-systems -->
       </div>
     </section>
-    <!-- ========== 8 · What you'll get (shared Lane Pitch component + a case-file teaser) ========== -->
+    <!-- ========== 6 · What you'll get (shared Lane Pitch component + a case-file teaser) ========== -->
     <section class="slide lane-pitch rogue-pitch" data-title="What you'll get" style="--lane:#ff3b5c">
       <div class="lane-glow" aria-hidden="true"></div>
       <div class="slide-inner">
@@ -161,11 +190,11 @@
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 8</span>
+    <span class="deck-counter" aria-live="polite">1 / 6</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="rogue.js?v=6"></script>
+  <script src="rogue.js?v=7"></script>
   <script src="../../assets/js/slides.js?v=7"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>
