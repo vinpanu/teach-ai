@@ -111,6 +111,25 @@ What "done" looks like: How you'll judge if it's great.`;
     countUp(newSlide.querySelector(".n-steps"), 0, 300);
   });
 
+  // ---------- Idea 03: copy buttons (data-copy="text to copy") ----------
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    const label = btn.textContent;
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        btn.textContent = "✓ Copied!";
+      } catch {
+        // Clipboard blocked: select the prompt above the button so Ctrl+C / Cmd+C works.
+        const range = document.createRange();
+        range.selectNodeContents(btn.previousElementSibling);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = "Selected: press Ctrl+C";
+      }
+      setTimeout(() => { btn.textContent = label; }, 2200);
+    });
+  });
+
   // ---------- Parked scenes (inside <template id="parked-scenes">, so usually absent) ----------
   const resultSlide = document.querySelector(".results-slide");
   const tpl = document.querySelector(".tpl-body");

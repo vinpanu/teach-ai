@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Productivity Ideas · AI in Practice</title>
-  <meta name="description" content="Productivity Ideas sample: everyday ways to get more done with AI. Stop micromanaging your prompts, and teach ChatGPT or Claude a skill once.">
+  <meta name="description" content="Productivity Ideas sample: everyday ways to get more done with AI. Stop micromanaging your prompts, teach ChatGPT or Claude a skill once, and see the plan before the work.">
   <meta property="og:title" content="Productivity Ideas · AI in Practice">
-  <meta property="og:description" content="Everyday ideas you can use right away: better prompts, and skills that teach your AI once."> 
+  <meta property="og:description" content="Everyday ideas you can use right away: better prompts, skills that teach your AI once, and plans that keep you in the loop.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/site.css?v=6">
   <link rel="stylesheet" href="../../assets/css/slides.css?v=8">
-  <link rel="stylesheet" href="prod.css?v=6">
+  <link rel="stylesheet" href="prod.css?v=7">
 </head>
 <body class="deck-body">
 
@@ -73,10 +73,28 @@
             </div>
             <span class="idea-seen">✓ Seen</span>
           </a>
-          <div class="idea idea-next" style="--d:.65s">
+          <a class="idea" href="#planning" style="--accent:#3d9bff; --d:.65s">
+            <div class="idea-art art-plan" aria-hidden="true">
+              <svg viewBox="0 0 240 130">
+                <path class="apl-road" d="M30 100 H120 V40 H212 M120 100 H212 V40"/>
+                <path class="apl-route" d="M30 100 H120 V40 H212" pathLength="1"/>
+                <circle class="apl-you" cx="30" cy="100" r="9"/>
+                <path class="apl-pin" d="M212 44 c-11 -14 -14 -19 -14 -25 a14 14 0 0 1 28 0 c0 6 -3 11 -14 25 Z"/>
+              </svg>
+              <span class="apl-ok">✓ Approve</span>
+            </div>
+            <div class="idea-body">
+              <span class="idea-no">Idea 03 · Planning</span>
+              <h3>The Plan Is for You</h3>
+              <p>Have AI show its plan before a big job. Not for the AI. For you.</p>
+              <span class="idea-go">Open <b aria-hidden="true">▶</b></span>
+            </div>
+            <span class="idea-seen">✓ Seen</span>
+          </a>
+          <div class="idea idea-next" style="--d:.8s">
             <div class="idea-art" aria-hidden="true"><span>💡</span></div>
             <div class="idea-body">
-              <span class="idea-no">Idea 03</span>
+              <span class="idea-no">Idea 04</span>
               <h3>Your idea next</h3>
               <p>Got a time-saver you'd love to see? Suggest it in Teams.</p>
             </div>
@@ -358,7 +376,166 @@
       </div>
     </section>
 
-    <!-- ========== 10 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
+    <!-- ========== Idea 03 · The Plan Is for You (chapter: scenes 10–14) ==========
+         Vince's take (Oct 26, 2026): the AI may not need plan mode anymore, but the human still wants the plan.
+         Facts checked Oct 26, 2026 (primary sources):
+         · "Plan mode is dead", Ayman Nadeem (former senior engineer at GitHub), Sept 24, 2026: plan modes did two jobs,
+           precise instructions for the agent (fading) and helping humans understand what they're building (matters more):
+           https://www.aymannadeem.com/artificial/intelligence,/developer/tools/2026/09/24/plan-mode-is-dead.html
+         · Hacker News discussion (500+ comments): Boris Cherny (created Claude Code) agrees newer models no longer need it,
+           and adds that plan mode isn't going away: https://news.ycombinator.com/item?id=49840054
+         · Claude Code: Shift+Tab cycles to plan mode, or type /plan; read-only, proposes but doesn't edit:
+           https://support.claude.com/en/articles/14553413-claude-code-cheatsheet
+         · GitHub Copilot CLI plan mode, Shift+Tab (Jan 21, 2026):
+           https://github.blog/changelog/2026-01-21-github-copilot-cli-plan-before-you-build-steer-as-you-go/
+         · Cursor Plan Mode, Shift+Tab in the chat input: https://cursor.com/docs/agent/modes
+         · Gemini Deep Research drafts a research plan; "Edit plan" or "Start research":
+           https://support.google.com/gemini/answer/15719111
+         The shared-drive chat and the GPS map are illustrative examples. The Fun Fact is true: this idea was planned in
+         Claude Code's plan mode, and Vince swapped Story Time for this Fun Fact while reviewing the plan. -->
+
+    <!-- 10 · See the plan before the work. Click 1: Vince fixes step 2 before anything happens -->
+    <section class="slide plan-intro" id="planning" data-chapter data-title="See the plan before the work">
+      <div class="slide-inner split">
+        <div class="split-text">
+          <div class="kicker enter plan-kicker">Idea 03 · Planning</div>
+          <h2 class="enter" style="--d:.1s">See the plan<br><span class="plan-grad">before the work.</span></h2>
+          <p class="lead enter" style="--d:.2s">For any big job, have the AI show you its plan first. <b>Approve it, change it, or stop it.</b></p>
+        </div>
+        <div class="pi-chat">
+          <div class="sa-you pi-ask">Clean up our team's shared drive.</div>
+          <div class="pi-plan">
+            <div class="pp-head"><span aria-hidden="true">📋</span> My plan, before I touch anything:</div>
+            <ol>
+              <li><span class="pp-n">1</span><span>Sort files into one folder per project.</span></li>
+              <li class="pp-risk"><span class="pp-n">2</span><span><b class="pp-old">Delete</b><b class="pp-new">&nbsp;Archive</b> anything older than 2 years.</span></li>
+              <li><span class="pp-n">3</span><span>Rename files to one pattern.</span></li>
+            </ol>
+            <div class="pp-btns" aria-hidden="true"><span class="pp-go">✓ Go ahead</span><span class="pp-edit">✎ Change it</span></div>
+          </div>
+          <div class="sa-you pi-fix" data-step="1">Step 2: don't delete! Legal needs those. Archive them.</div>
+          <p class="pi-cap" data-step="1"><span aria-hidden="true">✓</span> Caught before a single file moved.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · The analogy: a GPS route preview. Click 1: spot the toll bridge, pick another route -->
+    <section class="slide plan-gps" data-title="Your GPS doesn't need the preview">
+      <div class="slide-inner">
+        <div class="kicker enter plan-kicker">An everyday analogy</div>
+        <h2 class="enter" style="--d:.1s">Your GPS doesn't need the preview. <span class="plan-grad">You do.</span></h2>
+        <div class="gps enter" style="--d:.25s">
+          <div class="gps-map">
+          <svg viewBox="0 0 1200 460" role="img" aria-label="A GPS map previews the fastest route from You to the Office: 32 minutes over a toll bridge. On the next click you think: Toll bridge? Not today. The route changes to one with no tolls: 35 minutes.">
+            <rect class="m-land" width="1200" height="460"/>
+            <rect class="m-park" x="180" y="135" width="170" height="85" rx="16"/>
+            <rect class="m-park" x="850" y="270" width="170" height="95" rx="16"/>
+            <rect class="m-block" x="410" y="135" width="140" height="85" rx="12"/>
+            <rect class="m-block" x="410" y="270" width="140" height="95" rx="12"/>
+            <rect class="m-block" x="660" y="135" width="130" height="85" rx="12"/>
+            <rect class="m-block" x="660" y="270" width="130" height="95" rx="12"/>
+            <rect class="m-block" x="850" y="135" width="170" height="70" rx="12"/>
+            <rect class="m-block" x="180" y="270" width="170" height="95" rx="12"/>
+            <path class="m-water" d="M612 -30 C 560 90, 650 190, 592 290 S 628 420, 604 500"/>
+            <path class="m-road" d="M150 40 V430 M150 100 H1110 M150 400 H1110 M1050 100 V400 M380 100 V400 M820 100 V400 M150 245 H380 M820 245 H1050"/>
+            <rect class="m-bridge" x="540" y="84" width="110" height="32" rx="6"/>
+            <rect class="m-bridge" x="548" y="384" width="104" height="32" rx="6"/>
+            <g class="m-toll"><rect x="550" y="24" width="94" height="42" rx="10"/><text x="597" y="54">$ TOLL</text></g>
+            <path class="rt rt-a" d="M150 330 V100 H1050 V180" pathLength="1"/>
+            <path class="rt rt-b" d="M150 330 V400 H1050 V180" pathLength="1"/>
+            <circle class="m-you-halo" cx="150" cy="330" r="16"/>
+            <circle class="m-you" cx="150" cy="330" r="16"/>
+            <text class="m-label" x="122" y="340" text-anchor="end">You</text>
+            <path class="m-pin" d="M1050 182 c-17 -22 -24 -31 -24 -42 a24 24 0 0 1 48 0 c0 11 -7 20 -24 42 Z"/>
+            <text class="m-label" x="1084" y="150">Office</text>
+          </svg>
+          <div class="gps-think" data-step="1" aria-hidden="true">Toll bridge? Not today.</div>
+          </div>
+          <div class="gps-sheet">
+            <div class="gs-routes">
+              <div class="gs-r gs-a"><b>32 min</b><span>Fastest · via Toll Bridge</span><em class="gs-toll">$ Toll</em></div>
+              <div class="gs-r gs-b"><b>35 min</b><span>Avoid tolls · via South Road</span><em class="gs-free">No tolls</em></div>
+            </div>
+            <span class="gs-start" aria-hidden="true">Start ▶</span>
+          </div>
+        </div>
+        <p class="gps-cap" data-step="1">Idea 01: give it the <b>destination</b>. Idea 03: <b>preview the route</b>.</p>
+      </div>
+    </section>
+
+    <!-- 12 · Where to get a plan: any chat, coding tools, deep research (one card per click) -->
+    <section class="slide plan-where" data-title="Ask for the plan, anywhere">
+      <div class="slide-inner">
+        <div class="kicker enter plan-kicker">How to get the plan</div>
+        <h2 class="enter" style="--d:.1s">Ask for the plan, <span class="plan-grad">anywhere.</span></h2>
+        <div class="pw-cards">
+          <article class="pw-card" data-step="0">
+            <span class="pw-icon" aria-hidden="true">💬</span>
+            <h3>Any chat</h3>
+            <p class="pw-apps">ChatGPT · Claude · Copilot · Gemini</p>
+            <p class="pw-prompt">“Before you start, show me your plan. Wait for my OK.”</p>
+            <button type="button" class="pw-copy" data-copy="Before you start, show me your plan. Wait for my OK.">📋 Copy</button>
+          </article>
+          <article class="pw-card" data-step="1">
+            <span class="pw-icon" aria-hidden="true">🛠️</span>
+            <h3>AI coding tools</h3>
+            <p class="pw-apps">Claude Code · GitHub Copilot · Cursor</p>
+            <p>Press <kbd>Shift</kbd>+<kbd>Tab</kbd> until you see <b>Plan</b>. In Claude Code, you can also type <code>/plan</code>.</p>
+          </article>
+          <article class="pw-card" data-step="2">
+            <span class="pw-icon" aria-hidden="true">🔎</span>
+            <h3>Deep research</h3>
+            <p class="pw-apps">Gemini Deep Research</p>
+            <p>It writes its research plan first. Pick <b>Edit plan</b> or <b>Start research</b>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · Pro Tip: "Plan mode is dead"? Click 1: it just changed jobs · click 2: the Pro Tip -->
+    <section class="slide plan-dead" data-title="Is plan mode dead?">
+      <div class="slide-inner">
+        <div class="kicker enter pd-kicker"><span class="pro-tip-badge">Pro Tip</span> For experienced users</div>
+        <h2 class="enter pd-head" style="--d:.1s">“Plan mode is <span class="pd-dead">dead</span>.”</h2>
+        <p class="pd-src enter" style="--d:.3s"><span aria-hidden="true">📰</span> A former GitHub engineer's blog post, Sept 2026. 500+ comments on Hacker News. Even the creator of Claude Code agreed: <b>today's models plan on their own.</b></p>
+        <div class="pd-jobs" data-step="1">
+          <h2>It just <span class="plan-grad">changed jobs.</span></h2>
+          <p>The AI doesn't need the plan anymore. <b>You still do.</b></p>
+        </div>
+        <aside class="pro-tip pd-tip" data-step="2"><span class="pro-tip-badge">Pro Tip</span>
+          <p><b>Keep plan mode anyway. It's for you.</b></p>
+          <ul class="pd-why">
+            <li><span aria-hidden="true">🧭</span><span><b>Understand</b> what's about to happen</span></li>
+            <li><span aria-hidden="true">🎛️</span><span><b>Steer</b> before anything changes</span></li>
+            <li><span aria-hidden="true">🎓</span><span><b>Learn</b> how an expert would do it</span></li>
+          </ul>
+          <p class="pd-try">Try: “You may not need a plan, but I do. Show me yours before you start.”</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 14 · Fun Fact: this page was planned in plan mode (last scene of Idea 03: Next returns to the landing page).
+         Click 1: the change the plan caught (Story Time → Fun Fact) -->
+    <section class="slide fun-fact" data-goto="1" data-title="Fun fact">
+      <div class="ff-confetti" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="slide-inner">
+        <div class="ff-top">
+          <div class="ff-sticker" role="img" aria-label="Fun fact!"><span aria-hidden="true">Fun<br>Fact!</span></div>
+          <h2 class="enter" style="--d:.5s">This page was planned in <span class="plan-grad">plan mode.</span></h2>
+        </div>
+        <div class="ff-card enter" style="--d:.8s">
+          <div class="doc-bar"><i></i><i></i><i></i><span>Claude Code · building this page · Oct 26, 2026</span></div>
+          <div class="ff-body">
+            <span class="ff-mode">⏸ plan mode on</span>
+            <p class="ff-says"><b>Claude:</b> I haven't planned this one yet, so I'll switch into plan mode. You approve the plan before I build anything.</p>
+            <div class="ff-picks"><span class="ff-pick">✓ Plan first + Pro Tip</span><span class="ff-pick">✓ GPS analogy</span><span class="ff-pick ff-old">✓ Story Time</span><span class="ff-pick ff-new">✓ Fun Fact</span></div>
+          </div>
+        </div>
+        <p class="ff-caught" data-step="1"><span aria-hidden="true">↻</span> And the plan caught a change: <b>Story Time became this Fun Fact</b>, before a single line was built.</p>
+      </div>
+    </section>
+
+    <!-- ========== 15 · What you'll get (shared Lane Pitch component, see slides.css) ========== -->
     <section class="slide lane-pitch" id="pitch" data-hub-exit data-title="What you'll get" style="--lane:#12c97f">
       <div class="lane-glow" aria-hidden="true"></div>
       <div class="slide-inner">
@@ -368,7 +545,7 @@
           <div class="pitch-card" data-step="0"><span class="pc-no">01</span><span class="pc-icon" aria-hidden="true">🏠</span>
             <h3>At work <i>and</i> at home</h3>
             <p>Tips and tricks to get more done at your desk, and around the house.</p>
-            <div class="queue"><span class="chip">Better prompts</span><span class="chip">Skills</span><span class="chip">+ your ideas</span></div></div>
+            <div class="queue"><span class="chip">Better prompts</span><span class="chip">Skills</span><span class="chip">Planning</span><span class="chip">+ your ideas</span></div></div>
           <div class="pitch-card" data-step="1"><span class="pc-no">02</span><span class="pc-icon" aria-hidden="true">💰</span>
             <h3>Save money</h3>
             <p>Smart, everyday ways AI can help you <b>spend less</b>.</p></div>
@@ -493,11 +670,11 @@
     <button type="button" class="theme-toggle ui-optional" aria-label="Toggle light/dark mode">☀</button>
     <button type="button" class="ui-optional" data-deck="fullscreen" aria-label="Full screen (F)" title="Full screen (F)">⛶</button>
     <button type="button" data-deck="prev" aria-label="Previous (←)">←</button>
-    <span class="deck-counter" aria-live="polite">1 / 10</span>
+    <span class="deck-counter" aria-live="polite">1 / 15</span>
     <button type="button" data-deck="next" aria-label="Next (→)">→</button>
   </div>
 
-  <script src="prod.js?v=6"></script>
+  <script src="prod.js?v=7"></script>
   <script src="../../assets/js/slides.js?v=7"></script>
   <script src="../../assets/js/site.js?v=3"></script>
 </body>

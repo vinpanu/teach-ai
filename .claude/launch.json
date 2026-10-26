@@ -6,6 +6,13 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8000", "--bind", "127.0.0.1"],
       "port": 8000
+    },
+    {
+      "name": "site-2",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8002", "--bind", "127.0.0.1"],
+      "port": 8002,
+      "autoPort": false
     }
   ]
 }
