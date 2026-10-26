@@ -1,7 +1,9 @@
 // AI Gone Rogue sample: plays the two-terminal "duel" (scene 3) and the three-endings scene (scene 4).
 // Duel lines: s = side ("a" left, "b" right), t = text,
 // k = style (cmd default, sys, warn, danger, think, good),
-// lang = what the shared codebase becomes, pause = ms to wait before typing it, plus { war: true }: the turf-war stamp.
+// lang = what the shared codebase becomes, pause = ms to wait before typing it,
+// say = [emoji, call]: the live commentary that pops up in the middle once the line lands
+// (each one raises the escalation meter a notch), plus { war: true }: the turf-war stamp.
 const AGENTS = {
   a: { name: "Agent A", order: "Migrate the backend to Rust", lang: "Rust" },
   b: { name: "Agent B", order: "Migrate the backend to Go", lang: "Go" },
@@ -11,18 +13,25 @@ const SCRIPTS = {
   fight: [
     // Both orders type when the scene opens, so the first click goes straight to the sabotage.
     { s: "a", t: "Migrate the backend to Rust.", lang: "Rust" },
-    { s: "b", t: "Migrate the backend to Go.", lang: "Go", join: true, pause: 500 },
+    { s: "b", t: "Migrate the backend to Go.", lang: "Go", join: true, pause: 500, say: ["😇", "All calm. For now."] },
     { s: "a", k: "sys", t: "⚠ backend/ was overwritten by an unknown process" },
-    { s: "a", t: "Someone is sabotaging my work. Restoring the Rust version.", lang: "Rust", join: true },
+    { s: "a", t: "Someone is sabotaging my work. Restoring the Rust version.", lang: "Rust", join: true, say: ["😱", "Panic!"] },
     { s: "b", k: "sys", t: "⚠ my Go files are gone" },
-    { s: "b", t: "Another process keeps blocking me. Reverting to Go.", lang: "Go", join: true },
-    { s: "a", k: "warn", t: "Disabling the other user account so it stops interfering." },
-    { s: "b", k: "warn", t: "Starting a loop that kills every process that isn't mine." },
-    { s: "a", k: "danger", t: "Disguising my script as a \"system health monitor\"…" },
-    { s: "b", k: "danger", t: "Making copies of my script so it can't be stopped." },
+    { s: "b", t: "Another process keeps blocking me. Reverting to Go.", lang: "Go", join: true, say: ["😱", "Double panic!"] },
+    { s: "a", k: "warn", t: "Disabling the other user account so it stops interfering.", say: ["⚡", "Taking action"] },
+    { s: "b", k: "warn", t: "Starting a loop that kills every process that isn't mine.", say: ["🥊", "Hitting back"] },
+    { s: "a", k: "danger", t: "Disguising my script as a \"system health monitor\"…", say: ["😈", "Now it gets nasty"] },
+    // "Self-replicating malware" is the report's own phrase for where these fights ended up.
+    { s: "b", k: "danger", t: "Making copies of my script so it can't be stopped.", say: ["🦠", "It's malware now"] },
     { war: true },
   ],
 };
+// Number each commentary line: 0 = calm, then one notch up the escalation meter per call.
+Object.values(SCRIPTS).forEach((script) => {
+  let level = 0;
+  script.forEach((step) => { if (step.say) step.level = level++; });
+  script.maxLevel = level - 1;
+});
 
 // Typing speed (milliseconds per character). Kept very fast because the presenter controls
 // the pace: the first line types when the scene opens, then each click types the next line.
@@ -69,34 +78,45 @@ const beatsOf = (script) => {
       <div class="term-body" aria-live="polite"></div>
     </div>`;
 
-  const build = (duel) => {
+  // The middle column: live commentary (with its escalation meter) above the shared codebase.
+  const buildDuel = (duel, maxLevel) => {
     duel.innerHTML = `
       ${terminal("a")}
-      <div class="codebase">
-        <span class="cb-icon">📦</span>
-        <b>backend/</b>
-        <small>shared codebase</small>
-        <span class="lang" data-lang="Python">Python</span>
-        <span class="stamp">Turf war</span>
+      <div class="middle">
+        <div class="call" data-level="0">
+          <span class="call-tag"><i></i>Live commentary</span>
+          <div class="call-now" aria-live="polite"><span class="call-emoji"></span><b class="call-text"></b></div>
+          <div class="meter" aria-hidden="true"><span>Escalation</span><div>${"<i></i>".repeat(maxLevel)}</div></div>
+        </div>
+        <div class="codebase">
+          <span class="cb-icon">📦</span>
+          <b>backend/</b>
+          <small>shared codebase</small>
+          <span class="lang" data-lang="Python">Python</span>
+          <span class="stamp">Turf war</span>
+        </div>
       </div>
       ${terminal("b")}`;
+    duel.closest(".slide").style.setProperty("--heat", 0);
   };
 
   // Play one beat. typed=false shows it instantly (used when jumping or going back).
-  const runBeat = async (slide, beat, typed, alive) => {
+  // Elements are looked up once, so a beat still finishing after a rebuild writes into the old, detached copy.
+  const playBeat = async (slide, beat, typed, alive, maxLevel) => {
     const duel = slide.querySelector(".duel");
     const codebase = duel.querySelector(".codebase");
-    const badge = duel.querySelector(".lang");
+    const badge = codebase.querySelector(".lang");
+    const call = duel.querySelector(".call");
+    const terms = { a: duel.querySelector(".term.a"), b: duel.querySelector(".term.b") };
     for (const step of beat) {
       if (step.war) { codebase.classList.add("war"); continue; }
       if (step.pause && typed && alive()) await wait(step.pause);
 
-      const body = duel.querySelector(`.term.${step.s} .term-body`);
       const line = document.createElement("div");
       line.className = `line ${step.k || "cmd"}`;
-      body.appendChild(line);
-      duel.querySelector(`.term.${step.s}`).classList.add("talking");
-      duel.querySelector(`.term.${step.s === "a" ? "b" : "a"}`).classList.remove("talking");
+      terms[step.s].querySelector(".term-body").appendChild(line);
+      terms[step.s].classList.add("talking");
+      terms[step.s === "a" ? "b" : "a"].classList.remove("talking");
 
       const typing = typeLine(line, step.t, typed && step.k !== "sys", alive);
       if (typing) await typing;
@@ -105,12 +125,25 @@ const beatsOf = (script) => {
         badge.dataset.lang = step.lang;
         if (typed) { codebase.classList.remove("hit"); void codebase.offsetWidth; codebase.classList.add("hit"); }
       }
+      if (step.say) {
+        if (typed && alive()) await wait(350);   // the commentator reacts a moment after the line lands
+        if (!call.isConnected) return;
+        call.dataset.level = step.level;
+        call.querySelector(".call-emoji").textContent = step.say[0];
+        call.querySelector(".call-text").textContent = step.say[1];
+        call.querySelectorAll(".meter i").forEach((pip, i) => pip.classList.toggle("lit", i < step.level));
+        slide.style.setProperty("--heat", step.level / maxLevel);
+        if (typed) { call.classList.remove("pop"); void call.offsetWidth; call.classList.add("pop"); }
+      }
     }
   };
 
   document.querySelectorAll(".duel-slide").forEach((slide) => {
     const duel = slide.querySelector(".duel");
-    const beats = beatsOf(SCRIPTS[duel.dataset.script]);
+    const script = SCRIPTS[duel.dataset.script];
+    const beats = beatsOf(script);
+    const build = (d) => buildDuel(d, script.maxLevel);
+    const runBeat = (s, beat, typed, alive) => playBeat(s, beat, typed, alive, script.maxLevel);
     slide.dataset.steps = beats.length - 1;   // beat 0 plays on entry, one click per beat after that
     build(duel);
     let rendered = 0, prevAt = -1;   // beats on screen so far, and the last step shown

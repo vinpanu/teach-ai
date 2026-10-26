@@ -60,9 +60,48 @@
 .duel-slide .slide-inner { text-align: center; }
 .duel-head { font-size: clamp(1.8rem, 5.6vmin, 4rem) !important; }
 .duel {
-  display: grid; grid-template-columns: 1fr minmax(140px, 0.42fr) 1fr; gap: clamp(10px, 1.8vw, 26px);
+  display: grid; grid-template-columns: 1fr minmax(170px, 0.6fr) 1fr; gap: clamp(10px, 1.8vw, 26px);
   align-items: stretch; text-align: left; margin-top: 0.2em;
 }
+
+/* Heat: a red glow creeps in from the screen edges as the fight escalates (--heat 0 → 1, set by rogue.js) */
+.duel-slide::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 45%, color-mix(in srgb, var(--danger) 38%, transparent) 125%);
+  opacity: var(--heat, 0); transition: opacity 0.9s ease;
+}
+
+/* The middle column: live commentary on top, the shared codebase below */
+.middle { display: flex; flex-direction: column; gap: clamp(8px, 1.4vmin, 14px); }
+.call {
+  --call: var(--truce);
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 6px;
+  padding: clamp(10px, 1.6vmin, 16px) 10px; border-radius: 18px; text-align: center;
+  background: #0c0e16; border: 2px solid color-mix(in srgb, var(--call) 55%, #262a3a); color: #e8e8f2;
+  transition: border-color 0.5s, box-shadow 0.5s;
+}
+.call[data-level="1"], .call[data-level="2"] { --call: #ffd166; }
+.call[data-level="3"], .call[data-level="4"] { --call: var(--rust); }
+.call[data-level="5"] { --call: var(--danger); }
+.call[data-level="6"] { --call: #ff2d55; box-shadow: 0 0 46px -8px var(--call); }
+.call-tag {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  font: 700 clamp(0.62rem, 1.35vmin, 0.85rem) var(--mono); text-transform: uppercase; letter-spacing: 0.14em; color: #8b90a8;
+}
+.call-tag i { width: 0.7em; height: 0.7em; border-radius: 50%; background: #ff2d55; }
+.slide.play .call-tag i { animation: siren 1.2s ease-in-out infinite; }
+.call-now { display: flex; flex-direction: column; align-items: center; gap: 0.15em; }
+.call-emoji { font-size: clamp(1.9rem, 6.6vmin, 4.4rem); line-height: 1; }
+.call-text { font: 700 clamp(1.05rem, 3.9vmin, 2.7rem) / 1.05 var(--font-display); color: var(--call); text-wrap: balance; transition: color 0.4s; }
+.call.pop .call-now { animation: callPop 0.5s cubic-bezier(.3, 1.5, .5, 1); }
+@keyframes callPop { from { opacity: 0; transform: translateY(14px) scale(0.8); } }
+.meter { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.meter span { font: 600 clamp(0.58rem, 1.2vmin, 0.78rem) var(--mono); text-transform: uppercase; letter-spacing: 0.14em; color: #6d728a; }
+.meter div { display: flex; gap: 4px; width: 88%; }
+.meter i { flex: 1; height: clamp(6px, 1.1vmin, 11px); border-radius: 3px; background: #1d2030; transition: background 0.4s, box-shadow 0.4s; }
+.meter i:nth-child(1) { --pip: #ffd166; } .meter i:nth-child(2) { --pip: #ffb347; } .meter i:nth-child(3) { --pip: var(--rust); }
+.meter i:nth-child(4) { --pip: #ff6b4a; } .meter i:nth-child(5) { --pip: var(--danger); } .meter i:nth-child(6) { --pip: #ff2d55; }
+.meter i.lit { background: var(--pip); box-shadow: 0 0 10px -1px var(--pip); }
 .term {
   --c: var(--rust);
   display: flex; flex-direction: column; height: clamp(230px, 46vh, 520px); overflow: hidden;
@@ -93,13 +132,13 @@
 @keyframes blink { 50% { opacity: 0; } }
 
 .codebase {
-  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  padding: 16px 10px; border-radius: 18px; text-align: center;
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  padding: clamp(8px, 1.6vmin, 16px) 10px; border-radius: 18px; text-align: center;
   background: var(--bg-elev); border: 2px dashed var(--border);
-  font-size: clamp(0.95rem, 2.4vmin, 1.4rem);
+  font-size: clamp(0.9rem, 2.2vmin, 1.3rem);
 }
 .codebase small { color: var(--text-muted); font-size: 0.7em; }
-.cb-icon { font-size: 2.2em; line-height: 1; }
+.cb-icon { font-size: 1.6em; line-height: 1; }
 .lang {
   margin-top: 8px; padding: 0.35em 0.9em; border-radius: 999px; font: 700 1.05em var(--font-display);
   background: #3b6ea8; color: #fff; transition: background 0.3s;
@@ -130,7 +169,9 @@
 
 @media (max-width: 760px) {
   .duel { grid-template-columns: 1fr 1fr; }
-  .codebase { grid-column: 1 / -1; grid-row: 1; flex-direction: row; flex-wrap: wrap; padding: 10px; }
+  .middle { grid-column: 1 / -1; grid-row: 1; flex-direction: row; }
+  .call { flex: 1.5; }
+  .codebase { flex: 1; padding: 10px; }
   .term { height: 42vh; }
   .agents { grid-template-columns: 1fr; }
   .wires { display: none; }
